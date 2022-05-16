@@ -2,11 +2,11 @@
 from importlib import import_module
 from flask import render_template
 from app import app
-from app import python_scripts
+from app import dummy
 
 @app.route('/')
 @app.route('/index')
 def index():
     
-    target= python_scripts.dummy.py
+    target= dummy.math()[1]
     return render_template("skeleton.html",target=target)
