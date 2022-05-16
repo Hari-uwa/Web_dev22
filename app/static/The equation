@@ -4,12 +4,12 @@ longtermlist = []
 ops = ['+', '-', '*', '/']
 
 def math():
-    for i in range(90):
+    for i in range(900):
         n = random.randint(1,9)
         randomlist.append(n)
     n=9
     output=[randomlist[i:i + n] for i in range(0, len(randomlist), n)]
-    for i in range(0,n+1):
+    for i in range(0,100): # 900 / 9 = 100
         each_list = output[i]
         operation1 = random.choice(ops)
         operation2 = random.choice(ops)
