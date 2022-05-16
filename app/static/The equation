@@ -4,17 +4,16 @@ longtermlist = []
 ops = ['+', '-', '*', '/']
 
 def math():
-    for i in range(900):
+    for i in range(3240):
         n = random.randint(1,9)
         randomlist.append(n)
     n=9
     output=[randomlist[i:i + n] for i in range(0, len(randomlist), n)]
-    for i in range(0,100): # 900 / 9 = 100
+    for i in range(0,360): # 3240 / 9 = 360 - closest to the one year set value from multiple of 9
         each_list = output[i]
         operation1 = random.choice(ops)
         operation2 = random.choice(ops)
         each_list[2] = operation1
         each_list[5] = operation2
         each_list[8] = '='
-    print(output)
-        
+    return output
