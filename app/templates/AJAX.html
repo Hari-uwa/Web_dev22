@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <p id="demo"></p>
+
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var numb = JSON.stringify(this.responseText);
+                document.getElementById("demo").innerHTML = myObj.digit4;
+            }
+        };
+        var myObj = {
+            "digit1": 3,
+            "digit2": 0,
+            "operator1": "*",
+            "digit3": 2,
+            "digit4": 0,
+            "operator3": "+",
+            "digit5": 0,
+            "digit6": 3,
+            "operator4": "=",
+            "target_number": 603
+        }
+        xhr.open("POST", "http://httpbin.org/post?key=abc123", true);
+        let body = JSON.stringify(myObj)
+        xhr.send();
+    </script>
