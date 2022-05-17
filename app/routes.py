@@ -8,5 +8,5 @@ from app import dummy
 @app.route('/index')
 def index():
     
-    target= dummy.math()[1]
+    target= dummy.math()[1][-1]
     return render_template("skeleton.html",target=target)
