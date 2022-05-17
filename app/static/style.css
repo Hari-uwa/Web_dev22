@@ -1,0 +1,88 @@
+body {
+    width: 100%;
+    height: 100vh;
+    background-color: #ffffff;
+
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    user-select: none;
+  }
+
+  .numberloo-row {
+    height: 10vh;
+    text-align: center;
+    background-color: #333;
+    color: white
+  }
+
+  .target-row {
+    text-align: center;
+    height: 20vh
+  }
+
+  .start-button-row {
+    text-align: center;
+    height: 50vh;
+    border-top: 2px solid rgb(20, 86, 141);
+  }
+
+  .target-number-row {
+    text-align: center;
+    height: 20vh
+  }
+
+  .numbers-row {
+    background-color: darkgrey;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 10px;
+    width: 330px;
+    height: 60px;
+    padding: 10px 20px;
+    margin: auto;
+    margin-bottom: 30px;
+  }
+
+  .number-tile {
+    background-color: #333;
+    color: white;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px
+  }
+
+  .equation-row {
+    background-color: darkgrey;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr) 2fr;
+    grid-gap: 10px;
+    width: 570px;
+    height: 60px;
+    padding: 10px 20px;
+    margin: auto;
+  }
+
+  .slot {
+    background-color: rgba(239, 239, 239, 0.5);
+    color:grey;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .operator {
+    display: inline-flex;
+    justify-content: center;
+    font-size: x-large;
+    font-weight: bold;
+  }
+
+  .total {
+    font-size: x-large;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
