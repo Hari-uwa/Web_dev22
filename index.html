@@ -30,8 +30,9 @@
       <div class="col-4" style="font-family: Consolas,monaco,monospace; font-size: x-large;">numberloo</div>
       <div class="col-4">
 
-      <!--Settings Button-->
-      <i type="button" class="material-icons" data-modal-target="#modal">settings</i>
+      <!--Modal Button-->
+      <i type="button" class="material-icons" data-modal-target="#modal-settings">settings</i>
+      <i type="button" class="material-icons">leaderboard</i>
       
     </div>
     </div>
@@ -59,15 +60,20 @@
   </div>
 
   </div>
-  <div class="modal" id="modal">
-    <div class="modal-header">
+
+  <!--Settings Modal-->
+  <div class="modal-settings" id="modal-settings">
+    <div class="settings-header">
         <div class="title">SETTINGS</div>
         <button data-close-button class="close-button">&times;</button>
     </div>
-    <div class="modal-body">
+    <div class="settings-body">
       <p>This is a placeholder for settings</p>
     </div>
   </div>
+
+  <!--Statistics Modal-->
+  <div class="modal-stats" id="modal-stats"></div>
 
   <div id="overlay"></div>
 

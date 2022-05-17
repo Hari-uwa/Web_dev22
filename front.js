@@ -19,13 +19,12 @@ function hideButton() {
     }, 1000);
   }
 
-//Pop Up For Settings Button
+//Modal For Settings Button
 const openModalButtons = document.querySelectorAll('[data-modal-target]');
 const closeModalButtons = document.querySelectorAll('[data-close-button]');
 const overlay = document.getElementById('overlay');
 
 openModalButtons.forEach(button => {
-  console.log(button)
   button.addEventListener('click', () => {
     const modal = document.querySelector(button.dataset.modalTarget);
     openModal(modal)
@@ -34,7 +33,7 @@ openModalButtons.forEach(button => {
 
 
 overlay.addEventListener('click', () => {
-  const modals = document.querySelectorAll('.modal.active');
+  const modals = document.querySelectorAll('.modal-settings.active');
   modals.forEach(modal => {
       closeModal(modal);
 });
@@ -42,7 +41,7 @@ overlay.addEventListener('click', () => {
 
 closeModalButtons.forEach(button => {
 button.addEventListener('click', () => {
-    const modal = button.closest('.modal');
+    const modal = button.closest('.modal-settings');
     closeModal(modal);
 });
 });
@@ -58,3 +57,5 @@ function closeModal(modal) {
   modal.classList.remove('active');
   overlay.classList.remove('active');
 };
+
+//Modal for Statistics Button
