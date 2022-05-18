@@ -19,13 +19,28 @@ function startTimer() {
   }, 1000);
 }
 
-//Implement Drag and Drop------------------------------------------------
 
-var numbers = [2,3,4,5,6,7]
+//Update User View------------------------------------------------
+
+//Equation data from backend
+var equationArr = [3,2,"-",0,9,"+",4,5,68]
+
+//Initialise and assign variables
+var target = equationArr[8]
+var numbers = equationArr.slice(0,2).concat(equationArr.slice(3,5),equationArr.slice(6,8))
+var operators = [equationArr[2], equationArr[5]]
 var slotnumbers = [0,0,0,0,0,0]
-var operators = ['-','*']
 
-//Add ids and datas to number-tiles and slots
+//Shuffle numbers array
+numbers.sort(() => Math.random() - 0.5)
+
+//Update operator, target number and, tile numbers on user view. Add ids and datas to number-tiles and slots
+var operatorsDict = {'+':'&plus;',"-":"&minus;","*":"&times;","/":"&divide;"}
+$("#operator1").html(operatorsDict[operators[0]])
+$("#operator2").html(operatorsDict[operators[1]])
+
+$("#target-number").html(target)
+
 $(".number-tile").each(function (i) {
   $(this).attr('id', 'number-tile' + i).data("index", i).data("number",numbers[i]).html(numbers[i])
 })
@@ -33,6 +48,9 @@ $(".number-tile").each(function (i) {
 $(".slot").each(function (i) {
   $(this).attr('id', 'slot' + i).data('index', i).data('store', -1)
 })
+
+
+//Implement Drag and Drop------------------------------------------------
 
 //Make number-tiles draggable
 $(".number-tile").draggable({ stack: ".number-tile", revert: revertBack });
@@ -50,9 +68,8 @@ function handleCardDrop(event, ui) {
   let numTileIndex = ui.draggable.data('index');
 
   // If blank tile is storing a number tile, revert the number tile back to original position
-  var storedTileIndex = $(this).data('store')
+  let storedTileIndex = $(this).data('store')
   if (storedTileIndex != -1) {
-    console.log(storedTileIndex);
     $("#number-tile" + storedTileIndex).css({ top: 0, left: 0 })
   }
   // Put the dragged number tile onto the black tile and do calculation
@@ -63,33 +80,31 @@ function handleCardDrop(event, ui) {
   calculate()
 }
 
-function handleOut(){
-  let slotIndex = $(this).data('index')
-  $(this).data('store', -1)
-  console.log($(this).data('store'))
-  slotnumbers[slotIndex] = 0
-  calculate()
+function handleOut(event, ui){
+  let storedTileIndex = $(this).data('store')
+  let draggedTileIndex = ui.draggable.data('index')
+  if(storedTileIndex == draggedTileIndex){
+    let slotIndex = $(this).data('index')
+    $(this).data('store', -1)
+    slotnumbers[slotIndex] = 0
+    calculate()
+  }
 }
+
 
 // Calculate current total-----------------------------
-function calculate(){
-  let firstTerm = parseInt(''+slotnumbers[0]+slotnumbers[1])
-  let secondTerm = parseInt(''+slotnumbers[2]+slotnumbers[3])
-  let thirdTerm = parseInt(''+slotnumbers[4]+slotnumbers[5])
-  let subtotal = subcalculate(firstTerm,secondTerm,operators[0])
-  let total = subcalculate(subtotal,thirdTerm,operators[0])
-  $(".total").html(total)
-}
 
-function subcalculate(term1,term2,operator){
-if(operator == '+') return term1+term2;
-else if (operator == '-') return term1-term2;
-else if (operator == '*') return term1*term2;
-else return term1/term2;
+function calculate(){
+  let equation = [...slotnumbers]
+  equation.splice(2, 0, operators[0])
+  equation.splice(5, 0, operators[1])
+  let total = parseInt(eval(equation.join("")))
+  isNaN(total) ? $(".total").html("Invalid") : $(".total").html(total)
 }
 
 
 // Make drag and drop work on mobile-----------------------------------------------
+
 function touchHandler(event) {
   var touch = event.changedTouches[0];
 

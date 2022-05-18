@@ -67,7 +67,7 @@ body {
 
   .slot {
     background-color: rgba(239, 239, 239, 0.5);
-    color:grey;
+    color:black;
     display: inline-flex;
     justify-content: center;
     align-items: center;
