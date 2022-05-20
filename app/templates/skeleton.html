@@ -17,45 +17,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="./static/style.css">
+  <script src="{{ url_for('static',filename='script.js') }}" async></script>
 
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:wght@900&display=swap"
+    rel="stylesheet">
 </head>
 
 
 <body>
-  <div>
-
-    <div class="container-fluid ">
-      <div class="row numberloo-row align-content-center align-items-center">
-        <div class="col-4">
-          <i type="button" class="material-icons">help_outline</i>
-        </div>
-        <div class="col-4" style="font-family: Consolas,monaco,monospace; font-size: x-large;">numberloo</div>
-        <div class="col-4">
-          <i type="button" class="material-icons">settings</i>
-          <i type="button" class="material-icons">leaderboard</i>
-        </div>
-
-      </div>
-
-      <div class="row align-content-center align-items-center target-row ">
-        <div class="col-4 text-start">
-          <i class="material-icons align-bottom ">schedule</i>
-          <span class="timer" style="font-size:1.2rem;"> 0:0 </span>
-        </div>
-        <div class="col-4" style="font-family: Consolas,monaco,monospace; font-size: xx-large;">TARGET</div>
-        <div class="col-4"> </div>
-      </div>
+  <header>
+    <div class="left-menu">
+      <i type="button" class="material-icons md-36">help</i>
     </div>
-
-    <div class="row align-items-center target-number-row">
-      <div class="col-5"> </div>
-      <div class="col-2 p-3 mb-2 bg-secondary text-white" id="target-number"></div>
-      <div class="col-5"> </div>
+    <div class="title">Numberloo</div>
+    <div class="right-menu">
+      <i type="button" class="material-icons">settings</i>
+      <i type="button" class="material-icons">leaderboard</i>
     </div>
+  </header>
+  <div class="game">
+    <div class="timer-row">
+      <i class="material-icons">schedule</i>
+      <span class="timer" style="font-size:1.2rem;"> 0:0 </span>
+    </div>
+    <div class="target">Target</div>
 
-    <div class="row align-content-center start-button-row">
-      <div class="col-12"> <button onclick="hideButton(); startTimer()" type="button"
-          class="btn btn-outline-primary btn-lg">Start</button> </div>
+    <div id="target-number">-</div>
+
+    <div class="start-button-container">
+      <div class="start-button-row">
+        <button onclick="startGame()" type="button" class="start-button btn btn-success btn-lg">Start</button>
+      </div>
     </div>
 
     <div class="game-board">
@@ -77,14 +69,33 @@
         <div class="operator" id="operator2"></div>
         <div class="slot">0</div>
         <div class="slot">0</div>
-        <div class="operator">&equals;</div>
-        <div class="total">0</div>
+        <div class="operator desktop">&equals;</div>
+        <div class="total desktop">0</div>
+      </div>
+
+      <div class="total-row mobile">
+        <div class="operator ">&equals;</div>
+        <div class="total ">0</div>
       </div>
     </div>
   </div>
-</body>
 
-<!-- Link to script.js -->
-<script src="{{ url_for('static',filename='script.js') }}"></script>
+  <!-- Congratulation Modal -->
+  <div class="modal fade" id="congrazModal" tabindex="-1" aria-labelledby="CongratulationModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+          <h2 id="first-line"> Congratulation! </h2>
+          <h2 id="second-line">You have solved the puzzle in</h2>
+          <h4 id="time-taken"></h4>
+          <img id="achieved-plant" src="">
+          <p id="achieved-text"></p>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
 
 </html>
