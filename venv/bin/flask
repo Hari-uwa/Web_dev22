@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 #!/home/hariv22/coding/webdev_22/project/Web_dev22/venv/bin/python3
+=======
+#!/bin/sh
+'''exec' "/mnt/c/Users/user/OneDrive - The University of Western Australia/Units/CITS3403/Project/Web_dev22/venv/bin/python3" "$0" "$@"
+' '''
+>>>>>>> f775e7e7fa471ba671a99b9351169da55900ba4e
 # -*- coding: utf-8 -*-
 import re
 import sys
