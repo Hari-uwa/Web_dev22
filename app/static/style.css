@@ -1,9 +1,94 @@
+html, body{
+    width: 100%;
+    min-height: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 body {
     width: 100%;
     position: fixed;
     top: 0;
     bottom: 0;
     user-select: none;
+
+    background-image: linear-gradient(to right,
+                                    #303030,
+                                    #303030 50%,
+                                    #FAFAFA 50%,
+                                    #FAFAFA);
+    background-position: 100% 0;
+    background-size: 200% 100%;
+    transition: all .2s ease-in;
+}
+
+.night{
+    background-position: 0 0;
+}
+
+.content{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.content > i{
+    font-size: 44px;
+    transition: all .2s ease-in;
+}
+
+.switch {
+    position: relative;
+    display: block;
+    height: 20px;
+    width: 44px;
+    background: #303030;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.switch:after {
+    position: absolute;
+    left: -2px;
+    top: -3px;
+    display: block;
+    width: 26px;
+    height: 26px;
+    border-radius: 100px;
+    background: black;
+    box-shadow: 0px 3px 3px rgba(0,0,0,0.05);
+    content: '';
+    transition: all 0.3s ease;
+}
+
+.switch:active:after { 
+    transform: scale(1.15, 0.85); 
+}
+
+.cbx:checked ~ label { 
+    background: #EBEBEB; 
+}
+
+.cbx:checked ~ label:after {
+    left: 20px;
+    background: #FFFFFF;
+}
+
+.cbx:disabled ~ label {
+    background: #d5d5d5;
+    pointer-events: none;
+}
+
+.cbx:disabled ~ label:after { 
+    background: #bcbdbc; 
+}
+
+.hidden { 
+    display: none; 
 }
 
 header {
@@ -124,8 +209,7 @@ div i {
     align-items: center;
 }
 
-.operator,
-.total {
+.operator, .total {
     display: inline-flex;
     justify-content: center;
     font-size: x-large;
