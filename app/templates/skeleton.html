@@ -10,7 +10,7 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
   
-    <!-- To use JQuery -->
+  <!-- To use JQuery -->
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script src="http://code.jquery.com/ui/1.8.24/jquery-ui.min.js" type="text/javascript"></script>
   <link href="http://code.jquery.com/ui/1.8.24/themes/blitzer/jquery-ui.css" rel="stylesheet" type="text/css" />
@@ -48,11 +48,13 @@
               <hr>
               The goal of this game is to figure out the right equation which makes up to the target number as fast as possible.
               <br>
+              <br>
               Based on the time you finish the puzzle, you will be rewarded a cute plant to add to your personal achievement inventory.
+              <br>
               <br>
               <img class='mygif' src="./static/images/plant-unscreen.gif">
               <br>
-              The growth stage of the plant you are rewarded is proportional to the time taken to finish the puzzle. 
+              The growth stage of the plant you are rewarded is determined by the time taken to finish the puzzle. 
               <br>
               <hr>
               Each puzzle has a limit of <strong>10 minutes</strong>. If you still have not found the answer after 10 minutes, the game ends and you have to try again tomorrow.
@@ -85,7 +87,7 @@
             </div>
 
             <div class="modal-body">
-              <p>Placeholder for settings temp</p>
+              <div class="container-fluid"></div>
             </div>
 
           </div>
@@ -133,6 +135,17 @@
     <div class="col-2 p-3 mb-2 bg-secondary text-white">{{target}}</div>
     <div class="col-5"> </div>
   </div>
+
+    <div class="game-board">
+      <div class="numbers-row">
+        <div class="number-tile"></div>
+        <div class="number-tile"></div>
+        <div class="number-tile"></div>
+        <div class="number-tile"></div>
+        <div class="number-tile"></div>
+        <div class="number-tile"></div>
+      </div>
+    </div>
 
       <div class="equation-row">
         <div class="slot">0</div>
