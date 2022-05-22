@@ -31,18 +31,56 @@
     <div class="left-menu">
 
       <!--How to Modal-->
-      <i type="button" class="material-icons md-36">help</i>
+      <i type="button" id="howtoButton" class="material-icons" data-bs-toggle="modal" data-target="#howtoModal">help</i>
+
+      <div class="modal fade" id="howtoModal" tabindex="-1" aria-labelledby="howtoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="howtoLabel">HOW TO PLAY</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+              A target result is given everyday.
+              Once you click <strong data-bs-dismiss="modal" id="start-word">Start</strong>, the timer will start counting.
+              <br>
+              <hr>
+              The goal of this game is to figure out the right equation which makes up to the target number as fast as possible.
+              <br>
+              Based on the time you finish the puzzle, you will be rewarded a cute plant to add to your personal achievement inventory.
+              <br>
+              <img class='mygif' src="./static/images/plant-unscreen.gif">
+              <br>
+              The growth stage of the plant you are rewarded is proportional to the time taken to finish the puzzle. 
+              <br>
+              <hr>
+              Each puzzle has a limit of <strong>10 minutes</strong>. If you still have not found the answer after 10 minutes, the game ends and you have to try again tomorrow.
+              <br>
+              <img class="mygif" src="./static/images/hourglass.gif">
+              <hr>
+              <p>If you have any feedback, please send us an <a href="mailto:trangngannguyen2001@gmail.com">email</a></p>
+            </div>
+          </div>
+        </div>
+
+          </div>
+        </div>
+      </div>
+
     </div>
+
     <div class="title">Numberloo</div>
+
     <div class="right-menu">
       <!--Settings Modal-->
-      <i type="button" id="settingsButton" class="btn-btn-primary material-icons" data-bs-toggle="modal" data-target="#settingsModal">settings</i>
+      <i type="button" id="settingsButton" class="material-icons" data-bs-toggle="modal" data-target="#settingsModal">settings</i>
 
       <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title" id="settingsLabel">Settings</h4>
+              <h4 class="modal-title" id="settingsLabel">SETTINGS</h4>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -55,13 +93,13 @@
       </div>
 
       <!--Statistics Modal-->
-      <i type="button" id="statsButton" class="btn btn-primary material-icons" data-bs-toggle="modal" data-target="#statsModal">leaderboard</i>
+      <i type="button" id="statsButton" class="material-icons" data-bs-toggle="modal" data-target="#statsModal">leaderboard</i>
 
       <div class="modal fade" id="statsModal" tabindex="-1" aria-labelledby="statsLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title" id="statsLabel">Statistics</h4>
+              <h4 class="modal-title" id="statsLabel">STATISTICS</h4>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
