@@ -29,6 +29,8 @@
 <body>
   <header>
     <div class="left-menu">
+
+      <!--How to Modal-->
       <i type="button" class="material-icons md-36">help</i>
     </div>
     <div class="title">Numberloo</div>
@@ -36,11 +38,11 @@
       <!--Settings Modal-->
       <i type="button" id="settingsButton" class="btn-btn-primary material-icons" data-bs-toggle="modal" data-target="#settingsModal">settings</i>
 
-      <div class="modal fade" id="settingsModal" tabindex="-1"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title" id="exampleModalLabel">Settings</h4>
+              <h4 class="modal-title" id="settingsLabel">Settings</h4>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -53,8 +55,23 @@
       </div>
 
       <!--Statistics Modal-->
-      <i type="button" class="material-icons">leaderboard</i>
-      
+      <i type="button" id="statsButton" class="btn btn-primary material-icons" data-bs-toggle="modal" data-target="#statsModal">leaderboard</i>
+
+      <div class="modal fade" id="statsModal" tabindex="-1" aria-labelledby="statsLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="statsLabel">Statistics</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+              <p>Placeholder for statistics temp</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </header>
