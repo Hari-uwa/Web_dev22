@@ -55,7 +55,7 @@
               <br>
               You can <b>drag and drop</b> the numbers given to the empty boxes. The system will give you the result of the equation you made. The game continues until the final result matches the target given.
               <br>
-              <img class="mygif" style="width:90%;" src="./static/images/howto.gif">
+              <img class="mygif" id="playingvid" style="width:90%;" src="./static/images/howto.gif">
               <br>
               <hr>
               Based on the time you finish the puzzle, you will be rewarded a cute plant to add to your personal achievement inventory.
@@ -141,7 +141,7 @@
   </header>
   <div class="game">
     <div class="timer-row">
-      <i class="material-icons">schedule</i>
+      <i class="material-icons" >schedule</i>
       <span class="timer" style="font-size:1.2rem;"> 0:0 </span>
     </div>
     <div class="target">Target</div>
@@ -150,7 +150,7 @@
 
     <div class="start-button-container">
       <div class="start-button-row">
-        <button onclick="startGame()" type="button" class="start-button">Start</button>
+        <button onclick="startGame()" type="button" class="start-button btn btn-primary">Start</button>
       </div>
     </div>
 
@@ -201,7 +201,9 @@
           <h4 id="time-taken"></h4>
           <img id="achieved-plant" src="">
           <p id="achieved-text"></p>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+          <div>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+          </div>
         </div>
       </div>
     </div>

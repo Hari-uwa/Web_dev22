@@ -30,6 +30,7 @@ $(document).ready(function() {
         $('.timer').css("color", "#FAFAFA");
         $('.btn-close').addClass('btn-close-white');
         themeWord.innerHTML = 'Dark Mode';
+        $('#playingvid').attr("src", "./static/images/howtodarkmode.gif");
         localStorage.setItem('darkMode', 'enabled');
     };
 
@@ -38,6 +39,7 @@ $(document).ready(function() {
         $('.timer').css("color", "#121212");
         $('.btn-close').removeClass('btn-close-white');
         themeWord.innerHTML = 'Light Mode';
+        $('#playingvid').attr("src", "./static/images/howto.gif");
         localStorage.setItem('darkMode', null);
     };
 
