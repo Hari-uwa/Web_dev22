@@ -1,23 +1,200 @@
+/* dark theme */
+html, body{
+    width: 100%;
+    min-height: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 body {
     width: 100%;
     position: fixed;
     top: 0;
     bottom: 0;
     user-select: none;
+
+    background-image: linear-gradient(to right,
+                                    #121212,
+                                    #121212 50%,
+                                    #FFFFFF 50%,
+                                    #FFFFFF);
+    background-position: 100% 0;
+    background-size: 200% 100%;
+    /*transition: all .2s ease-in;*/
 }
 
+/*dark theme for modals*/
+.night{
+    background-position: 0 0;
+}
+
+body.night .modal-content {
+    background-color: #171717;
+}
+
+body.night .modal-content .modal-title {
+    color:#BB86FC;
+    opacity: 87%;
+}
+
+body.night .modal-content .modal-body {
+    color: #FFFFFF;
+    opacity: 87%;
+}
+
+/*dark theme for front page header*/
+body.night .title {
+    color: #FFFFFF;
+}
+
+body.night header {
+    background-color: #191919;
+    box-shadow: none;
+}
+
+body.night i {
+    color: #FFFFFF;
+}
+
+/*dark theme for front page body*/
+body.night .target {
+    color: #FFFFFF;
+    opacity: 87%;
+}
+
+body.night #target-number {
+    background-color: #FFFFFF;
+    opacity: 80%;
+}
+
+body.night .start-button-container {
+    background-color: #121212;
+}
+
+body.night .start-button {
+    background-color: #BB86FC;
+    font-size: 30px;
+    color: #000000;
+    border-style: none;
+    padding: 10px 40px;
+    margin-bottom: 2em;
+}
+
+body.night .start-button:hover {
+    background-color: #191919;
+    color: #FFFFFF;
+    opacity: 87%;
+}
+
+/*dark theme for the game*/
+body.night .numbers-row, body.night .equation-row, body.night .total-row {
+    background-color: #191919;
+    box-shadow: none;
+}
+
+body.night .number-tile, body.night .total {
+    background-color: #BB86FC;
+    color: #000000;
+}
+
+body.night .slot {
+    background-color: #303030;
+    opacity: 87%;
+    color: #000000;
+}
+
+body.night .operator {
+    color: #BB86FC;
+    opacity: 87%;
+}
+
+/*dark theme after the game is finished*/
+.start-button-row {
+    color: #FFFFFF;
+}
+
+/*transition*/
+.content{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.content > i{
+    font-size: 35px;
+    transition: all .2s ease-in;
+}
+
+.switch {
+    position: relative;
+    display: block;
+    height: 20px;
+    width: 44px;
+    background: #303030;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.switch:after {
+    position: absolute;
+    left: -3px;
+    top: -3px;
+    display: block;
+    width: 26px;
+    height: 26px;
+    border-radius: 100px;
+    background: black;
+    box-shadow: 0px 3px 3px rgba(0,0,0,0.05);
+    content: '';
+    transition: all 0.3s ease;
+}
+
+.switch:active:after { 
+    transform: scale(1.15, 0.85); 
+}
+
+.cbx:checked ~ label { 
+    background: #EBEBEB; 
+}
+
+.cbx:checked ~ label:after {
+    left: 18px;
+    background: #FFFFFF;
+}
+
+.cbx:disabled ~ label {
+    background: #d5d5d5;
+    pointer-events: none;
+}
+
+.cbx:disabled ~ label:after { 
+    background: #bcbdbc; 
+}
+
+.hidden { 
+    display: none; 
+}
+
+/*main*/
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 80px;
-    background-color: #a9d6ef;
+    background-color: #fffffff5;
     padding: 0 14px;
+    box-shadow: 2px 2px 4px #d9d9d9;
 }
 
 .title {
-    font-family: 'Archivo Black', sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 30px;
+    font-weight: bold;
+    color: #121212;
 }
 
 .left-menu {
@@ -49,35 +226,41 @@ div i {
 }
 
 .target {
-    font-family: 'Barlow', sans-serif;
-    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
 }
 
 #target-number {
-    background-color: #c7d0d8;
+    background-color: #E1BEE7;
     padding: 10px 10px;
     margin: 30px auto 50px auto;
     width: 170px;
-    font-family: 'Barlow', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 30px;
 }
 
 .start-button-container {
-    font-family: 'Archivo Black', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-grow: 1;
-    background-color: #c7d0d8;
+    background-color: #FFFFFF;
 }
 
 .start-button {
-    background-color: #7ed957;
+    background-color: #E1BEE7;
     font-size: 30px;
-    color: black;
+    color: #FFFFFF;
     border-style: none;
     padding: 10px 40px;
     margin-bottom: 2em;
+}
+
+.start-button:hover {
+    background-color: #B39DDB
+    ;
+    color: #ffffff;
 }
 
 .game-board {
@@ -85,7 +268,8 @@ div i {
 }
 
 .numbers-row {
-    background-color: darkgrey;
+    background-color: #FFFFFF;
+    box-shadow: 4px 4px 4px 4px #d9d9d9;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 10px;
@@ -97,8 +281,8 @@ div i {
 }
 
 .number-tile {
-    background-color: #333;
-    color: white;
+    background-color: #E1BEE7;
+    color: #121212;
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -106,7 +290,8 @@ div i {
 }
 
 .equation-row {
-    background-color: darkgrey;
+    background-color: #FFFFFF;
+    box-shadow: 4px 4px 4px 4px #d9d9d9;
     display: grid;
     grid-template-columns: repeat(9, 1fr) 2fr;
     grid-gap: 10px;
@@ -117,15 +302,14 @@ div i {
 }
 
 .slot {
-    background-color: rgba(239, 239, 239, 0.5);
+    background-color: #dadada;
     color: black;
     display: inline-flex;
     justify-content: center;
     align-items: center;
 }
 
-.operator,
-.total {
+.operator, .total {
     display: inline-flex;
     justify-content: center;
     font-size: x-large;
@@ -140,32 +324,64 @@ div i {
     display: none;
 }
 
-.modal-content {
-    text-align: center;
+/*modal*/
+#congratzModal .modal-content {
+    align-items: center;
 }
 
 .modal-body img {
-    width: 30%;
+    width: 50%;
     margin-bottom: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 .modal-body h2,
 .modal-body h4,
 .modal-body p {
-    font-family: 'Barlow', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
 }
 
 .modal-body button {
     color: black;
-    background-color: #a9d6ef;
+    background-color: #FF80AB;
     width: 30%;
     border-style: none;
-    font-family: 'Archivo Black', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: auto;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    display: grid;
+
 }
 
 @media (max-width: 360px) {
     .title {
         font-size: 16px;
+    }
+
+    .modal-title {
+        font-size: medium;
+    }
+
+    .modal-body {
+        font-size: small;
+    }
+
+    .switch {
+        height: 15px;
+        width: 33px;
+    }
+
+    .switch::after {
+        left: -2px;
+        top: -2px;
+        display: block;
+        width: 20px;
+        height: 20px;
     }
 }
 
@@ -207,20 +423,22 @@ div i {
     .desktop {
         display: none;
     }
+
 }
 
+/* how to modal */
 .modal-title {
     font-weight: bold;
-    color: midnightblue;
-    font-family: 'Barlow', sans-serif;
+    color: #CE93D8;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .instruction {
     text-align: left; 
-    font-family: "Arial, Helvetica, sans-serif";
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: lighter;
 }
-
+ 
 #start-word:hover {
     color: royalblue;
 }
@@ -236,3 +454,8 @@ div i {
     margin-right: auto;
     display: flex;
 }
+
+.modal-body i {
+    font-size: 22px;
+}
+
