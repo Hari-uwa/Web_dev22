@@ -23,6 +23,10 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:wght@900&display=swap"
     rel="stylesheet">
+
+  <!-- To use AJAX library-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 
@@ -38,7 +42,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title" id="howtoLabel">HOW TO PLAY</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" id="exit" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="modal-body">
@@ -85,21 +89,21 @@
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title" id="settingsLabel">SETTINGS</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button id="exit" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="modal-body">
               <div class="container-fluid">
                 <div class="row">
-                  <div class="col-10">Dark Mode</div>
-                  <div class="col-2">
+                  <div class="col-8" id="themeword">Light Mode</div>
+                  <div class="col-4">
                     <div class=content>
-                      <i class="fas fa-sun"></i>
+                      <i style="font-size:24px" class="fa">&#xf185;</i>
                       &nbsp;&nbsp;&nbsp;
                       <input type="checkbox" id="darktheme" class="cbx hidden">
                       <label for="darktheme" class="switch"></label>
                       &nbsp;&nbsp;&nbsp;
-                      <i class="fas fa-moon"></i>
+                      <i style="font-size:24px" class="fa">&#xf186;</i>
                     </div>
                   </div>
                 </div>
@@ -118,7 +122,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title" id="statsLabel">STATISTICS</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" id="exit" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="modal-body">
@@ -142,7 +146,7 @@
 
     <div class="start-button-container">
       <div class="start-button-row">
-        <button onclick="startGame()" type="button" class="start-button btn btn-success btn-lg">Start</button>
+        <button onclick="startGame()" type="button" class="start-button">Start</button>
       </div>
     </div>
 

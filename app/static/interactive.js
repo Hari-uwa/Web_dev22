@@ -16,14 +16,19 @@ $(document).ready(function() {
     });
 
     //toggle dark mode
+    themeWord = document.getElementById('themeword');
     $('#darktheme').change(function() {
         if(this.checked) {
             $('#bd').addClass('night');
-            $('i').css("color", "white");
+            $('.timer').css("color", "#FAFAFA");
+            $('.btn-close').addClass('btn-close-white');
+            themeWord.innerHTML = 'Dark Mode';
         }
         else {
             $('#bd').removeClass('night');
-            $('i').css('color', 'black');
+            $('.timer').css("color", "#121212");
+            $('.btn-close').removeClass('btn-close-white');
+            themeWord.innerHTML = 'Light Mode';
         }
     });
 });

@@ -1,3 +1,4 @@
+/* dark theme */
 html, body{
     width: 100%;
     min-height: 100%;
@@ -15,19 +16,80 @@ body {
     user-select: none;
 
     background-image: linear-gradient(to right,
-                                    #303030,
-                                    #303030 50%,
-                                    #FAFAFA 50%,
-                                    #FAFAFA);
+                                    #121212,
+                                    #121212 50%,
+                                    #FFFFFF 50%,
+                                    #FFFFFF);
     background-position: 100% 0;
     background-size: 200% 100%;
     transition: all .2s ease-in;
 }
 
+/*dark theme for modals*/
 .night{
     background-position: 0 0;
 }
 
+body.night .modal-content {
+    background-color: #171717;
+}
+
+body.night .modal-content .modal-title {
+    color:#BB86FC;
+    opacity: 87%;
+}
+
+body.night .modal-content .modal-body {
+    color: #FFFFFF;
+    opacity: 87%;
+}
+
+/*dark theme for front page header*/
+body.night .title {
+    color: #FFFFFF;
+    opacity: 87%;
+}
+
+body.night header {
+    background-color: #191919;
+    border-color: #FAFAFA;
+}
+
+body.night i {
+    color: #FFFFFF;
+}
+
+/*dark theme for front page body*/
+body.night .target {
+    color: #FFFFFF;
+    opacity: 87%;
+}
+
+body.night #target-number {
+    background-color: #FFFFFF;
+    opacity: 75%;
+}
+
+body.night .start-button-container {
+    background-color: #121212;
+}
+
+body.night .start-button {
+    background-color: #BB86FC;
+    font-size: 30px;
+    color: #000000;
+    border-style: none;
+    padding: 10px 40px;
+    margin-bottom: 2em;
+}
+
+body.night .start-button:hover {
+    background-color: #191919;
+    color: #FFFFFF;
+    opacity: 87%;
+}
+
+/*transition*/
 .content{
     display: flex;
     flex-direction: row;
@@ -91,6 +153,7 @@ body {
     display: none; 
 }
 
+/*main*/
 header {
     display: flex;
     align-items: center;
@@ -101,8 +164,9 @@ header {
 }
 
 .title {
-    font-family: 'Archivo Black', sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 30px;
+    font-weight: bold;
 }
 
 .left-menu {
@@ -134,21 +198,21 @@ div i {
 }
 
 .target {
-    font-family: 'Barlow', sans-serif;
-    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
 }
 
 #target-number {
-    background-color: #c7d0d8;
+    background-color: #6200ee;
     padding: 10px 10px;
     margin: 30px auto 50px auto;
     width: 170px;
-    font-family: 'Barlow', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 30px;
 }
 
 .start-button-container {
-    font-family: 'Archivo Black', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -157,9 +221,9 @@ div i {
 }
 
 .start-button {
-    background-color: #7ed957;
+    background-color: #6200ee;
     font-size: 30px;
-    color: black;
+    color: #FFFFFF;
     border-style: none;
     padding: 10px 40px;
     margin-bottom: 2em;
@@ -224,6 +288,7 @@ div i {
     display: none;
 }
 
+/*modal*/
 .modal-content {
     text-align: center;
 }
@@ -236,7 +301,7 @@ div i {
 .modal-body h2,
 .modal-body h4,
 .modal-body p {
-    font-family: 'Barlow', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .modal-body button {
@@ -244,7 +309,7 @@ div i {
     background-color: #a9d6ef;
     width: 30%;
     border-style: none;
-    font-family: 'Archivo Black', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 @media (max-width: 360px) {
@@ -293,15 +358,16 @@ div i {
     }
 }
 
+/* how to modal */
 .modal-title {
     font-weight: bold;
     color: midnightblue;
-    font-family: 'Barlow', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .instruction {
     text-align: left; 
-    font-family: "Arial, Helvetica, sans-serif";
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: lighter;
 }
 
