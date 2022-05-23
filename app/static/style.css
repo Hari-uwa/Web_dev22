@@ -22,7 +22,7 @@ body {
                                     #FFFFFF);
     background-position: 100% 0;
     background-size: 200% 100%;
-    transition: all .2s ease-in;
+    /*transition: all .2s ease-in;*/
 }
 
 /*dark theme for modals*/
@@ -67,7 +67,7 @@ body.night .target {
 
 body.night #target-number {
     background-color: #FFFFFF;
-    opacity: 75%;
+    opacity: 80%;
 }
 
 body.night .start-button-container {
@@ -89,6 +89,21 @@ body.night .start-button:hover {
     opacity: 87%;
 }
 
+/*dark theme for the game*/
+body.night .numbers-row, body.night .equation-row, body.night .total-row {
+    background-color: #191919;
+}
+
+body.night .number-tile, body.night .slot, body.night .total {
+    background-color: #BB86FC;
+    color: #000000;
+}
+
+body.night .operator {
+    color: #BB86FC;
+    opacity: 87%;
+}
+
 /*transition*/
 .content{
     display: flex;
@@ -98,7 +113,7 @@ body.night .start-button:hover {
 }
 
 .content > i{
-    font-size: 44px;
+    font-size: 35px;
     transition: all .2s ease-in;
 }
 
@@ -115,7 +130,7 @@ body.night .start-button:hover {
 
 .switch:after {
     position: absolute;
-    left: -2px;
+    left: -3px;
     top: -3px;
     display: block;
     width: 26px;
@@ -136,7 +151,7 @@ body.night .start-button:hover {
 }
 
 .cbx:checked ~ label:after {
-    left: 20px;
+    left: 18px;
     background: #FFFFFF;
 }
 
@@ -316,6 +331,27 @@ div i {
     .title {
         font-size: 16px;
     }
+
+    .modal-title {
+        font-size: medium;
+    }
+
+    .modal-body {
+        font-size: small;
+    }
+
+    .switch {
+        height: 15px;
+        width: 33px;
+    }
+
+    .switch::after {
+        left: -2px;
+        top: -2px;
+        display: block;
+        width: 20px;
+        height: 20px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -356,6 +392,7 @@ div i {
     .desktop {
         display: none;
     }
+
 }
 
 /* how to modal */
@@ -370,7 +407,7 @@ div i {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: lighter;
 }
-
+ 
 #start-word:hover {
     color: royalblue;
 }
@@ -386,3 +423,8 @@ div i {
     margin-right: auto;
     display: flex;
 }
+
+.modal-body i {
+    font-size: 22px;
+}
+

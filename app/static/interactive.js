@@ -1,4 +1,3 @@
-//Modal Buttons on Front Page
 $(document).ready(function() {
     //open modals
     const settingsButton = document.getElementById("settingsButton");
@@ -19,17 +18,38 @@ $(document).ready(function() {
     themeWord = document.getElementById('themeword');
     $('#darktheme').change(function() {
         if(this.checked) {
-            $('#bd').addClass('night');
-            $('.timer').css("color", "#FAFAFA");
-            $('.btn-close').addClass('btn-close-white');
-            themeWord.innerHTML = 'Dark Mode';
+            darkModeOn();
         }
         else {
-            $('#bd').removeClass('night');
-            $('.timer').css("color", "#121212");
-            $('.btn-close').removeClass('btn-close-white');
-            themeWord.innerHTML = 'Light Mode';
+            darkModeOff();
         }
     });
+
+    function darkModeOn() {
+        $('#bd').addClass('night');
+        $('.timer').css("color", "#FAFAFA");
+        $('.btn-close').addClass('btn-close-white');
+        themeWord.innerHTML = 'Dark Mode';
+        localStorage.setItem('darkMode', 'enabled');
+    };
+
+    function darkModeOff() {
+        $('#bd').removeClass('night');
+        $('.timer').css("color", "#121212");
+        $('.btn-close').removeClass('btn-close-white');
+        themeWord.innerHTML = 'Light Mode';
+        localStorage.setItem('darkMode', null);
+    };
+
+    //Save user's settings with local storage
+    mode = localStorage.getItem('darkMode');
+    if (mode == 'enabled') {
+        darkModeOn();
+        document.getElementById('darktheme').checked = true;
+    }
+    else {
+        darkModeOff();
+        document.getElementById('darktheme').checked = false;
+    };
 });
 
