@@ -47,7 +47,6 @@ body.night .modal-content .modal-body {
 /*dark theme for front page header*/
 body.night .title {
     color: #FFFFFF;
-    opacity: 87%;
 }
 
 body.night header {
