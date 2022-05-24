@@ -406,7 +406,8 @@ div i {
     }
 
     .total-row {
-        background-color: darkgrey;
+        background-color: #FFFFFF;
+        box-shadow: 4px 4px 4px 4px #d9d9d9;
         display: grid;
         grid-template-columns: 1fr 2fr;
         grid-gap: 10px;
