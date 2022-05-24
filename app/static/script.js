@@ -1,3 +1,22 @@
+//Get user's statistics-------------------------------------------------------
+
+//Initiate local storage items for tree inventory
+bigtreeNum = Number(localStorage.getItem('bigtree'));
+treeNum = Number(localStorage.getItem('tree'));
+plantNum = Number(localStorage.getItem('plant'));
+smallplantNum = Number(localStorage.getItem('smallplant'));
+seedNum = Number(localStorage.getItem('seed'));
+
+//Initiate local storage items for statistics
+playedTimes = Number(localStorage.getItem('played'));
+winTimes = Number(localStorage.getItem('win'));
+currentStreak = Number(localStorage.getItem('currentstreak'));
+bestStreak = Number(localStorage.getItem('beststreak'));
+console.log(playedTimes);
+
+//Update statistics for tree inventory accordingly
+$(document).ready(treeDisplay());
+
 if (puzzleCompleted) {
   showSolvedView();
 }
@@ -6,6 +25,8 @@ function startGame() {
   hideButton();
   startTimer();
   updateGameview();
+  playedTimes += 1;
+  currentStreak += 1;
 }
 
 function hideButton() {
@@ -50,19 +71,7 @@ function timesUp() {
   showSolvedView()
 }
 
-//Get user's statistics------------------------------------------
-
-//Initiate local storage Items for tree inventory
-bigtreeNum = Number(localStorage.getItem('bigtree'));
-treeNum = Number(localStorage.getItem('tree'));
-plantNum = Number(localStorage.getItem('plant'));
-smallplantNum = Number(localStorage.getItem('smallplant'));
-seedNum = Number(localStorage.getItem('seed'));
-
-//Update statistics accordingly
-$(document).ready(treeDisplay());
-
-//Update User View------------------------------------------------
+//Update User View---------------------------------------------------------------
 
 //Equation data from backend
 var equationArr = [3, 2, "-", 0, 9, "+", 4, 5, 68]
@@ -160,11 +169,13 @@ function calculate() {
 
 function puzzleSolved() {
   puzzleCompleted = true;
+  winTimes += 1;
+  console.log(winTimes);
   $("#time-taken").html(mins + ":" + secs + " minutes")
   if (time < 30) {
     $("#achieved-plant").attr("src", "./static/images/big_tree.png");
     $("#achieved-text").html("x1 big tree added to achievements");
-    bigtreeNum = bigtreeNum + 1;
+    bigtreeNum += 1;
   }
   else if (time < 60) {
     $("#achieved-plant").attr("src", "./static/images/tree.png");
@@ -199,6 +210,7 @@ function showSolvedView() {
   $(".start-button-container").css("display", "flex");
   $(".game-board").css("display", "none");
   treeDisplay();
+
 };
 
 //Display of tree inventory-------------------------------------------------
