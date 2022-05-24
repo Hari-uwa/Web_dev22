@@ -1,5 +1,5 @@
 if (puzzleCompleted) {
-  showSolvedView()
+  showSolvedView();
 }
 
 function startGame() {
@@ -49,6 +49,18 @@ function timesUp() {
   $("#congrazModal").modal('show');
   showSolvedView()
 }
+
+//Get user's statistics------------------------------------------
+
+//Initiate local storage Items for tree inventory
+bigtreeNum = Number(localStorage.getItem('bigtree'));
+treeNum = Number(localStorage.getItem('tree'));
+plantNum = Number(localStorage.getItem('plant'));
+smallplantNum = Number(localStorage.getItem('smallplant'));
+seedNum = Number(localStorage.getItem('seed'));
+
+//Update statistics accordingly
+$(document).ready(treeDisplay());
 
 //Update User View------------------------------------------------
 
@@ -128,10 +140,8 @@ function handleOut(event, ui) {
     slotnumbers[slotIndex] = 0
     calculate()
     tileleft++
-    console.log(tileleft)
   }
 }
-
 
 // Calculate current total-----------------------------
 
@@ -153,37 +163,58 @@ function puzzleSolved() {
   $("#time-taken").html(mins + ":" + secs + " minutes")
   if (time < 30) {
     $("#achieved-plant").attr("src", "./static/images/big_tree.png");
-    $("#achieved-text").html("x1 big tree added to achievements")
+    $("#achieved-text").html("x1 big tree added to achievements");
+    bigtreeNum = bigtreeNum + 1;
   }
   else if (time < 60) {
     $("#achieved-plant").attr("src", "./static/images/tree.png");
-    $("#achieved-text").html("x1 tree added to achievements")
+    $("#achieved-text").html("x1 tree added to achievements");
+    treeNum += 1;
   }
   else if (time < 90) {
     $("#achieved-plant").attr("src", "./static/images/plant.png");
-    $("#achieved-text").html("x1 plant added to achievements")
+    $("#achieved-text").html("x1 plant added to achievements");
+    plantNum += 1;
   }
   else if (time < 120) {
     $("#achieved-plant").attr("src", "./static/images/small_plant.png");
-    $("#achieved-text").html("x1 small plant added to achievements")
+    $("#achieved-text").html("x1 small plant added to achievements");
+    smallplantNum += 1;
   }
   else {
     $("#achieved-plant").attr("src", "./static/images/seed.png");
-    $("#achieved-text").html("x1 seed added to achievements")
+    $("#achieved-text").html("x1 seed added to achievements");
+    seedNum += 1;
   }
 
   $("#congrazModal").modal('show');
   showSolvedView()
-}
+};
 
 function showSolvedView() {
   $("#target-number").html("-")
   $(".start-button").addClass("disabled")
   $(".start-button-row").append("<p>Thank you for playing !</p>");
   $(".start-button-row").append("<p>Next Puzzle Available Tomorrow :)</p>");
-  $(".start-button-container").css("display", "flex")
-  $(".game-board").css("display", "none")
-}
+  $(".start-button-container").css("display", "flex");
+  $(".game-board").css("display", "none");
+  treeDisplay();
+};
+
+//Display of tree inventory-------------------------------------------------
+
+function treeDisplay() {
+  localStorage.setItem('bigtree', bigtreeNum);
+  localStorage.setItem('tree', treeNum);
+  localStorage.setItem('plant', plantNum);
+  localStorage.setItem('smallplant', smallplantNum);
+  localStorage.setItem('seed', seedNum);
+  $('#bigtreeNum').html('&times' + bigtreeNum);
+  $('#treeNum').html('&times' + treeNum);
+  $('#plantNum').html('&times' + plantNum);
+  $('#smallplantNum').html('&times' + smallplantNum);
+  $('#seedNum').html('&times' + seedNum);
+};
 
 // Make drag and drop work on mobile-----------------------------------------------
 
