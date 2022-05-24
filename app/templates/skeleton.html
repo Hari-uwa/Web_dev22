@@ -3,6 +3,9 @@
 
 <head>
   <title>Numberloo</title>
+  <!--Game Favicon-->
+  <link rel="icon" type="image/x-icon" href="./static/images/favicon.jpg">
+
   <!-- To use Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -42,7 +45,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title" id="howtoLabel">HOW TO PLAY</h4>
-              <button type="button" id="exit" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="modal-body">
@@ -56,20 +59,20 @@
               You can <b>drag and drop</b> the numbers given to the empty boxes. The system will give you the result of the equation you made. The game continues until the final result matches the target given.
               <br>
               <br>
-              <img class="mygif" id="playingvid" style="width:90%;" src="./static/images/howto.gif">
+              <img class="mygif" alt="Instruction Video" id="playingvid" style="width:90%;" src="./static/images/howto.gif">
               <br>
               <hr>
               Based on the time you finish the puzzle, you will be rewarded a cute plant to add to your personal achievement inventory.
               <br>
               <br>
-              <img class='mygif' style="width:20%;" src="./static/images/plant-unscreen.gif">
+              <img class='mygif' alt="List of Rewards" style="width:20%;" src="./static/images/plant-unscreen.gif">
               <br>
               The growth stage of the plant you are rewarded is determined by the time taken to finish the puzzle. 
               <br>
               <hr>
               Each puzzle has a limit of <strong>10 minutes</strong>. If you still have not found the answer after 10 minutes, the game ends and you have to try again tomorrow.
               <br>
-              <img class="mygif" style="width:20%;" src="./static/images/hourglass.gif">
+              <img class="mygif" alt="Time's Ticking" style="width:20%;" src="./static/images/hourglass.gif">
               <hr>
               <p>If you have any feedback, please send us an <a href="mailto:trangngannguyen2001@gmail.com">email</a></p>
             </div>
@@ -90,12 +93,12 @@
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title" id="settingsLabel">SETTINGS</h4>
-              <button id="exit" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="modal-body">
               <div class="container-fluid">
-                <div class="content" class="row">
+                <div class="content row">
                   <div class="col-8" id="themeword">Light Mode</div>
                   <div class="col-4">
                     <div class="row" style="align-items: center;">
@@ -127,11 +130,59 @@
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title" id="statsLabel">STATISTICS</h4>
-              <button type="button" id="exit" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <div class="modal-body">
-              <p>Placeholder for statistics temp</p>
+            <div class="modal-body" id="statsContent">
+              <div class="container-fluid">
+                <div class="row">
+                  <br>
+                  <div class="col-3">
+                    <h1 id="playedtimes">0</h1>
+                    <p>Played</p>
+                  </div>
+                  <div class="col-3">
+                    <h1 id="wintimes">0%</h1>
+                    <p>Win %</p>
+                  </div>
+                  <div class="col-3">
+                    <h1 id="currentstreak">0</h1>
+                    <p>Current Streak</p>
+                  </div>
+                  <div class="col-3">
+                    <h1 id="beststreak">0</h1>
+                    <p>Best Streak</p>
+                  </div>
+                </div>
+                <hr>
+                <div class="row" style="white-space: nowrap;">
+                  <p><strong>Plant Collection</strong><img class="titleicon" src="./static/images/statsheader.gif" alt="Plant"></p>
+
+                  <div class="col-4">
+                    <img src="./static/images/big_tree.png" alt="Big Tree">
+                    <p id="bigtreeNum">&times 0</p>
+                  </div>
+                  <div class="col-4">
+                    <img src="./static/images/tree.png" alt="Smaller Tree">
+                    <p id="treeNum">&times 0</p>
+                  </div>
+                  <div class="col-4">
+                    <img src="./static/images/plant.png" alt="Plant">
+                    <p id="plantNum">&times 0</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-4">
+                    <img src="./static/images/small_plant.png" alt="Small Plant">
+                    <p id="smallplantNum">&times 0</p>
+                  </div>
+                  <div class="col-4">
+                    <img src="./static/images/seed.png" alt="Seed">
+                    <p id="seedNum">&times 0</p>
+                  </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -197,7 +248,7 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-body">
-          <h2 id="first-line"> Congratulation! </h2>
+          <h2 id="first-line"> Congratulations! </h2>
           <h2 id="second-line">You have solved the puzzle in</h2>
           <h4 id="time-taken"></h4>
           <img id="achieved-plant" src="">
