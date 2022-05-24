@@ -1,22 +1,22 @@
 //Get user's statistics-------------------------------------------------------
 
 //Initiate local storage items for tree inventory
-bigtreeNum = Number(localStorage.getItem('bigtree'));
-treeNum = Number(localStorage.getItem('tree'));
-plantNum = Number(localStorage.getItem('plant'));
-smallplantNum = Number(localStorage.getItem('smallplant'));
-seedNum = Number(localStorage.getItem('seed'));
+var bigtreeNum = Number(localStorage.getItem('bigtree'));
+var treeNum = Number(localStorage.getItem('tree'));
+var plantNum = Number(localStorage.getItem('plant'));
+var smallplantNum = Number(localStorage.getItem('smallplant'));
+var seedNum = Number(localStorage.getItem('seed'));
 
 //Initiate local storage items for statistics
-playedTimes = Number(localStorage.getItem('played'));
-winTimes = Number(localStorage.getItem('win'));
-currentStreak = Number(localStorage.getItem('currentstreak'));
-bestStreak = Number(localStorage.getItem('beststreak'));
-console.log(playedTimes);
+var playedTimes = Number(localStorage.getItem('played'));
+var winTimes = Number(localStorage.getItem('win'));
+var currentStreak = Number(localStorage.getItem('currentstreak'));
+var bestStreak = Number(localStorage.getItem('beststreak'));
 
-//Update statistics for tree inventory accordingly
-$(document).ready(treeDisplay());
+//Update statistics accordingly whenever user visits the site
+$(document).ready(displayAllStats());
 
+//Game--------------------------------------------------------------------------
 if (puzzleCompleted) {
   showSolvedView();
 }
@@ -26,7 +26,6 @@ function startGame() {
   startTimer();
   updateGameview();
   playedTimes += 1;
-  currentStreak += 1;
 }
 
 function hideButton() {
@@ -68,7 +67,9 @@ function timesUp() {
   $("#time-taken").remove();
   $("#achieved-text").html("Come back again tomorrow!");
   $("#congrazModal").modal('show');
-  showSolvedView()
+  currentStreak = 0;
+  displayAllStats();
+  showSolvedView();
 }
 
 //Update User View---------------------------------------------------------------
@@ -103,7 +104,6 @@ function updateGameview() {
     $(this).attr('id', 'slot' + i).data('index', i).data('store', -1)
   })
 }
-
 
 //Implement Drag and Drop------------------------------------------------
 
@@ -170,7 +170,7 @@ function calculate() {
 function puzzleSolved() {
   puzzleCompleted = true;
   winTimes += 1;
-  console.log(winTimes);
+  currentStreak += 1;
   $("#time-taken").html(mins + ":" + secs + " minutes")
   if (time < 30) {
     $("#achieved-plant").attr("src", "./static/images/big_tree.png");
@@ -209,8 +209,7 @@ function showSolvedView() {
   $(".start-button-row").append("<p>Next Puzzle Available Tomorrow :)</p>");
   $(".start-button-container").css("display", "flex");
   $(".game-board").css("display", "none");
-  treeDisplay();
-
+  displayAllStats();
 };
 
 //Display of tree inventory-------------------------------------------------
@@ -227,6 +226,43 @@ function treeDisplay() {
   $('#smallplantNum').html('&times' + smallplantNum);
   $('#seedNum').html('&times' + seedNum);
 };
+
+//Calculate current and best streak
+function streakCalc() {
+  if (currentStreak >= bestStreak) {
+    bestStreak = currentStreak;
+  };
+};
+
+function winCalc() {
+  if (playedTimes == 0) {
+    winPercent = 0;
+  }
+  else {
+    winPercent = Math.round(winTimes/playedTimes*100);
+  }
+};
+
+//Display of user's statistics
+function statsDisplay() {
+  localStorage.setItem('played', playedTimes);
+  localStorage.setItem('win', winTimes);
+  localStorage.setItem('currentstreak', currentStreak);
+  localStorage.setItem('beststreak', bestStreak);
+  winCalc();
+  streakCalc();
+  $('#playedtimes').html(playedTimes);
+  $('#wintimes').html(winPercent + '%');
+  $('#currentstreak').html(currentStreak);
+  $('#beststreak').html(bestStreak);
+};
+
+
+//Display all statistics on leaderboard modal
+function displayAllStats() {
+  treeDisplay();
+  statsDisplay();
+}
 
 // Make drag and drop work on mobile-----------------------------------------------
 
