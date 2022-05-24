@@ -459,3 +459,13 @@ div i {
     font-size: 22px;
 }
 
+/* stats modal */
+#statsContent h1 {
+    text-align: center;
+}
+
+#statsContent p .titleicon {
+    display: inline;
+    width: 40px;
+    height: auto;
+}
