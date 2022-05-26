@@ -13,12 +13,11 @@ var winTimes = Number(localStorage.getItem('win'));
 var currentStreak = Number(localStorage.getItem('currentstreak'));
 var bestStreak = Number(localStorage.getItem('beststreak'));
 
-
 //Equation data from backend
 
 var equationArr = []
 
-//Initialise and assgin variables
+//Initialise and assign variables
 var target;
 var numbers;
 var operators;
@@ -29,18 +28,11 @@ var operatorsDict;
 //Update statistics accordingly whenever user visits the site
 $(document).ready(displayAllStats());
 
-//Game
-
-//Update statistics accordingly whenever user visits the site
-$(document).ready(displayAllStats());
-
 //Game--------------------------------------------------------------------------
-
 if (puzzleCompleted) {
   showSolvedView();
 }
 
-// Request to server as user starts/press the game
 function startGame() {
   $.ajax({
     async: false,
@@ -49,6 +41,7 @@ function startGame() {
       equationArr = data.equation
     }
   });
+
   initializeEquation();
   hideButton();
   startTimer();
@@ -64,8 +57,6 @@ function initializeEquation() {
   tileleft = 6
   operatorsDict = { '+': '&plus;', "-": "&minus;", "*": "&times;", "/": "&divide;" }
 }
-
-
 
 function hideButton() {
   $(".start-button-container").css("display", "none")
@@ -113,17 +104,6 @@ function timesUp() {
 
 //Update User View---------------------------------------------------------------
 
-
-//Equation data from backend
-var equationArr = [3, 2, "-", 0, 9, "+", 4, 5, 68]
-
-//Initialise and assign variables
-var target = equationArr[8]
-var numbers = equationArr.slice(0, 2).concat(equationArr.slice(3, 5), equationArr.slice(6, 8))
-var operators = [equationArr[2], equationArr[5]]
-var slotnumbers = [0, 0, 0, 0, 0, 0]
-var tileleft = 6
-var operatorsDict = { '+': '&plus;', "-": "&minus;", "*": "&times;", "/": "&divide;" }
 
 
 function updateGameview() {
@@ -204,7 +184,7 @@ function calculate() {
 }
 
 
-// If puzzle is solved, update puzzleCompleted variable to true 
+// If puzzle is solved, update puzzleCompleted variable to true
 // and show congratz modal-----------------------------------------------
 
 function puzzleSolved() {
@@ -279,11 +259,7 @@ function winCalc() {
     winPercent = 0;
   }
   else {
-
     winPercent = Math.round(winTimes / playedTimes * 100);
-
-    winPercent = Math.round(winTimes/playedTimes*100);
-
   }
 };
 
