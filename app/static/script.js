@@ -200,6 +200,7 @@ function puzzleSolved() {
 
   $("#congrazModal").modal('show');
   showSolvedView()
+
 };
 
 function showSolvedView() {
