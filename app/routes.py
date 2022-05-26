@@ -9,8 +9,7 @@ from app.models import User,Quiz,Game #imports all tables
 @app.route('/index')
 def index():
     
-    target= eqn_gen.math()[1][-1]
-    return render_template("skeleton.html",target=target)
+    return render_template("skeleton.html")
 
 @app.route('/equation')
 def equation():

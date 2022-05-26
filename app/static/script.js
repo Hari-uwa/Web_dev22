@@ -36,7 +36,7 @@ if (puzzleCompleted) {
 function startGame() {
   $.ajax({
     async: false,
-    url: "http://127.0.0.1:5000/equation",
+    url: "/equation",
     success: function (data) {
       equationArr = data.equation
     }
