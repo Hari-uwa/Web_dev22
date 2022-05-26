@@ -65,8 +65,7 @@ body.night .target {
 }
 
 body.night #target-number {
-    background-color: #FFFFFF;
-    opacity: 80%;
+    background-color: #BB86FC;
 }
 
 body.night .start-button-container {

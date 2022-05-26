@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/dongwoo/Web_dev22/Web_dev22/venv"
+set -gx VIRTUAL_ENV "/Users/trangngannguyen2001/Web_dev22/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
@@ -59,7 +59,7 @@ if test -z "$VIRTUAL_ENV_DISABLE_PROMPT"
             set -l _checkbase (basename "$VIRTUAL_ENV")
             if test $_checkbase = "__"
                 # special case for Aspen magic directories
-                # see https://aspen.io/
+                # see http://www.zetadev.com/software/aspen/
                 printf "%s[%s]%s " (set_color -b blue white) (basename (dirname "$VIRTUAL_ENV")) (set_color normal)
             else
                 printf "%s(%s)%s" (set_color -b blue white) (basename "$VIRTUAL_ENV") (set_color normal)
