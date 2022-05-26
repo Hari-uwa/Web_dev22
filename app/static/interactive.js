@@ -53,5 +53,20 @@ $(document).ready(function() {
         darkModeOff();
         document.getElementById('darktheme').checked = false;
     };
+
+
+    //Countdown to new game
+    var now = new Date();
+    var hrs = 23-now.getHours();
+    var mins = 59-now.getMinutes();
+    var secs = 59-now.getSeconds();
+
+    var timeCount = '';
+    function cdMidnight() {
+        str = hrs+' hours '+mins+' minutes '+secs+' seconds';
+        document.getElementById('countdownMN').innerHTML = str;
+    }
+    
+    setInterval('cdMidnight()', 1000);
 });
 

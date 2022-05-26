@@ -189,7 +189,22 @@
                   <div class="col-4">
                     <img src="./static/images/seed.png" alt="Seed">
                     <p id="seedNum">&times 0</p>
+                  
                   </div>
+<<<<<<< HEAD
+                </div>
+                <br>
+                <hr>
+                <br>
+                <!--Share button-->
+                <p><strong>Share your results!</strong></p>
+                <div class="col-6">
+                  <span id="#countdownMN"></span>
+                </div>
+                <div>
+                  Social media
+=======
+>>>>>>> a14fe05eed7f0d736f3607fe1530d5a25a1cfb14
                 </div>
               </div>
             </div>
@@ -249,18 +264,20 @@
 
 
   <!-- Congratulation Modal -->
-  <div class="modal fade" id="congrazModal" tabindex="-1" aria-labelledby="CongratulationModal">
+  <div class="modal fade" id="congrazModal" tabindex="-1" aria-labelledby="CongratulationModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
         <div class="modal-body">
-          <h2 id="first-line"> Congratulations! </h2>
-          <h2 id="second-line">You have solved the puzzle in</h2>
+          <h2 id="first-line"><strong> Congratulations! </strong></h2>
+          <h2 id="second-line">You have solved Numberloo in</h2>
           <h4 id="time-taken"></h4>
           <img id="achieved-plant" src="">
           <p id="achieved-text"></p>
-          <div>
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-          </div>
+
+          <button type="button" class="btn btn-primary" id="sharing">SHARE<i class="fa fa-share-alt"></i></button>
         </div>
       </div>
     </div>

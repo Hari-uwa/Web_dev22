@@ -22,7 +22,7 @@ body {
                                     #FFFFFF);
     background-position: 100% 0;
     background-size: 200% 100%;
-    /*transition: all .2s ease-in;*/
+    /*transition: all .2s ease-in;*/ 
 }
 
 /*dark theme for modals*/
@@ -469,4 +469,35 @@ div i {
     display: inline;
     width: 40px;
     height: auto;
+}
+
+/*Congrats Modal */
+body.night #sharing {
+    background-color: #BB86FC;
+    font-size: 20px;
+    color: #000000;
+    border-style: none;
+    padding: 10px 40px;
+    margin-bottom: 2em;
+}
+
+body.night #sharing:hover {
+    background-color: #222222;
+    color: #FFFFFF;
+    opacity: 87%;
+}
+
+#sharing {
+    background-color: #E1BEE7;
+    font-size: 20px;
+    color: #FFFFFF;
+    border-style: none;
+    padding: 10px 40px;
+    margin-bottom: 2em;
+}
+
+#sharing:hover {
+    background-color: #B39DDB
+    ;
+    color: #ffffff;
 }
