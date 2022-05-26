@@ -1,10 +1,16 @@
 
-from importlib import import_module
 from datetime import date
 from flask import render_template
 from app import app
 from app import eqn_gen
 from app.models import User,Quiz,Game #imports all tables
+
+@app.route('/')
+@app.route('/index')
+def index():
+    
+    target= eqn_gen.math()[1][-1]
+    return render_template("skeleton.html",target=target)
 
 @app.route('/equation')
 def equation():
