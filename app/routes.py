@@ -2,7 +2,6 @@
 from datetime import date
 from flask import render_template
 from app import app
-from app import eqn_gen
 from app.models import User,Quiz,Game #imports all tables
 
 @app.route('/')
