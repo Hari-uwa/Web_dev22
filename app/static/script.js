@@ -236,7 +236,6 @@ function showSolvedView() {
   $(".start-button").addClass("disabled")
   $(".start-button-row").append("<p>Thank you for playing !</p>");
   $(".start-button-row").append("<p>Next Puzzle Available Tomorrow :)</p>");
-  $(".start-button-row").append("<p id='midnight'></p>");
   $(".start-button-container").css("display", "flex");
   $(".game-board").css("display", "none");
   displayAllStats();
