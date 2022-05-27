@@ -19,6 +19,17 @@ class Quiz(db.Model):
     def __repr__(self):
         return '<Quiz {}>'.format(self.equation)
 
+    def pretty_equation(self):
+        split = self.equation.split(',')
+        return_list = [ int(i) if self.checkInt(i) else i for i in split]
+        return return_list
+    def checkInt(self, test_string : str):
+        try : 
+            int(test_string)
+            return True
+        except ValueError:
+            return False
+
 class Game(db.Model):
     game_id = db.Column(db.VARCHAR(45), primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'))
