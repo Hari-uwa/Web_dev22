@@ -470,6 +470,10 @@ div i {
     height: auto;
 }
 
+#nextLoo, #midnight {
+    text-align: center;
+}
+
 /*Congrats Modal */
 body.night #sharing {
     background-color: #BB86FC;
@@ -500,3 +504,82 @@ body.night #sharing:hover {
     ;
     color: #ffffff;
 }
+
+/*Pop up when sharing*/
+.popup {
+    text-align: center;
+    margin: auto;
+    transform: translate(0, -50%);
+}
+  
+.popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #BB86FC;
+    opacity: 0%;
+    color: #FFFFFF;
+    text-align: center;
+    border-radius: 6px;
+    padding: 13px;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin: auto;
+}
+  
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #FFFFFF transparent transparent transparent;
+}
+
+.popup .popuptext.show {
+    visibility: visible;
+    animation: fadeIn 3s;
+    -webkit-animation: fadeIn 3s;
+    -moz-animation: fadeIn 3s;
+    -o-animation: fadeIn 3s;
+    -ms-zoom-animation: fadeIn 3s;
+}
+
+  
+  /* Add animation (fade in the popup) */
+
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+body.night .popup .popuptext {
+    background-color: #3d3d3d;
+    color: #FFFFFF;
+};
+
+body.night .popup .popuptext::after {
+    border-color: #121212;
+}
+  

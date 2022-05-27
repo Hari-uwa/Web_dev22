@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    //open modals
+    //open modals-----------------------------------------------------------
     const settingsButton = document.getElementById("settingsButton");
     const statsButton = document.getElementById("statsButton");
     const howtoButton = document.getElementById("howtoButton");
@@ -55,18 +55,5 @@ $(document).ready(function() {
     };
 
 
-    //Countdown to new game
-    var now = new Date();
-    var hrs = 23-now.getHours();
-    var mins = 59-now.getMinutes();
-    var secs = 59-now.getSeconds();
-
-    var timeCount = '';
-    function cdMidnight() {
-        str = hrs+' hours '+mins+' minutes '+secs+' seconds';
-        document.getElementById('countdownMN').innerHTML = str;
-    }
-    
-    setInterval('cdMidnight()', 1000);
 });
 
