@@ -12,6 +12,8 @@ var playedTimes = Number(localStorage.getItem('played'));
 var winTimes = Number(localStorage.getItem('win'));
 var currentStreak = Number(localStorage.getItem('currentstreak'));
 var bestStreak = Number(localStorage.getItem('beststreak'));
+var alrPlayed = localStorage.getItem('alrplayed');
+
 
 //Equation data from backend
 
@@ -27,6 +29,11 @@ var operatorsDict;
 
 //Update statistics accordingly whenever user visits the site
 $(document).ready(displayAllStats());
+
+//Disable the game until the next day
+if (alrPlayed == 'played') {
+  showSolvedView();
+};
 
 //Game--------------------------------------------------------------------------
 if (puzzleCompleted) {
@@ -50,7 +57,7 @@ function startGame() {
 }
 
 function initializeEquation() {
-  target = equationArr[8]
+  target = -1382 ///////////
   numbers = equationArr.slice(0, 2).concat(equationArr.slice(3, 5), equationArr.slice(6, 8))
   operators = [equationArr[2], equationArr[5]]
   slotnumbers = [0, 0, 0, 0, 0, 0]
@@ -80,6 +87,7 @@ function startTimer() {
       timesUp()
     }
     if (puzzleCompleted) {
+      finishedAt = mins + ":" + (secs - 1);
       clearInterval(timeCounter)
       time = 0;
       secs = 0;
@@ -98,13 +106,12 @@ function timesUp() {
   $("#achieved-text").html("Come back again tomorrow!");
   $("#congrazModal").modal('show');
   currentStreak = 0;
+  localStorage.setItem('alrplayed', 'played');
   displayAllStats();
   showSolvedView();
 }
 
 //Update User View---------------------------------------------------------------
-
-
 
 function updateGameview() {
   //Shuffle numbers array
@@ -191,6 +198,7 @@ function puzzleSolved() {
   puzzleCompleted = true;
   winTimes += 1;
   currentStreak += 1;
+  localStorage.setItem('alrplayed', 'played');
   $("#time-taken").html(mins + ":" + secs + " minutes")
   if (time < 30) {
     $("#achieved-plant").attr("src", "./static/images/big_tree.png");
@@ -228,6 +236,7 @@ function showSolvedView() {
   $(".start-button").addClass("disabled")
   $(".start-button-row").append("<p>Thank you for playing !</p>");
   $(".start-button-row").append("<p>Next Puzzle Available Tomorrow :)</p>");
+  $(".start-button-row").append("<p id='midnight'></p>");
   $(".start-button-container").css("display", "flex");
   $(".game-board").css("display", "none");
   displayAllStats();
@@ -284,6 +293,66 @@ function displayAllStats() {
   treeDisplay();
   statsDisplay();
 }
+
+
+//Sharing message -----------------------------------------------------------------
+const startDate = new Date("27 May 2022");
+
+//get the game number
+const getGameNum = () => {
+    const timeDiff = new Date().getTime() - startDate.getTime();
+    return Math.floor(Math.abs(timeDiff/(1000*3600*24))) + 1;
+}
+
+//show message
+function popUpMsg() {
+  var popup = document.getElementById('myPopUp');
+  popup.classList.toggle('show');
+  $('#myPopUp').html('Copied results to clipboard!');
+};
+
+//copy message to clipboard
+sharingButton = document.getElementById('sharing');
+sharingButton.addEventListener('click', async() => {
+  let result = 'Numberloo #' + getGameNum() + ' solved in ' + finishedAt + ' 🔥';
+  let bigTreeEmoji = '🌳' ;
+  let treeEmoji = '🌴' ;
+  let plantEmoji = '🪴' ;
+  let smallPlantEmoji = '🍀' ;
+  let seedEmoji = '🌱' ;
+  result += '\r\n' + bigTreeEmoji.repeat(bigtreeNum) + 
+  treeEmoji.repeat(treeNum) + plantEmoji.repeat(plantNum) + 
+  smallPlantEmoji.repeat(smallplantNum) + seedEmoji.repeat(seedNum);
+  navigator.clipboard.writeText(result);
+});
+
+sharingButton.addEventListener('click', popUpMsg());
+
+//Countdown til next game-------------------------------------------
+
+function midnightCountDown() {
+  var today = new Date();
+  var tmr = new Date();
+  tmr.setDate(tmr.getDate() +1);
+  tmr.setHours(0,0,0,0);
+  const sec = 1000;
+  const minute = sec * 60;
+  const hr = minute * 60;
+  
+  remainingTime = tmr.getTime() - today.getTime();
+  hrsLeft = Math.trunc(remainingTime/hr);
+  minsLeft = Math.trunc((remainingTime%hr)/minute);
+  secsLeft = Math.trunc((remainingTime%minute)/sec);
+
+  $('#midnight').html(hrsLeft + ':' + minsLeft + ':' + secsLeft);
+  $('#nextLoo').html('Numberloo #' + getGameNum() + ' begins in');
+  
+  if (remainingTime == 0) {
+    localStorage.setItem('alrplayed', null);
+  };
+};
+
+setInterval(midnightCountDown, 1000);
 
 // Make drag and drop work on mobile-----------------------------------------------
 

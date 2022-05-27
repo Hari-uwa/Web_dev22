@@ -3,6 +3,11 @@
 
 <head>
   <title>Numberloo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.nytimes.com/games-assets/v2/metadata/nyt-apple-touch-icon.png?v=v2202021345">
+  <link rel="mask-icon" color="#000000" href="https://www.nytimes.com/games-assets/v2/metadata/nyt-safari-pinned-tab.svg?v=v2202021345">
+
   <!--Game Favicon-->
   <link rel="icon" type="image/x-icon" href="./static/images/favicon.jpg">
 
@@ -18,7 +23,6 @@
   <script src="http://code.jquery.com/ui/1.8.24/jquery-ui.min.js" type="text/javascript"></script>
   <link href="http://code.jquery.com/ui/1.8.24/themes/blitzer/jquery-ui.css" rel="stylesheet" type="text/css" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="./static/style.css">
   <script src="{{ url_for('static',filename='script.js') }}" async></script>
@@ -196,13 +200,11 @@
                 <hr>
                 <br>
                 <!--Share button-->
-                <p><strong>Share your results!</strong></p>
                 <div class="col-6">
-                  <span id="#countdownMN"></span>
+                  <p id="nextLoo"></p>
+                  <h1 id="midnight"></h1>
                 </div>
-                <div>
-                  Social media
-                </div>
+
               </div>
             </div>
           </div>
@@ -261,6 +263,8 @@
 
 
   <!-- Congratulation Modal -->
+
+
   <div class="modal fade" id="congrazModal" tabindex="-1" aria-labelledby="CongratulationModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -268,6 +272,9 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <div class="popup">
+            <span class="popuptext" id="myPopUp"></span>
+          </div>
           <h2 id="first-line"><strong> Congratulations! </strong></h2>
           <h2 id="second-line">You have solved Numberloo in</h2>
           <h4 id="time-taken"></h4>
