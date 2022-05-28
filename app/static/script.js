@@ -33,6 +33,9 @@ $(document).ready(displayAllStats());
 //Disable the game until the next day
 if (alrPlayed == 'played') {
   showSolvedView();
+}
+else {
+  $(".start-button").removeClass("disabled");
 };
 
 //Game--------------------------------------------------------------------------
@@ -380,6 +383,8 @@ else if (checkPlayed.toDateString() === currentTime.toDateString()) {
 else {
   localStorage.setItem('alrplayed', null);
 };
+
+
 
 //Copy Clipboard API
 shareStatsButton.addEventListener('click', async() => {
