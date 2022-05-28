@@ -47,7 +47,9 @@ function checkIfPlayed() {
 
   var alrPlayed = localStorage.getItem('alrplayed');
   if (alrPlayed == 'played') {
-    $(".start-button").addClass("disabled");;
+    $(".start-button").addClass("disabled");
+    $(".start-button-row").append("<p>Thank you for playing !</p>");
+    $(".start-button-row").append("<p>Next Puzzle Available Tomorrow :)</p>");
   }
   else {
     $(".start-button").removeClass("disabled");
