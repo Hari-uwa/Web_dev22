@@ -1,6 +1,6 @@
 # Agile Web Development - CITS3403 - Project 1 
 
-![Numberloo Screen](https://drive.google.com/file/d/17uaoIAvOImd4nF42Pe9IPE_beDy3HCjB/view?usp=sharing)
+![Numberloo Screen](https://imgur.com/hgu68tL)
 
 ## Students
 - Jennifer Nguyen 22757325
@@ -13,6 +13,7 @@
 - This web application provides users with a daily mini puzzle game where they can play and enjoy during their break time
 
 ## 2. Architecture of the Web Application
+```zsh
 ├── README.md
 ├── __pycache__
 │   ├── config.cpython-38.pyc
@@ -1795,7 +1796,7 @@
     │           │   └── top_level.txt
     │           └── zipp.py
     └── pyvenv.cfg
-
+```
 
 ## 3. Assessment and Context mechanism
 
