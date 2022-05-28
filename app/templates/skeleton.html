@@ -147,6 +147,9 @@
             </div>
 
             <div class="modal-body" id="statsContent">
+              <div class="popupStats">
+                <span class="popuptext" id="myPopUpStats"></span>
+              </div>
               <div class="container-fluid">
                 <div class="row">
                   <br>
@@ -198,13 +201,18 @@
                 </div>
                 <br>
                 <hr>
-                <br>
                 <!--Share button-->
-                <div class="col-6">
-                  <p id="nextLoo"></p>
-                  <h1 id="midnight"></h1>
+                <p><strong>Share My Results</strong></p>
+                <br>
+                <div class="row">
+                  <div class="col-6">
+                    <p id="nextLoo"></p>
+                    <h1 id="midnight"></h1>
+                  </div>
+                  <div class="col-6">
+                    <button type="button" onclick="popUpMsgStats()" id="shareStats" class="sharebutton btn btn-primary">SHARE<i class="fa fa-share-alt"></i></button>
+                  </div>
                 </div>
-
               </div>
             </div>
           </div>
@@ -281,7 +289,7 @@
           <img id="achieved-plant" src="">
           <p id="achieved-text"></p>
 
-          <button type="button" class="btn btn-primary" id="sharing">SHARE<i class="fa fa-share-alt"></i></button>
+          <button type="button" onclick="popUpMsg()" class="btn btn-primary sharing" id="sharing">SHARE<i class="fa fa-share-alt"></i></button>
         </div>
       </div>
     </div>

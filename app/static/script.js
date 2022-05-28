@@ -57,12 +57,13 @@ function startGame() {
 }
 
 function initializeEquation() {
-  target = -1382 ///////////
+  target = equationArr[8];
   numbers = equationArr.slice(0, 2).concat(equationArr.slice(3, 5), equationArr.slice(6, 8))
   operators = [equationArr[2], equationArr[5]]
   slotnumbers = [0, 0, 0, 0, 0, 0]
-  tileleft = 6
-  operatorsDict = { '+': '&plus;', "-": "&minus;", "*": "&times;", "/": "&divide;" }
+  tileleft = 6;
+  operatorsDict = { '+': '&plus;', "-": "&minus;", "*": "&times;", "/": "&divide;" };
+  console.log(numbers)
 }
 
 function hideButton() {
@@ -301,7 +302,7 @@ const startDate = new Date("27 May 2022");
 const getGameNum = () => {
     const timeDiff = new Date().getTime() - startDate.getTime();
     return Math.floor(Math.abs(timeDiff/(1000*3600*24))) + 1;
-}
+};
 
 //show message
 function popUpMsg() {
@@ -310,22 +311,31 @@ function popUpMsg() {
   $('#myPopUp').html('Copied results to clipboard!');
 };
 
+function popUpMsgStats() {
+  var popupStats = document.getElementById('myPopUpStats');
+  popupStats.classList.toggle('show');
+  $('#myPopUpStats').html('Copied results to clipboard!');
+};
+
+
 //copy message to clipboard
 sharingButton = document.getElementById('sharing');
+shareStatsButton = document.getElementById('shareStats');
+
 sharingButton.addEventListener('click', async() => {
-  let result = 'Numberloo #' + getGameNum() + ' solved in ' + finishedAt + ' 🔥';
-  let bigTreeEmoji = '🌳' ;
-  let treeEmoji = '🌴' ;
-  let plantEmoji = '🪴' ;
-  let smallPlantEmoji = '🍀' ;
-  let seedEmoji = '🌱' ;
+  result = 'Numberloo #' + getGameNum() + ' solved in ' + finishedAt + ' 🔥';
+  bigTreeEmoji = '🌳' ;
+  treeEmoji = '🌴' ;
+  plantEmoji = '🪴' ;
+  smallPlantEmoji = '🍀' ;
+  seedEmoji = '🌱' ;
   result += '\r\n' + bigTreeEmoji.repeat(bigtreeNum) + 
-  treeEmoji.repeat(treeNum) + plantEmoji.repeat(plantNum) + 
-  smallPlantEmoji.repeat(smallplantNum) + seedEmoji.repeat(seedNum);
-  navigator.clipboard.writeText(result);
+    treeEmoji.repeat(treeNum) + plantEmoji.repeat(plantNum) + 
+    smallPlantEmoji.repeat(smallplantNum) + seedEmoji.repeat(seedNum);
+  await navigator.clipboard.writeText(result);
 });
 
-sharingButton.addEventListener('click', popUpMsg());
+
 
 //Countdown til next game-------------------------------------------
 
@@ -343,8 +353,14 @@ function midnightCountDown() {
   minsLeft = Math.trunc((remainingTime%hr)/minute);
   secsLeft = Math.trunc((remainingTime%minute)/sec);
 
-  $('#midnight').html(hrsLeft + ':' + minsLeft + ':' + secsLeft);
-  $('#nextLoo').html('Numberloo #' + getGameNum() + ' begins in');
+  if (localStorage.getItem('alrplayed') == 'played') {
+    $('#midnight').html(hrsLeft + ':' + minsLeft + ':' + secsLeft);
+    $('#nextLoo').html('Numberloo #' + getGameNum() + ' begins in');
+  }
+  else {
+    $('#nextLoo').html("So you still haven't solved")
+    $('#midnight').html('Numberloo #' + getGameNum())
+  }
   
   if (remainingTime == 0) {
     localStorage.setItem('alrplayed', null);
@@ -352,6 +368,22 @@ function midnightCountDown() {
 };
 
 setInterval(midnightCountDown, 1000);
+
+
+//Copy Clipboard API
+shareStatsButton.addEventListener('click', async() => {
+  var value = "Look at my Numberloo garden!";
+  bigTreeEmoji = '🌳' ;
+  treeEmoji = '🌴' ;
+  plantEmoji = '🪴' ;
+  smallPlantEmoji = '🍀' ;
+  seedEmoji = '🌱' ;
+  value += bigTreeEmoji.repeat(bigtreeNum) + 
+  treeEmoji.repeat(treeNum) + plantEmoji.repeat(plantNum) + 
+  smallPlantEmoji.repeat(smallplantNum) + seedEmoji.repeat(seedNum);
+  await navigator.clipboard.writeText(value);
+});
+
 
 // Make drag and drop work on mobile-----------------------------------------------
 
