@@ -34,51 +34,5 @@ def math():
     return output_2
 
 def bidmas_calc(input):
-    ops = {
-    '+' : operator.add,
-    '-' : operator.sub,
-    '*' : operator.mul,
-    '/' : operator.truediv}
-
-    val_1= int(str(input[0])+str(input[1]))
-    val_2= int(str(input[3])+str(input[4]))
-    val_3= int(str(input[6])+str(input[7]))
-    op_1= input[2]
-    op_2= input[5]
-
-    #conditions for BIDMAS CALCULATION
-    if op_1=='/':
-        inter=ops[op_1](val_1,val_2) #an interim number
-        ans=ops[op_2](inter,val_3)
-        return ans
-
-    elif op_2=='/':
-
-        inter=ops[op_1](val_2,val_3)
-        ans=ops[op_2](val_1,inter)
-        return ans
-
-    elif op_1=='*' and op_2!='/':
-        inter=ops[op_1](val_1,val_2)
-        ans=ops[op_2](inter,val_3)
-        return ans
-
-    elif op_2=='*' and op_1!='/':
-        inter=ops[op_1](val_2,val_3)
-        ans=ops[op_2](val_1,inter)
-        return ans
-
-    elif op_1 =='+' and op_2!='/' and  op_2!='*' :
-        inter=ops[op_1](val_1,val_2)
-        ans=ops[op_2](inter,val_3)
-        return ans
-
-    elif op_2 =='+' and op_1!='/' and  op_1!='*':
-        inter=ops[op_1](val_2,val_3)
-        ans=ops[op_2](val_1,inter)
-        return ans
-
-    elif op_1=='-' and op_2=='-':
-        inter=ops[op_1](val_1,val_2)
-        ans=ops[op_2](inter,val_3)
-        return ans
+    equ = "".join(input)
+    return eval(equ)

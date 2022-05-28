@@ -16,7 +16,7 @@ var alrPlayed = localStorage.getItem('alrplayed');
 
 
 //Equation data from backend
-
+var quizId
 var equationArr = []
 
 //Initialise and assign variables
@@ -26,6 +26,14 @@ var operators;
 var slotnumbers;
 var tileleft;
 var operatorsDict;
+
+var time = 0,
+  secs = 0,
+  mins = 0;
+  timeTaken = 0;
+var puzzleCompleted = false
+var acheived = ""
+
 
 //Update statistics accordingly whenever user visits the site
 $(document).ready(displayAllStats());
@@ -46,14 +54,21 @@ function startGame() {
     url: "/equation",
     success: function (data) {
       equationArr = data.equation
+      quizId = data.quiz_id
     }
   });
-
+  equationArr = [3, 1, "+", 3, 4, "-", 5, 7]
+  initialiseVariable();
   initializeEquation();
   hideButton();
   startTimer();
   updateGameview();
   playedTimes += 1;
+}
+
+function initializeEquation(){
+  timeTaken = 0
+  puzzleCompleted = 0
 }
 
 function initializeEquation() {
@@ -69,11 +84,6 @@ function hideButton() {
   $(".start-button-container").css("display", "none")
   $(".game-board").css("display", "block")
 }
-
-var time = 0,
-  secs = 0,
-  mins = 0;
-var puzzleCompleted = false
 
 function startTimer() {
   var timeCounter = setInterval(function () {
@@ -109,6 +119,7 @@ function timesUp() {
   localStorage.setItem('alrplayed', 'played');
   displayAllStats();
   showSolvedView();
+  postResult(False)
 }
 
 //Update User View---------------------------------------------------------------
@@ -195,40 +206,46 @@ function calculate() {
 // and show congratz modal-----------------------------------------------
 
 function puzzleSolved() {
+  timeTaken = time
   puzzleCompleted = true;
   winTimes += 1;
   currentStreak += 1;
   localStorage.setItem('alrplayed', 'played');
   $("#time-taken").html(mins + ":" + secs + " minutes")
-  if (time < 30) {
+  if (timeTaken < 30) {
     $("#achieved-plant").attr("src", "./static/images/big_tree.png");
     $("#achieved-text").html("x1 big tree added to achievements");
+    achieved = "bigtree"
     bigtreeNum += 1;
   }
-  else if (time < 60) {
+  else if (timeTaken < 60) {
     $("#achieved-plant").attr("src", "./static/images/tree.png");
     $("#achieved-text").html("x1 tree added to achievements");
+    achieved = "tree"
     treeNum += 1;
   }
-  else if (time < 90) {
+  else if (timeTaken < 90) {
     $("#achieved-plant").attr("src", "./static/images/plant.png");
     $("#achieved-text").html("x1 plant added to achievements");
+    achieved = "plant"
     plantNum += 1;
   }
-  else if (time < 120) {
+  else if (timeTaken < 120) {
     $("#achieved-plant").attr("src", "./static/images/small_plant.png");
     $("#achieved-text").html("x1 small plant added to achievements");
+    achieved = "smallplant"
     smallplantNum += 1;
   }
   else {
     $("#achieved-plant").attr("src", "./static/images/seed.png");
     $("#achieved-text").html("x1 seed added to achievements");
+    achieved = "seed"
     seedNum += 1;
   }
 
   $("#congrazModal").modal('show');
   showSolvedView()
-
+  postResult(True)
 };
 
 function showSolvedView() {
@@ -240,6 +257,16 @@ function showSolvedView() {
   $(".game-board").css("display", "none");
   displayAllStats();
 };
+
+//Send result to server
+function postResult(solved) {
+  $.ajax("/statistic", {
+    type: 'POST',
+    async: false,
+    data: {duration: timeTaken, success: solved, achievement: acheived},
+  });
+}
+
 
 //Display of tree inventory-------------------------------------------------
 
@@ -299,8 +326,8 @@ const startDate = new Date("27 May 2022");
 
 //get the game number
 const getGameNum = () => {
-    const timeDiff = new Date().getTime() - startDate.getTime();
-    return Math.floor(Math.abs(timeDiff/(1000*3600*24))) + 1;
+  const timeDiff = new Date().getTime() - startDate.getTime();
+  return Math.floor(Math.abs(timeDiff / (1000 * 3600 * 24))) + 1;
 }
 
 //show message
@@ -312,16 +339,16 @@ function popUpMsg() {
 
 //copy message to clipboard
 sharingButton = document.getElementById('sharing');
-sharingButton.addEventListener('click', async() => {
+sharingButton.addEventListener('click', async () => {
   let result = 'Numberloo #' + getGameNum() + ' solved in ' + finishedAt + ' 🔥';
-  let bigTreeEmoji = '🌳' ;
-  let treeEmoji = '🌴' ;
-  let plantEmoji = '🪴' ;
-  let smallPlantEmoji = '🍀' ;
-  let seedEmoji = '🌱' ;
-  result += '\r\n' + bigTreeEmoji.repeat(bigtreeNum) + 
-  treeEmoji.repeat(treeNum) + plantEmoji.repeat(plantNum) + 
-  smallPlantEmoji.repeat(smallplantNum) + seedEmoji.repeat(seedNum);
+  let bigTreeEmoji = '🌳';
+  let treeEmoji = '🌴';
+  let plantEmoji = '🪴';
+  let smallPlantEmoji = '🍀';
+  let seedEmoji = '🌱';
+  result += '\r\n' + bigTreeEmoji.repeat(bigtreeNum) +
+    treeEmoji.repeat(treeNum) + plantEmoji.repeat(plantNum) +
+    smallPlantEmoji.repeat(smallplantNum) + seedEmoji.repeat(seedNum);
   navigator.clipboard.writeText(result);
 });
 
@@ -332,20 +359,20 @@ sharingButton.addEventListener('click', popUpMsg());
 function midnightCountDown() {
   var today = new Date();
   var tmr = new Date();
-  tmr.setDate(tmr.getDate() +1);
-  tmr.setHours(0,0,0,0);
+  tmr.setDate(tmr.getDate() + 1);
+  tmr.setHours(0, 0, 0, 0);
   const sec = 1000;
   const minute = sec * 60;
   const hr = minute * 60;
-  
+
   remainingTime = tmr.getTime() - today.getTime();
-  hrsLeft = Math.trunc(remainingTime/hr);
-  minsLeft = Math.trunc((remainingTime%hr)/minute);
-  secsLeft = Math.trunc((remainingTime%minute)/sec);
+  hrsLeft = Math.trunc(remainingTime / hr);
+  minsLeft = Math.trunc((remainingTime % hr) / minute);
+  secsLeft = Math.trunc((remainingTime % minute) / sec);
 
   $('#midnight').html(hrsLeft + ':' + minsLeft + ':' + secsLeft);
   $('#nextLoo').html('Numberloo #' + getGameNum() + ' begins in');
-  
+
   if (remainingTime == 0) {
     localStorage.setItem('alrplayed', null);
   };
