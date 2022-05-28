@@ -85,7 +85,7 @@ function initializeEquation() {
   slotnumbers = [0, 0, 0, 0, 0, 0]
   tileleft = 6;
   operatorsDict = { '+': '&plus;', "-": "&minus;", "*": "&times;", "/": "&divide;" };
-  console.log(numbers)
+
 }
 
 function hideButton() {
