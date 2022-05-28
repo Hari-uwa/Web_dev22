@@ -12,7 +12,6 @@ var playedTimes = Number(localStorage.getItem('played'));
 var winTimes = Number(localStorage.getItem('win'));
 var currentStreak = Number(localStorage.getItem('currentstreak'));
 var bestStreak = Number(localStorage.getItem('beststreak'));
-var alrPlayed = localStorage.getItem('alrplayed');
 
 
 //Equation data from backend
@@ -30,13 +29,31 @@ var operatorsDict;
 //Update statistics accordingly whenever user visits the site
 $(document).ready(displayAllStats());
 
+//enable player to play the game once new day starts--------------------------------
 //Disable the game until the next day
-if (alrPlayed == 'played') {
-  showSolvedView();
-}
-else {
-  $(".start-button").removeClass("disabled");
-}
+function checkIfPlayed() {
+  var checkPlayed = new Date(localStorage.getItem('timeStamp'));
+  var currentTime = new Date();
+  
+  if (checkPlayed == null) {
+    localStorage.setItem('alrplayed', null);
+  }
+  else if (checkPlayed.toDateString() === currentTime.toDateString()) {
+    localStorage.setItem('alrplayed', 'played');
+  }
+  else {
+    localStorage.setItem('alrplayed', null);
+  };
+
+  var alrPlayed = localStorage.getItem('alrplayed');
+  if (alrPlayed == 'played') {
+    $(".start-button").addClass("disabled");;
+  }
+  else {
+    $(".start-button").removeClass("disabled");
+  }
+};
+
 
 //Game--------------------------------------------------------------------------
 if (puzzleCompleted) {
@@ -299,6 +316,7 @@ function statsDisplay() {
 function displayAllStats() {
   treeDisplay();
   statsDisplay();
+  checkIfPlayed();
 }
 
 
@@ -370,21 +388,6 @@ function midnightCountDown() {
 };
 
 setInterval(midnightCountDown, 1000);
-
-//enable player to play the game once new day starts
-var checkPlayed = localStorage.getItem('timeStamp');
-var currentTime = new Date();
-if (checkPlayed == null) {
-  localStorage.setItem('alrplayed', null);
-}
-else if (checkPlayed.toDateString() === currentTime.toDateString()) {
-  localStorage.setItem('alrplayed', 'played');
-}
-else {
-  localStorage.setItem('alrplayed', null);
-};
-
-
 
 //Copy Clipboard API
 shareStatsButton.addEventListener('click', async() => {
