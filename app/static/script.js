@@ -36,7 +36,7 @@ if (alrPlayed == 'played') {
 }
 else {
   $(".start-button").removeClass("disabled");
-};
+}
 
 //Game--------------------------------------------------------------------------
 if (puzzleCompleted) {
