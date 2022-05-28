@@ -108,6 +108,8 @@ function timesUp() {
   $("#congrazModal").modal('show');
   currentStreak = 0;
   localStorage.setItem('alrplayed', 'played');
+  let playedToday = new Date();
+  localStorage.setItem('timeStamp', playedToday);
   displayAllStats();
   showSolvedView();
 }
@@ -200,6 +202,8 @@ function puzzleSolved() {
   winTimes += 1;
   currentStreak += 1;
   localStorage.setItem('alrplayed', 'played');
+  let playedToday = new Date();
+  localStorage.setItem('timeStamp', playedToday);
   $("#time-taken").html(mins + ":" + secs + " minutes")
   if (time < 30) {
     $("#achieved-plant").attr("src", "./static/images/big_tree.png");
@@ -330,11 +334,10 @@ sharingButton.addEventListener('click', async() => {
   smallPlantEmoji = '🍀' ;
   seedEmoji = '🌱' ;
   result += '\r\n' + bigTreeEmoji.repeat(bigtreeNum) + 
-    treeEmoji.repeat(treeNum) + plantEmoji.repeat(plantNum) + 
-    smallPlantEmoji.repeat(smallplantNum) + seedEmoji.repeat(seedNum);
+  treeEmoji.repeat(treeNum) + plantEmoji.repeat(plantNum) + 
+  smallPlantEmoji.repeat(smallplantNum) + seedEmoji.repeat(seedNum);
   await navigator.clipboard.writeText(result);
 });
-
 
 
 //Countdown til next game-------------------------------------------
@@ -355,33 +358,42 @@ function midnightCountDown() {
 
   if (localStorage.getItem('alrplayed') == 'played') {
     $('#midnight').html(hrsLeft + ':' + minsLeft + ':' + secsLeft);
-    $('#nextLoo').html('Numberloo #' + getGameNum() + ' begins in');
+    $('#nextLoo').html('Numberloo #' + (getGameNum()+1) + ' begins in');
   }
   else {
     $('#nextLoo').html("So you still haven't solved")
     $('#midnight').html('Numberloo #' + getGameNum())
   }
-  
-  if (remainingTime == 0) {
-    localStorage.setItem('alrplayed', null);
-  };
 };
 
 setInterval(midnightCountDown, 1000);
 
+//enable player to play the game once new day starts
+var checkPlayed = localStorage.getItem('timeStamp');
+var currentTime = new Date();
+if (checkPlayed == null) {
+  localStorage.setItem('alrplayed', null);
+}
+else if (checkPlayed.toDateString() === currentTime.toDateString()) {
+  localStorage.setItem('alrplayed', 'played');
+}
+else {
+  localStorage.setItem('alrplayed', null);
+};
 
 //Copy Clipboard API
 shareStatsButton.addEventListener('click', async() => {
-  var value = "Look at my Numberloo garden!";
+  var value = "Look at my Numberloo progress!";
   bigTreeEmoji = '🌳' ;
   treeEmoji = '🌴' ;
   plantEmoji = '🪴' ;
   smallPlantEmoji = '🍀' ;
   seedEmoji = '🌱' ;
-  value += bigTreeEmoji.repeat(bigtreeNum) + 
-  treeEmoji.repeat(treeNum) + plantEmoji.repeat(plantNum) + 
-  smallPlantEmoji.repeat(smallplantNum) + seedEmoji.repeat(seedNum);
+  value += '\r\n' + bigTreeEmoji + 'x' + bigtreeNum + ' ' + 
+  treeEmoji + 'x' + treeNum + ' ' + plantEmoji + 'x' + plantNum + ' ' +
+  smallPlantEmoji + 'x' + smallplantNum + ' ' + seedEmoji + 'x' + seedNum;
   await navigator.clipboard.writeText(value);
+
 });
 
 
