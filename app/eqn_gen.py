@@ -19,7 +19,7 @@ def math():
         each_list[5] = operation2
         each_list[8] = '='
         try:
-            target=bidmas_calc(each_list)
+            target=bidmas_calc(each_list[0:8])
         except ZeroDivisionError:
             pass
         if type(target)!=float:

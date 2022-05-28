@@ -13,10 +13,10 @@ var winTimes = Number(localStorage.getItem('win'));
 var currentStreak = Number(localStorage.getItem('currentstreak'));
 var bestStreak = Number(localStorage.getItem('beststreak'));
 var alrPlayed = localStorage.getItem('alrplayed');
-
+var quizId = Number(localStorage.getItem('quiz_id'));
 
 //Equation data from backend
-var quizId
+
 var equationArr = []
 
 //Initialise and assign variables
@@ -30,9 +30,8 @@ var operatorsDict;
 var time = 0,
   secs = 0,
   mins = 0;
-  timeTaken = 0;
+timeTaken = 0;
 var puzzleCompleted = false
-var acheived = ""
 
 
 //Update statistics accordingly whenever user visits the site
@@ -54,11 +53,10 @@ function startGame() {
     url: "/equation",
     success: function (data) {
       equationArr = data.equation
-      quizId = data.quiz_id
+      localStorage.setItem('quiz_id', data.quiz_id)
     }
   });
-  equationArr = [3, 1, "+", 3, 4, "-", 5, 7]
-  initialiseVariable();
+  initializeVariable();
   initializeEquation();
   hideButton();
   startTimer();
@@ -66,13 +64,13 @@ function startGame() {
   playedTimes += 1;
 }
 
-function initializeEquation(){
+function initializeVariable() {
   timeTaken = 0
   puzzleCompleted = 0
 }
 
 function initializeEquation() {
-  target = -1382 ///////////
+  target = equationArr[8]
   numbers = equationArr.slice(0, 2).concat(equationArr.slice(3, 5), equationArr.slice(6, 8))
   operators = [equationArr[2], equationArr[5]]
   slotnumbers = [0, 0, 0, 0, 0, 0]
@@ -119,7 +117,7 @@ function timesUp() {
   localStorage.setItem('alrplayed', 'played');
   displayAllStats();
   showSolvedView();
-  postResult(False)
+  postResult(false)
 }
 
 //Update User View---------------------------------------------------------------
@@ -210,7 +208,7 @@ function puzzleSolved() {
   puzzleCompleted = true;
   winTimes += 1;
   currentStreak += 1;
-  localStorage.setItem('alrplayed', 'played');
+  // localStorage.setItem('alrplayed', 'played');
   $("#time-taken").html(mins + ":" + secs + " minutes")
   if (timeTaken < 30) {
     $("#achieved-plant").attr("src", "./static/images/big_tree.png");
@@ -245,7 +243,7 @@ function puzzleSolved() {
 
   $("#congrazModal").modal('show');
   showSolvedView()
-  postResult(True)
+  postResult(true)
 };
 
 function showSolvedView() {
@@ -260,11 +258,42 @@ function showSolvedView() {
 
 //Send result to server
 function postResult(solved) {
-  $.ajax("/statistic", {
+  console.log(solved)
+  let mydata = { quizId: quizId, duration: timeTaken, success: solved }
+  $.ajax({
     type: 'POST',
+    url: "/statistic",
     async: false,
-    data: {duration: timeTaken, success: solved, achievement: acheived},
+    processData: false,
+    data: 'test'
   });
+
+}
+
+//Global statistic
+function updateGlobStat() {
+  let players
+  let winners
+  let shortestTime
+  let winnerPercent
+  $.ajax({
+    async: false,
+    url: "/statistic?quiz_id=" + quizId,
+    success: function (data) {
+      players = data.players
+      winners = data.winners
+      shortestTime = parseInt(data.shortestTime)
+    }
+  });
+  if (players == 0) {
+    winnerPercent = parseInt(0)
+    shortestTime = "-"
+  }
+  else {
+    winnerPercent = parseInt(Math.round(winners / players * 100))
+  }
+  $("#winnerPercentage").html = winnerPercent
+  $("shortestTime").html = shortestTime
 }
 
 
@@ -406,3 +435,4 @@ function init() {
 }
 
 init()
+updateGlobStat()

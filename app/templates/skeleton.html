@@ -46,7 +46,8 @@
   <header>
     <div class="left-menu">
       <i type="button" id="howtoButton" class="material-icons" data-bs-toggle="modal" data-target="#howtoModal">help</i>
-      <a href="{{ url_for('logout') }}" style="color: black"><i type="button" id="howtoButton" class="material-icons">logout</i></a>
+      <a href="{{ url_for('logout') }}" style="color: black"><i type="button" id="howtoButton"
+          class="material-icons">logout</i></a>
     </div>
 
     <div class="title">Numberloo</div>
@@ -59,7 +60,7 @@
     </div>
 
   </header>
-  
+
   <div class="game">
     <div class="timer-row">
       <i class="material-icons">schedule</i>
@@ -178,7 +179,7 @@
 
   <!--Statistics Modal-->
   <div class="modal fade" id="statsModal" tabindex="-1" aria-labelledby="statsLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title" id="statsLabel">STATISTICS</h4>
@@ -188,6 +189,19 @@
         <div class="modal-body" id="statsContent">
           <div class="container-fluid">
             <div class="row">
+              <p><strong>Daily Global Statisic</strong></p>
+              <div class="col-6">
+                <h1 id="winnerPercentage">90%</h1>
+                <p>Winner %</p>
+              </div>
+              <div class="col-6">
+                <h1 id="shortestTime">0:30</h1>
+                <p> Shortest Time</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <p><strong>Your Statisic</strong></p>
               <br>
               <div class="col-3">
                 <h1 id="playedtimes">0</h1>

@@ -1,6 +1,5 @@
 from datetime import date
 from flask import render_template
-# from app import app
 from app.models import User,Quiz,Game #imports all tables
 
 from flask import render_template, flash, redirect, url_for
@@ -13,10 +12,8 @@ from flask import request
 @app.route('/index')
 @login_required
 def index():
-    # if not current_user.is_authenticated:
-    #     return render_template("login.html")
-    # return render_template("skeleton.html")
-
+    if not current_user.is_authenticated:
+        return render_template("login.html")
     return render_template("skeleton.html")
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -43,8 +40,7 @@ def updateStat():
 
 @app.route('/statistic', methods=['GET'])
 def sendStat():
-    username = current_user.username
-    data = request.get_json()
+    return UserController.sendStat()
     #Send stat using sql
     
 

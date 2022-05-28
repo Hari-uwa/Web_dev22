@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for
 from app import app, db
 from flask_login import current_user, login_user, logout_user, login_required
 from app.forms import LoginForm, RegistrationForm
-from app.models import User
+from app.models import User,Quiz,Game
 from flask import request
 from datetime import datetime
 
@@ -26,7 +26,7 @@ class UserController():
     def register():
         form= RegistrationForm()
         if form.validate_on_submit():
-            user = User(username=form.username.data, played = 0, max_streak = 0, current_streak = 0, big_tree = 0, tree = 0, plant = 0, small_plant = 0, seed = 0)
+            user = User(username=form.username.data)
             user.set_password(form.password.data)
             db.session.add(user)
             db.session.commit()
@@ -34,11 +34,37 @@ class UserController():
             return redirect(url_for('login'))
         return render_template('register.html', title='Register', form=form)
 
+    #TODO: complete this function, data received will be of the following format. Need to update game table using the data
+    # Query Logic:
+    # Update user SET played += 1, tree += 1, streak 
+    # data: { quizId: quizId, duration: timeTaken, success: solved }
     def updateStat():
-        username = current_user.username
-        data = request.get_json()
-        # Data format: {duration:<duration>,success:<true/false>,acheivement:<"bigtree"/"tree"/"plant"/"smallplant"/"seed">}
-        # Update user table and game table
-    
+        userId = current_user.id
+        # data = request.get_json()
+        # quizId = data['quizId']
+        # duration = data['duration']
+        # success = data['success']
+        # # userId = User.query.filter(Quiz.username==username).first().id
+        # game = Game(user_id=1, quiz_id=quizId, success=success, duration=duration)
+        # db.session.add(game)
+        # db.session.flush()
+        # db.session.commit()
+
+
+    #TODO: complete this function, data to return will be of following format. Need to query game table to get the data.
+    # Query Logic:
+    # totalPlayer = SELECT COUNT(*) WHERE quiz_id = <id> and success = true
+    # totalWinner = SELECT COUNT(*) WHERE quiz_id - <id>
+    # shortestTime = SELECT duration WHERE quiz_id = <id> and success = true SORT BY duration LIMIT 1
+    # front end may be able to attach quiz_id as parameter of the GET request
     def sendStat():
-        # Data format: {totalPlayer:<totalPlayer>,totalWinner:<totalWinner>,shortestTime:<shortestTime>}
+        # Data format: {players:<totalPlayer>,winners:<totalWinner>,shortestTime:<shortestTime>}
+        # return the aboove data format
+        quiz_id = request.args.get("quiz_id")
+        totalPlayer = Game.query.filter(Game.quiz_id==quiz_id).count()
+        totalWinner = Game.query.filter(Game.quiz_id==quiz_id).filter(Game.success == True).count()
+        shortestTime = Game.query.filter(Game.quiz_id==quiz_id).filter(Game.success == True).order_by(Game.duration).first()
+        if totalPlayer is not None:
+            return {"players":totalPlayer,"winners":totalWinner, "shortestTime":shortestTime}
+        else:
+            return {"players":0,"winners":0, "shortestTime":0}
