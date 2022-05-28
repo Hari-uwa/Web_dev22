@@ -1,6 +1,6 @@
 # Agile Web Development - CITS3403 - Project 1 
 
-![Numberloo Screen](https://drive.google.com/file/d/17uaoIAvOImd4nF42Pe9IPE_beDy3HCjB/view?usp=sharing)
+![Numberloo Screen](https://i.imgur.com/hgu68tL.png)
 
 ## Students
 - Jennifer Nguyen 22757325
