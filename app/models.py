@@ -8,27 +8,29 @@ def load_user(id):
     return User.query.get(int(id))
 
 class User(UserMixin, db.Model):
-  id = db.Column(db.Integer, primary_key=True)
-  username = db.Column(db.String(32), unique = True)
-  password_hash = db.Column(db.String(128))
-  played = db.Column(db.Integer)
-  max_streak = db.Column(db.Integer)
-  current_streak = db.Column(db.Integer)
-  big_tree = db.Column(db.Integer)
-  tree = db.Column(db.Integer)
-  plant = db.Column(db.Integer)
-  small_plant = db.Column(db.Integer)
-  seed = db.Column(db.Integer)
-  games = db.relationship('Game', backref='player', lazy='dynamic')
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(32), unique = True)
+    password_hash = db.Column(db.String(128))
+    played = db.Column(db.Integer)
+    win = db.Column(db.Integer)
+    max_streak = db.Column(db.Integer)
+    current_streak = db.Column(db.Integer)
+    big_tree = db.Column(db.Integer)
+    tree = db.Column(db.Integer)
+    plant = db.Column(db.Integer)
+    small_plant = db.Column(db.Integer)
+    seed = db.Column(db.Integer)
+    games = db.relationship('Game', backref='player', lazy='dynamic')
 
-  def __repr__(self):
-    return '<User {}, username:{}>'.format(self.id, self.username)
+    def __repr__(self):
+        return '<User {}, username:{}, played:{}, win:{} max_streak:{}, current_streak:{}>'.format(self.id, self.username, \
+        self.played, self.win, self.max_streak, self.current_streak)
 
-  def set_password(self, password):
-    self.password_hash = generate_password_hash(password)
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
 
-  def check_password(self, password):
-    return check_password_hash(self.password_hash, password)
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
 
 class Quiz(db.Model):
@@ -51,6 +53,7 @@ class Quiz(db.Model):
             return True
         except ValueError:
             return False
+    
 
 class Game(db.Model):
     game_id = db.Column(db.Integer, primary_key=True)

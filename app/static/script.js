@@ -1,72 +1,38 @@
-//Get user's statistics-------------------------------------------------------
-
-//Initiate local storage items for tree inventory
-var bigtreeNum = Number(localStorage.getItem('bigtree'));
-var treeNum = Number(localStorage.getItem('tree'));
-var plantNum = Number(localStorage.getItem('plant'));
-var smallplantNum = Number(localStorage.getItem('smallplant'));
-var seedNum = Number(localStorage.getItem('seed'));
-
-//Initiate local storage items for statistics
-var playedTimes = Number(localStorage.getItem('played'));
-var winTimes = Number(localStorage.getItem('win'));
-var currentStreak = Number(localStorage.getItem('currentstreak'));
-var bestStreak = Number(localStorage.getItem('beststreak'));
-var alrPlayed = localStorage.getItem('alrplayed');
-var quizId = Number(localStorage.getItem('quiz_id'));
-
-//Equation data from backend
-
-var equationArr = []
-
 //Initialise and assign variables
+var equationArr = []
 var target;
 var numbers;
 var operators;
 var slotnumbers;
 var tileleft;
 var operatorsDict;
+var quizId;
+var puzzleCompleted = false;
 
 var time = 0,
   secs = 0,
   mins = 0;
 timeTaken = 0;
-var puzzleCompleted = false
 
 
-//Update statistics accordingly whenever user visits the site
-$(document).ready(displayAllStats());
+// Update view based on whether user has completed today's puzzle
+$(document).ready(checkPlayed());
 
-//enable player to play the game once new day starts--------------------------------
-//Disable the game until the next day
-function checkIfPlayed() {
-  var checkPlayed = new Date(localStorage.getItem('timeStamp'));
-  var currentTime = new Date();
-  
-  if (checkPlayed == null) {
-    localStorage.setItem('alrplayed', null);
-  }
-  else if (checkPlayed.toDateString() === currentTime.toDateString()) {
-    localStorage.setItem('alrplayed', 'played');
-  }
-  else {
-    localStorage.setItem('alrplayed', null);
-  };
-
-  var alrPlayed = localStorage.getItem('alrplayed');
-  if (alrPlayed == 'played') {
-    $(".start-button").addClass("disabled");
-  }
-  else {
-    $(".start-button").removeClass("disabled");
-  }
-};
-
+function checkPlayed() {
+  $.ajax({
+    async: false,
+    url: "/played",
+    success: function (data) {
+      played = data.played
+      if (played) {
+        console.log(played)
+        showSolvedView();
+      }
+    }
+  });
+}
 
 //Game--------------------------------------------------------------------------
-if (puzzleCompleted) {
-  showSolvedView();
-}
 
 function startGame() {
   $.ajax({
@@ -74,21 +40,15 @@ function startGame() {
     url: "/equation",
     success: function (data) {
       equationArr = data.equation
-      localStorage.setItem('quiz_id', data.quiz_id)
+      quizId = data.quiz_id
     }
   });
-  initializeVariable();
   initializeEquation();
   hideButton();
   startTimer();
   updateGameview();
-  playedTimes += 1;
 }
 
-function initializeVariable() {
-  timeTaken = 0
-  puzzleCompleted = 0
-}
 
 function initializeEquation() {
   target = equationArr[8]
@@ -116,16 +76,13 @@ function toMinSec(time) {
 function startTimer() {
   var timeCounter = setInterval(function () {
     time++;
-    secs = Math.floor(time % 60);
-    mins = Math.floor(time / 60);
 
-    $(".timer").html(mins + ":" + secs);
+    $(".timer").html(toMinSec(time));
     if (time > 600) {
       clearInterval(timeCounter);
       timesUp()
     }
     if (puzzleCompleted) {
-      finishedAt = mins + ":" + (secs);
       clearInterval(timeCounter)
       time = 0;
       secs = 0;
@@ -143,11 +100,6 @@ function timesUp() {
   $("#time-taken").remove();
   $("#achieved-text").html("Come back again tomorrow!");
   $("#congrazModal").modal('show');
-  currentStreak = 0;
-  localStorage.setItem('alrplayed', 'played');
-  let playedToday = new Date();
-  localStorage.setItem('timeStamp', playedToday);
-  displayAllStats();
   showSolvedView();
   postResult(false)
 }
@@ -205,7 +157,7 @@ function handleCardDrop(event, ui) {
   let total = calculate()
 
   // Check if puzzle is solved
-  if (tileleft == 0 && total == target) puzzleSolved(total)
+  if (tileleft == 0 && total == target) puzzleSolved()
 }
 
 function handleOut(event, ui) {
@@ -238,41 +190,29 @@ function calculate() {
 function puzzleSolved() {
   timeTaken = time
   puzzleCompleted = true;
-  winTimes += 1;
-  currentStreak += 1;
-  localStorage.setItem('alrplayed', 'played');
+  // localStorage.setItem('alrplayed', 'played');
   let playedToday = new Date();
   localStorage.setItem('timeStamp', playedToday);
-  $("#time-taken").html(mins + ":" + secs + " minutes")
+  $("#time-taken").html(toMinSec(timeTaken))
   if (timeTaken < 30) {
     $("#achieved-plant").attr("src", "./static/images/big_tree.png");
     $("#achieved-text").html("x1 big tree added to achievements");
-    achieved = "bigtree"
-    bigtreeNum += 1;
   }
   else if (timeTaken < 60) {
     $("#achieved-plant").attr("src", "./static/images/tree.png");
     $("#achieved-text").html("x1 tree added to achievements");
-    achieved = "tree"
-    treeNum += 1;
   }
   else if (timeTaken < 90) {
     $("#achieved-plant").attr("src", "./static/images/plant.png");
     $("#achieved-text").html("x1 plant added to achievements");
-    achieved = "plant"
-    plantNum += 1;
   }
   else if (timeTaken < 120) {
     $("#achieved-plant").attr("src", "./static/images/small_plant.png");
     $("#achieved-text").html("x1 small plant added to achievements");
-    achieved = "smallplant"
-    smallplantNum += 1;
   }
   else {
     $("#achieved-plant").attr("src", "./static/images/seed.png");
     $("#achieved-text").html("x1 seed added to achievements");
-    achieved = "seed"
-    seedNum += 1;
   }
 
   $("#congrazModal").modal('show');
@@ -287,7 +227,6 @@ function showSolvedView() {
   $(".start-button-row").append("<p>Next Puzzle Available Tomorrow :)</p>");
   $(".start-button-container").css("display", "flex");
   $(".game-board").css("display", "none");
-  displayAllStats();
 };
 
 //Send result to server
@@ -308,19 +247,28 @@ function postResult(solved) {
 }
 
 
-//Global statistic
-function getGlobStat() {
+// Get Statistic
+function getStat() {
   let winnerPercent
   $.ajax({
     async: true,
-    url: "/statistic?quiz_id=" + quizId,
+    url: "/statistic",
     success: function (data) {
       let players = data.players
       let winners = data.winners
       let shortestTime = data.shortestTime
-      console.log(players);
-      console.log(winners);
-      console.log(shortestTime);
+      let played = data.played
+      let win = data.win
+      let streak = data.current_streak
+      let maxStreak = data.max_streak
+      let bigTree = data.big_tree
+      let tree = data.tree
+      let plant = data.plant
+      let small_plant = data.small_plant
+      let seed = data.seed
+
+      console.log(players, winners, shortestTime, played, win, streak, maxStreak, bigTree, tree, plant, small_plant, seed)
+
       if (winners == 0) {
         winnerPercent = "0"
         shortestTime = "-"
@@ -334,6 +282,8 @@ function getGlobStat() {
 
       $("#winnerPercentage").html(winnerPercent)
 
+      treeDisplay(bigTree, tree, plant, small_plant, seed)
+      statsDisplay(played, win, streak, maxStreak)
     }
   });
 }
@@ -341,12 +291,7 @@ function getGlobStat() {
 
 //Display of tree inventory-------------------------------------------------
 
-function treeDisplay() {
-  localStorage.setItem('bigtree', bigtreeNum);
-  localStorage.setItem('tree', treeNum);
-  localStorage.setItem('plant', plantNum);
-  localStorage.setItem('smallplant', smallplantNum);
-  localStorage.setItem('seed', seedNum);
+function treeDisplay(bigtreeNum, treeNum, plantNum, smallplantNum, seedNum) {
   $('#bigtreeNum').html('&times' + bigtreeNum);
   $('#treeNum').html('&times' + treeNum);
   $('#plantNum').html('&times' + plantNum);
@@ -354,43 +299,24 @@ function treeDisplay() {
   $('#seedNum').html('&times' + seedNum);
 };
 
-//Calculate current and best streak
-function streakCalc() {
-  if (currentStreak >= bestStreak) {
-    bestStreak = currentStreak;
-  };
-};
-
-function winCalc() {
+function winCalc(winTimes, playedTimes) {
   if (playedTimes == 0) {
     winPercent = 0;
   }
   else {
     winPercent = Math.round(winTimes / playedTimes * 100);
   }
+  return winPercent
 };
 
 //Display of user's statistics
-function statsDisplay() {
-  localStorage.setItem('played', playedTimes);
-  localStorage.setItem('win', winTimes);
-  localStorage.setItem('currentstreak', currentStreak);
-  localStorage.setItem('beststreak', bestStreak);
-  winCalc();
-  streakCalc();
+function statsDisplay(playedTimes, winTimes, currentStreak, bestStreak) {
+  let winPercent = winCalc(winTimes, playedTimes);
   $('#playedtimes').html(playedTimes);
   $('#wintimes').html(winPercent + '%');
   $('#currentstreak').html(currentStreak);
   $('#beststreak').html(bestStreak);
 };
-
-
-//Display all statistics on leaderboard modal
-function displayAllStats() {
-  treeDisplay();
-  statsDisplay();
-  checkIfPlayed();
-}
 
 
 //Sharing message -----------------------------------------------------------------
@@ -420,16 +346,29 @@ function popUpMsgStats() {
 sharingButton = document.getElementById('sharing');
 shareStatsButton = document.getElementById('shareStats');
 
-sharingButton.addEventListener('click', async() => {
-  result = 'Numberloo #' + getGameNum() + ' solved in ' + finishedAt + ' 🔥';
-  bigTreeEmoji = '🌳' ;
-  treeEmoji = '🌴' ;
-  plantEmoji = '🪴' ;
-  smallPlantEmoji = '🍀' ;
-  seedEmoji = '🌱' ;
-  result += '\r\n' + bigTreeEmoji.repeat(bigtreeNum) + 
-  treeEmoji.repeat(treeNum) + plantEmoji.repeat(plantNum) + 
-  smallPlantEmoji.repeat(smallplantNum) + seedEmoji.repeat(seedNum);
+sharingButton.addEventListener('click', async () => {
+  let bigtreeNum, treeNum, plantNum, smallplantNum, seedNum
+  $.ajax({
+    async: false,
+    url: "/statistic",
+    success: function (data) {
+      bigtreeNum = data.big_tree
+      treeNum = data.tree
+      plantNum = data.plant
+      smallplantNum = data.small_plant
+      seedNum = data.seed
+    }
+  });
+
+  result = 'Numberloo #' + getGameNum() + ' solved in ' + toMinSec(timeTaken) + ' 🔥';
+  bigTreeEmoji = '🌳';
+  treeEmoji = '🌴';
+  plantEmoji = '🪴';
+  smallPlantEmoji = '🍀';
+  seedEmoji = '🌱';
+  result += '\r\n' + bigTreeEmoji.repeat(bigtreeNum) +
+    treeEmoji.repeat(treeNum) + plantEmoji.repeat(plantNum) +
+    smallPlantEmoji.repeat(smallplantNum) + seedEmoji.repeat(seedNum);
   await navigator.clipboard.writeText(result);
 });
 
@@ -452,7 +391,7 @@ function midnightCountDown() {
 
   if (localStorage.getItem('alrplayed') == 'played') {
     $('#midnight').html(hrsLeft + ':' + minsLeft + ':' + secsLeft);
-    $('#nextLoo').html('Numberloo #' + (getGameNum()+1) + ' begins in');
+    $('#nextLoo').html('Numberloo #' + (getGameNum() + 1) + ' begins in');
   }
   else {
     $('#nextLoo').html("So you still haven't solved")
@@ -463,16 +402,29 @@ function midnightCountDown() {
 setInterval(midnightCountDown, 1000);
 
 //Copy Clipboard API
-shareStatsButton.addEventListener('click', async() => {
+shareStatsButton.addEventListener('click', async () => {
+  let bigtreeNum, treeNum, plantNum, smallplantNum, seedNum
+  $.ajax({
+    async: false,
+    url: "/statistic",
+    success: function (data) {
+      bigtreeNum = data.big_tree
+      treeNum = data.tree
+      plantNum = data.plant
+      smallplantNum = data.small_plant
+      seedNum = data.seed
+    }
+  });
+
   var value = "Look at my Numberloo progress!";
-  bigTreeEmoji = '🌳' ;
-  treeEmoji = '🌴' ;
-  plantEmoji = '🪴' ;
-  smallPlantEmoji = '🍀' ;
-  seedEmoji = '🌱' ;
-  value += '\r\n' + bigTreeEmoji + 'x' + bigtreeNum + ' ' + 
-  treeEmoji + 'x' + treeNum + ' ' + plantEmoji + 'x' + plantNum + ' ' +
-  smallPlantEmoji + 'x' + smallplantNum + ' ' + seedEmoji + 'x' + seedNum;
+  bigTreeEmoji = '🌳';
+  treeEmoji = '🌴';
+  plantEmoji = '🪴';
+  smallPlantEmoji = '🍀';
+  seedEmoji = '🌱';
+  value += '\r\n' + bigTreeEmoji + 'x' + bigtreeNum + ' ' +
+    treeEmoji + 'x' + treeNum + ' ' + plantEmoji + 'x' + plantNum + ' ' +
+    smallPlantEmoji + 'x' + smallplantNum + ' ' + seedEmoji + 'x' + seedNum;
   await navigator.clipboard.writeText(value);
 
 });
@@ -504,4 +456,4 @@ function init() {
 }
 
 init()
-getGlobStat()
+getStat()
