@@ -1,12 +1,8 @@
-from datetime import date
-from flask import render_template
-from app.models import User,Quiz,Game #imports all tables
-
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, redirect, url_for
 from app import app, db
-from flask_login import current_user, login_user, logout_user, login_required
-from app.controllers import UserController
-from flask import request
+from flask_login import current_user, login_required
+from app.controllers import GameController, UserController, QuizController
+
 
 @app.route('/')
 @app.route('/index')
@@ -34,40 +30,20 @@ def logout():
     return UserController.logout()
 
 @app.route('/statistic', methods=['POST'])
+@login_required
 def updateStat():
-    # return UserController.updateStat()
-    #Update database using sql
-    # userId = current_user.id
-    data = request.get_json() or {}
-    print(data)
-    # quizId = data['quizId']
-    # duration = data['duration']
-    # success = data['success']
-    # # userId = User.query.filter(Quiz.username==username).first().id
-    # game = Game(user_id=1, quiz_id=quizId, success=success, duration=duration)
-    # db.session.add(game)
-    # db.session.flush()
-    # db.session.commit()
-    return 'updated!'
+    return GameController.updateStat()
+
 
 @app.route('/statistic', methods=['GET'])
+@login_required
 def sendStat():
-    return UserController.sendStat()
+    return GameController.sendStat()
     #Send stat using sql
     
 
 @app.route('/equation')
+@login_required
 def equation():
-    ref = date(2022,5,26)
+    return QuizController.equation()
 
-    today = date.today()
-
-    index = (today-ref).days
-
-    return_object = {}
-    current_quiz = Quiz.query.filter(Quiz.quiz_id == index).first()
-    return_object["equation"] = current_quiz.pretty_equation()
-    return_object["quiz_id"] = index
-    
-
-    return return_object

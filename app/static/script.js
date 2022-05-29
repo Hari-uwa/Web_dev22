@@ -216,7 +216,7 @@ function puzzleSolved() {
   puzzleCompleted = true;
   winTimes += 1;
   currentStreak += 1;
-  // localStorage.setItem('alrplayed', 'played');
+  localStorage.setItem('alrplayed', 'played');
   $("#time-taken").html(mins + ":" + secs + " minutes")
   if (timeTaken < 30) {
     $("#achieved-plant").attr("src", "./static/images/big_tree.png");
@@ -268,24 +268,9 @@ function showSolvedView() {
 function postResult(solved) {
   console.log(solved)
   let mydata = {}
-  mydata['quizId'] = 3;
-  mydata['duration'] = 10;
-  mydata['success'] = true;
-  // console.log(JSON.stringify(mydata))
-  // $.ajax({
-  //   type: 'POST',
-  //   url: "/statistic",
-  //   async: false,
-  //   processData: false,
-  //   data: JSON.stringify(mydata),
-  //   datatype: "json",
-  //   success: function (data, status) {
-  //     console.log("data: " + data + "status: " + status)
-  //   },
-  //   error: function (errorMessage) {
-  //     console.log('Error' + errorMessage);
-  //   }
-  // });
+  mydata['quizId'] = quizId;
+  mydata['duration'] = timeTaken;
+  mydata['success'] = solved;
 
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
@@ -296,33 +281,33 @@ function postResult(solved) {
   xhttp.send(JSON.stringify(mydata));
 }
 
-// }
 
 //Global statistic
-function updateGlobStat() {
-  let players
-  let winners
-  let shortestTime
+function getGlobStat() {
   let winnerPercent
   $.ajax({
-    async: false,
+    async: true,
     url: "/statistic?quiz_id=" + quizId,
     success: function (data) {
-      players = data.players
-      winners = data.winners
-      shortestTime = parseInt(data.shortestTime)
+      let players = data.players
+      let winners = data.winners
+      let shortestTime = data.shortestTime
+
+      if (winners == 0) {
+        winnerPercent = "0"
+        shortestTime = "-"
+        $("#shortestTime").html(shortestTime)
+      }
+      else {
+        winnerPercent = parseInt(Math.round(winners / players * 100))
+        shortestTime = parseInt(data.shortestTime)
+        $("#shortestTime").html(toMinSec(shortestTime))
+      }
+
+      $("#winnerPercentage").html(winnerPercent)
+
     }
   });
-  if (players == 0) {
-    winnerPercent = "0"
-    shortestTime = "-"
-  }
-  else {
-    winnerPercent = parseInt(Math.round(winners / players * 100))
-  }
-  console.log(players, winners, shortestTime, winnerPercent)
-  $("#winnerPercentage").html(winnerPercent)
-  $("#shortestTime").html(toMinSec(shortestTime))
 }
 
 
@@ -464,5 +449,4 @@ function init() {
 }
 
 init()
-updateGlobStat()
-postResult()
+getGlobStat()
