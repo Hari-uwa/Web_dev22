@@ -9,7 +9,7 @@
 - Hari Vignesh 22874425
 
 ## 1. Purpose
-- The purpose of this project is to demonstrate fundamental skills of building a web page, fromm the front end, to back end
+- The purpose of this project is to demonstrate fundamental skills of building a web page, from the front end, to back end
 - This web application provides users with a daily mini puzzle game where they can play and enjoy during their break time
 
 ## 2. Architecture of the Web Application
