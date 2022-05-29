@@ -35,8 +35,20 @@ def logout():
 
 @app.route('/statistic', methods=['POST'])
 def updateStat():
-    return UserController.updateStat()
+    # return UserController.updateStat()
     #Update database using sql
+    # userId = current_user.id
+    data = request.get_json() or {}
+    print(data)
+    # quizId = data['quizId']
+    # duration = data['duration']
+    # success = data['success']
+    # # userId = User.query.filter(Quiz.username==username).first().id
+    # game = Game(user_id=1, quiz_id=quizId, success=success, duration=duration)
+    # db.session.add(game)
+    # db.session.flush()
+    # db.session.commit()
+    return 'updated!'
 
 @app.route('/statistic', methods=['GET'])
 def sendStat():

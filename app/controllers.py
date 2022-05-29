@@ -40,15 +40,17 @@ class UserController():
     # data: { quizId: quizId, duration: timeTaken, success: solved }
     def updateStat():
         userId = current_user.id
-        # data = request.get_json()
-        # quizId = data['quizId']
-        # duration = data['duration']
-        # success = data['success']
-        # # userId = User.query.filter(Quiz.username==username).first().id
-        # game = Game(user_id=1, quiz_id=quizId, success=success, duration=duration)
-        # db.session.add(game)
-        # db.session.flush()
-        # db.session.commit()
+        data = request.get_json()
+        print(data)
+        quizId = data['quizId']
+        duration = data['duration']
+        success = data['success']
+        # userId = User.query.filter(Quiz.username==username).first().id
+        game = Game(user_id=1, quiz_id=quizId, success=success, duration=duration)
+        db.session.add(game)
+        db.session.flush()
+        db.session.commit()
+        return 'updated!'
 
 
     #TODO: complete this function, data to return will be of following format. Need to query game table to get the data.
@@ -63,7 +65,7 @@ class UserController():
         quiz_id = request.args.get("quiz_id")
         totalPlayer = Game.query.filter(Game.quiz_id==quiz_id).count()
         totalWinner = Game.query.filter(Game.quiz_id==quiz_id).filter(Game.success == True).count()
-        shortestTime = Game.query.filter(Game.quiz_id==quiz_id).filter(Game.success == True).order_by(Game.duration).first()
+        shortestTime = Game.query.filter(Game.quiz_id==quiz_id).filter(Game.success == True).order_by(Game.duration).first().duration
         if totalPlayer is not None:
             return {"players":totalPlayer,"winners":totalWinner, "shortestTime":shortestTime}
         else:

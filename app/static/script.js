@@ -83,6 +83,14 @@ function hideButton() {
   $(".game-board").css("display", "block")
 }
 
+function toMinSec(time) {
+  let secs
+  let mins
+  secs = Math.floor(time % 60);
+  mins = Math.floor(time / 60);
+  return (mins + ":" + secs)
+}
+
 function startTimer() {
   var timeCounter = setInterval(function () {
     time++;
@@ -259,16 +267,36 @@ function showSolvedView() {
 //Send result to server
 function postResult(solved) {
   console.log(solved)
-  let mydata = { quizId: quizId, duration: timeTaken, success: solved }
-  $.ajax({
-    type: 'POST',
-    url: "/statistic",
-    async: false,
-    processData: false,
-    data: 'test'
-  });
+  let mydata = {}
+  mydata['quizId'] = 3;
+  mydata['duration'] = 10;
+  mydata['success'] = true;
+  // console.log(JSON.stringify(mydata))
+  // $.ajax({
+  //   type: 'POST',
+  //   url: "/statistic",
+  //   async: false,
+  //   processData: false,
+  //   data: JSON.stringify(mydata),
+  //   datatype: "json",
+  //   success: function (data, status) {
+  //     console.log("data: " + data + "status: " + status)
+  //   },
+  //   error: function (errorMessage) {
+  //     console.log('Error' + errorMessage);
+  //   }
+  // });
 
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    console.log(this.responseText)
+  }
+  xhttp.open('POST', '/statistic', true);
+  xhttp.setRequestHeader('Content-Type', 'application/json');
+  xhttp.send(JSON.stringify(mydata));
 }
+
+// }
 
 //Global statistic
 function updateGlobStat() {
@@ -286,14 +314,15 @@ function updateGlobStat() {
     }
   });
   if (players == 0) {
-    winnerPercent = parseInt(0)
+    winnerPercent = "0"
     shortestTime = "-"
   }
   else {
     winnerPercent = parseInt(Math.round(winners / players * 100))
   }
-  $("#winnerPercentage").html = winnerPercent
-  $("shortestTime").html = shortestTime
+  console.log(players, winners, shortestTime, winnerPercent)
+  $("#winnerPercentage").html(winnerPercent)
+  $("#shortestTime").html(toMinSec(shortestTime))
 }
 
 
@@ -436,3 +465,4 @@ function init() {
 
 init()
 updateGlobStat()
+postResult()
