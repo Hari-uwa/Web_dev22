@@ -1,26 +1,49 @@
+from flask import render_template, redirect, url_for
+from app import app, db
+from flask_login import current_user, login_required
+from app.controllers import GameController, UserController, QuizController
 
-from datetime import date
-from flask import render_template
-from app import app
-from app import eqn_gen
-from app.models import User,Quiz,Game #imports all tables
 
 @app.route('/')
 @app.route('/index')
+@login_required
 def index():
-    
+    if not current_user.is_authenticated:
+        return render_template("login.html")
     return render_template("skeleton.html")
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    return UserController.login()
+    
+
+@app.route('/register', methods=['GET','POST'])
+def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    return UserController.register()
+
+@app.route('/logout', methods=['GET','POST'])
+def logout():
+    return UserController.logout()
+
+@app.route('/statistic', methods=['POST'])
+@login_required
+def updateStat():
+    return GameController.updateStat()
+
+
+@app.route('/statistic', methods=['GET'])
+@login_required
+def sendStat():
+    return GameController.sendStat()
+    #Send stat using sql
+    
+
 @app.route('/equation')
+@login_required
 def equation():
-    ref = date(2022,5,26)
+    return QuizController.equation()
 
-    today = date.today()
-
-    index = (today-ref).days
-
-    return_object = {}
-    current_quiz = Quiz.query.filter(Quiz.quiz_id == index).first()
-    return_object["equation"] = current_quiz.pretty_equation()
-
-    return return_object

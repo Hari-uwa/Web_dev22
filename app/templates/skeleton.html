@@ -5,8 +5,10 @@
   <title>Numberloo</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="apple-touch-icon" sizes="180x180" href="https://www.nytimes.com/games-assets/v2/metadata/nyt-apple-touch-icon.png?v=v2202021345">
-  <link rel="mask-icon" color="#000000" href="https://www.nytimes.com/games-assets/v2/metadata/nyt-safari-pinned-tab.svg?v=v2202021345">
+  <link rel="apple-touch-icon" sizes="180x180"
+    href="https://www.nytimes.com/games-assets/v2/metadata/nyt-apple-touch-icon.png?v=v2202021345">
+  <link rel="mask-icon" color="#000000"
+    href="https://www.nytimes.com/games-assets/v2/metadata/nyt-safari-pinned-tab.svg?v=v2202021345">
 
   <!--Game Favicon-->
   <link rel="icon" type="image/x-icon" href="./static/images/favicon.jpg">
@@ -23,7 +25,10 @@
   <script src="http://code.jquery.com/ui/1.8.24/jquery-ui.min.js" type="text/javascript"></script>
   <link href="http://code.jquery.com/ui/1.8.24/themes/blitzer/jquery-ui.css" rel="stylesheet" type="text/css" />
 
+  <!-- Google Icon -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <!-- Link to CSS and JS -->
   <link rel="stylesheet" href="./static/style.css">
   <script src="{{ url_for('static',filename='script.js') }}" async></script>
   <script src="{{ url_for('static',filename='interactive.js') }}" async></script>
@@ -40,189 +45,21 @@
 <body id="bd">
   <header>
     <div class="left-menu">
-
-      <!--How to Modal-->
       <i type="button" id="howtoButton" class="material-icons" data-bs-toggle="modal" data-target="#howtoModal">help</i>
-
-      <div class="modal fade" id="howtoModal" tabindex="-1" aria-labelledby="howtoLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="howtoLabel">HOW TO PLAY</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body">
-              A target result for the equation is given daily.
-              Once you click <strong data-bs-dismiss="modal" id="start-word">Start</strong>, the timer will start
-              counting.
-              <br>
-              <hr>
-              The goal of this game is to figure out the right equation which makes up to the target number as fast as
-              possible.
-              <br>
-              <br>
-              You can <b>drag and drop</b> the numbers given to the empty boxes. The system will give you the result of
-              the equation you made. The game continues until the final result matches the target given.
-              <br>
-              <br>
-              <img class="mygif" alt="Instruction Video" id="playingvid" style="width:90%;"
-                src="./static/images/howto.gif">
-              <br>
-              <hr>
-              Based on the time you finish the puzzle, you will be rewarded a cute plant to add to your personal
-              achievement inventory.
-              <br>
-              <br>
-              <img class='mygif' alt="List of Rewards" style="width:20%;" src="./static/images/plant-unscreen.gif">
-              <br>
-              The growth stage of the plant you are rewarded is determined by the time taken to finish the puzzle.
-              <br>
-              <hr>
-              Each puzzle has a limit of <strong>10 minutes</strong>. If you still have not found the answer after 10
-              minutes, the game ends and you have to try again tomorrow.
-              <br>
-              <img class="mygif" alt="Time's Ticking" style="width:20%;" src="./static/images/hourglass.gif">
-              <hr>
-              <p>If you have any feedback, please send us an <a href="mailto:trangngannguyen2001@gmail.com">email</a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      <a href="{{ url_for('logout') }}" style="color: black"><i type="button" id="howtoButton"
+          class="material-icons">logout</i></a>
     </div>
 
     <div class="title">Numberloo</div>
 
     <div class="right-menu">
-      <!--Settings Modal-->
       <i type="button" id="settingsButton" class="material-icons" data-bs-toggle="modal"
         data-target="#settingsModal">settings</i>
-
-      <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="settingsLabel">SETTINGS</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body">
-              <div class="container-fluid">
-                <div class="content row">
-                  <div class="col-8" id="themeword">Light Mode</div>
-                  <div class="col-4">
-                    <div class="row" style="align-items: center;">
-                      <div class="col-4">
-                        <i class="fa">&#xf185;</i>
-                      </div>
-                      <div class="col-4">
-                        <input type="checkbox" id="darktheme" class="cbx hidden">
-                        <label for="darktheme" class="switch"></label>
-                      </div>
-                      <div class="col-4">
-                        <i class="fa">&#xf186;</i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <!--Statistics Modal-->
-      <i type="button" id="statsButton" class="material-icons" data-bs-toggle="modal"
-        data-target="#statsModal">leaderboard</i>
-
-      <div class="modal fade" id="statsModal" tabindex="-1" aria-labelledby="statsLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="statsLabel">STATISTICS</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body" id="statsContent">
-              <div class="popupStats">
-                <span class="popuptext" id="myPopUpStats"></span>
-              </div>
-              <div class="container-fluid">
-                <div class="row">
-                  <br>
-                  <div class="col-3">
-                    <h1 id="playedtimes">0</h1>
-                    <p>Played</p>
-                  </div>
-                  <div class="col-3">
-                    <h1 id="wintimes">0%</h1>
-                    <p>Win %</p>
-                  </div>
-                  <div class="col-3">
-                    <h1 id="currentstreak">0</h1>
-                    <p>Current Streak</p>
-                  </div>
-                  <div class="col-3">
-                    <h1 id="beststreak">0</h1>
-                    <p>Best Streak</p>
-                  </div>
-                </div>
-                <hr>
-                <div class="row" style="white-space: nowrap;">
-                  <p><strong>Plant Collection</strong><img class="titleicon" src="./static/images/statsheader.gif"
-                      alt="Plant"></p>
-
-                  <div class="col-4">
-                    <img src="./static/images/big_tree.png" alt="Big Tree">
-                    <p id="bigtreeNum">&times 0</p>
-                  </div>
-                  <div class="col-4">
-                    <img src="./static/images/tree.png" alt="Smaller Tree">
-                    <p id="treeNum">&times 0</p>
-                  </div>
-                  <div class="col-4">
-                    <img src="./static/images/plant.png" alt="Plant">
-                    <p id="plantNum">&times 0</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-4">
-                    <img src="./static/images/small_plant.png" alt="Small Plant">
-                    <p id="smallplantNum">&times 0</p>
-                  </div>
-                  <div class="col-4">
-                    <img src="./static/images/seed.png" alt="Seed">
-                    <p id="seedNum">&times 0</p>
-                  
-                  </div>
-                </div>
-                <br>
-                <hr>
-                <!--Share button-->
-                <p><strong>Share My Results</strong></p>
-                <br>
-                <div class="row">
-                  <div class="col-6">
-                    <p id="nextLoo"></p>
-                    <h2 id="midnight"></h2>
-                  </div>
-                  <div class="col-6">
-                    <button type="button" onclick="popUpMsgStats()" id="shareStats" class="sharebutton btn btn-primary">SHARE<i class="fa fa-share-alt"></i></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <i type="button" id="statsButton" class="material-icons" data-bs-toggle="modal" data-target="#statsModal"
+        onclick="getGlobStat()">leaderboard</i>
     </div>
-
-    </div>
-
   </header>
+
   <div class="game">
     <div class="timer-row">
       <i class="material-icons">schedule</i>
@@ -269,10 +106,7 @@
     </div>
   </div>
 
-
   <!-- Congratulation Modal -->
-
-
   <div class="modal fade" id="congrazModal" tabindex="-1" aria-labelledby="CongratulationModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -289,12 +123,189 @@
           <img id="achieved-plant" src="">
           <p id="achieved-text"></p>
 
-          <button type="button" onclick="popUpMsg()" class="btn btn-primary sharing" id="sharing">SHARE<i class="fa fa-share-alt"></i></button>
+          <button type="button" onclick="popUpMsg()" class="btn btn-primary sharing" id="sharing">SHARE<i
+              class="fa fa-share-alt"></i></button>
         </div>
       </div>
     </div>
   </div>
 
+  <!--How to Modal-->
+  <div class="modal fade" id="howtoModal" tabindex="-1" aria-labelledby="howtoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="howtoLabel">HOW TO PLAY</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          A target result for the equation is given daily.
+          Once you click <strong data-bs-dismiss="modal" id="start-word">Start</strong>, the timer will start
+          counting.
+          <br>
+          <hr>
+          The goal of this game is to figure out the right equation which makes up to the target number as fast as
+          possible.
+          <br>
+          <br>
+          You can <b>drag and drop</b> the numbers given to the empty boxes. The system will give you the result of
+          the equation you made. The game continues until the final result matches the target given.
+          <br>
+          <br>
+          <img class="mygif" alt="Instruction Video" id="playingvid" style="width:90%;" src="./static/images/howto.gif">
+          <br>
+          <hr>
+          Based on the time you finish the puzzle, you will be rewarded a cute plant to add to your personal
+          achievement inventory.
+          <br>
+          <br>
+          <img class='mygif' alt="List of Rewards" style="width:20%;" src="./static/images/plant-unscreen.gif">
+          <br>
+          The growth stage of the plant you are rewarded is determined by the time taken to finish the puzzle.
+          <br>
+          <hr>
+          Each puzzle has a limit of <strong>10 minutes</strong>. If you still have not found the answer after 10
+          minutes, the game ends and you have to try again tomorrow.
+          <br>
+          <img class="mygif" alt="Time's Ticking" style="width:20%;" src="./static/images/hourglass.gif">
+          <hr>
+          <p>If you have any feedback, please send us an <a href="mailto:trangngannguyen2001@gmail.com">email</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Statistics Modal-->
+  <div class="modal fade" id="statsModal" tabindex="-1" aria-labelledby="statsLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="statsLabel">STATISTICS</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body" id="statsContent">
+          <div class="popupStats">
+            <span class="popuptext" id="myPopUpStats"></span>
+          </div>
+          <div class="container-fluid">
+            <div class="row">
+              <p><strong>Daily Global Statisic</strong></p>
+              <div class="col-6">
+                <h1 id="winnerPercentage"></h1>
+                <p>Winner %</p>
+              </div>
+              <div class="col-6">
+                <h1 id="shortestTime"></h1>
+                <p> Shortest Time</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <p><strong>Your Statisic</strong></p>
+              <br>
+              <div class="col-3">
+                <h1 id="playedtimes">0</h1>
+                <p>Played</p>
+              </div>
+              <div class="col-3">
+                <h1 id="wintimes">0%</h1>
+                <p>Win %</p>
+              </div>
+              <div class="col-3">
+                <h1 id="currentstreak">0</h1>
+                <p>Current Streak</p>
+              </div>
+              <div class="col-3">
+                <h1 id="beststreak">0</h1>
+                <p>Best Streak</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row" style="white-space: nowrap;">
+              <p><strong>Plant Collection</strong><img class="titleicon" src="./static/images/statsheader.gif"
+                  alt="Plant"></p>
+
+              <div class="col-4">
+                <img src="./static/images/big_tree.png" alt="Big Tree">
+                <p id="bigtreeNum">&times 0</p>
+              </div>
+              <div class="col-4">
+                <img src="./static/images/tree.png" alt="Smaller Tree">
+                <p id="treeNum">&times 0</p>
+              </div>
+              <div class="col-4">
+                <img src="./static/images/plant.png" alt="Plant">
+                <p id="plantNum">&times 0</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <img src="./static/images/small_plant.png" alt="Small Plant">
+                <p id="smallplantNum">&times 0</p>
+              </div>
+              <div class="col-4">
+                <img src="./static/images/seed.png" alt="Seed">
+                <p id="seedNum">&times 0</p>
+
+              </div>
+            </div>
+            <br>
+            <hr>
+            <!--Share button-->
+            <p><strong>Share My Results</strong></p>
+            <br>
+            <div class="row">
+              <div class="col-6">
+                <p id="nextLoo"></p>
+                <h2 id="midnight"></h2>
+              </div>
+              <div class="col-6">
+                <button type="button" onclick="popUpMsgStats()" id="shareStats"
+                  class="sharebutton btn btn-primary">SHARE<i class="fa fa-share-alt"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Settings Modal-->
+  <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="settingsLabel">SETTINGS</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="content row">
+              <div class="col-8" id="themeword">Light Mode</div>
+              <div class="col-4">
+                <div class="row" style="align-items: center;">
+                  <div class="col-4">
+                    <i class="fa">&#xf185;</i>
+                  </div>
+                  <div class="col-4">
+                    <input type="checkbox" id="darktheme" class="cbx hidden">
+                    <label for="darktheme" class="switch"></label>
+                  </div>
+                  <div class="col-4">
+                    <i class="fa">&#xf186;</i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

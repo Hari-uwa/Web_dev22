@@ -12,7 +12,8 @@ var playedTimes = Number(localStorage.getItem('played'));
 var winTimes = Number(localStorage.getItem('win'));
 var currentStreak = Number(localStorage.getItem('currentstreak'));
 var bestStreak = Number(localStorage.getItem('beststreak'));
-
+var alrPlayed = localStorage.getItem('alrplayed');
+var quizId = Number(localStorage.getItem('quiz_id'));
 
 //Equation data from backend
 
@@ -25,6 +26,13 @@ var operators;
 var slotnumbers;
 var tileleft;
 var operatorsDict;
+
+var time = 0,
+  secs = 0,
+  mins = 0;
+timeTaken = 0;
+var puzzleCompleted = false
+
 
 //Update statistics accordingly whenever user visits the site
 $(document).ready(displayAllStats());
@@ -68,9 +76,10 @@ function startGame() {
     url: "/equation",
     success: function (data) {
       equationArr = data.equation
+      localStorage.setItem('quiz_id', data.quiz_id)
     }
   });
-
+  initializeVariable();
   initializeEquation();
   hideButton();
   startTimer();
@@ -78,8 +87,13 @@ function startGame() {
   playedTimes += 1;
 }
 
+function initializeVariable() {
+  timeTaken = 0
+  puzzleCompleted = 0
+}
+
 function initializeEquation() {
-  target = equationArr[8];
+  target = equationArr[8]
   numbers = equationArr.slice(0, 2).concat(equationArr.slice(3, 5), equationArr.slice(6, 8))
   operators = [equationArr[2], equationArr[5]]
   slotnumbers = [0, 0, 0, 0, 0, 0]
@@ -93,10 +107,13 @@ function hideButton() {
   $(".game-board").css("display", "block")
 }
 
-var time = 0,
-  secs = 0,
-  mins = 0;
-var puzzleCompleted = false
+function toMinSec(time) {
+  let secs
+  let mins
+  secs = Math.floor(time % 60);
+  mins = Math.floor(time / 60);
+  return (mins + ":" + secs)
+}
 
 function startTimer() {
   var timeCounter = setInterval(function () {
@@ -134,6 +151,7 @@ function timesUp() {
   localStorage.setItem('timeStamp', playedToday);
   displayAllStats();
   showSolvedView();
+  postResult(false)
 }
 
 //Update User View---------------------------------------------------------------
@@ -220,6 +238,7 @@ function calculate() {
 // and show congratz modal-----------------------------------------------
 
 function puzzleSolved() {
+  timeTaken = time
   puzzleCompleted = true;
   winTimes += 1;
   currentStreak += 1;
@@ -227,35 +246,40 @@ function puzzleSolved() {
   let playedToday = new Date();
   localStorage.setItem('timeStamp', playedToday);
   $("#time-taken").html(mins + ":" + secs + " minutes")
-  if (time < 30) {
+  if (timeTaken < 30) {
     $("#achieved-plant").attr("src", "./static/images/big_tree.png");
     $("#achieved-text").html("x1 big tree added to achievements");
+    achieved = "bigtree"
     bigtreeNum += 1;
   }
-  else if (time < 60) {
+  else if (timeTaken < 60) {
     $("#achieved-plant").attr("src", "./static/images/tree.png");
     $("#achieved-text").html("x1 tree added to achievements");
+    achieved = "tree"
     treeNum += 1;
   }
-  else if (time < 90) {
+  else if (timeTaken < 90) {
     $("#achieved-plant").attr("src", "./static/images/plant.png");
     $("#achieved-text").html("x1 plant added to achievements");
+    achieved = "plant"
     plantNum += 1;
   }
-  else if (time < 120) {
+  else if (timeTaken < 120) {
     $("#achieved-plant").attr("src", "./static/images/small_plant.png");
     $("#achieved-text").html("x1 small plant added to achievements");
+    achieved = "smallplant"
     smallplantNum += 1;
   }
   else {
     $("#achieved-plant").attr("src", "./static/images/seed.png");
     $("#achieved-text").html("x1 seed added to achievements");
+    achieved = "seed"
     seedNum += 1;
   }
 
   $("#congrazModal").modal('show');
   showSolvedView()
-
+  postResult(true)
 };
 
 function showSolvedView() {
@@ -267,6 +291,53 @@ function showSolvedView() {
   $(".game-board").css("display", "none");
   displayAllStats();
 };
+
+//Send result to server
+function postResult(solved) {
+  console.log(solved)
+  let mydata = {}
+  mydata['quizId'] = quizId;
+  mydata['duration'] = timeTaken;
+  mydata['success'] = solved;
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    console.log(this.responseText)
+  }
+  xhttp.open('POST', '/statistic', true);
+  xhttp.setRequestHeader('Content-Type', 'application/json');
+  xhttp.send(JSON.stringify(mydata));
+}
+
+
+//Global statistic
+function getGlobStat() {
+  let winnerPercent
+  $.ajax({
+    async: true,
+    url: "/statistic?quiz_id=" + quizId,
+    success: function (data) {
+      let players = data.players
+      let winners = data.winners
+      let shortestTime = data.shortestTime
+
+      if (winners == 0) {
+        winnerPercent = "0"
+        shortestTime = "-"
+        $("#shortestTime").html(shortestTime)
+      }
+      else {
+        winnerPercent = parseInt(Math.round(winners / players * 100))
+        shortestTime = parseInt(data.shortestTime)
+        $("#shortestTime").html(toMinSec(shortestTime))
+      }
+
+      $("#winnerPercentage").html(winnerPercent)
+
+    }
+  });
+}
+
 
 //Display of tree inventory-------------------------------------------------
 
@@ -327,9 +398,9 @@ const startDate = new Date("27 May 2022");
 
 //get the game number
 const getGameNum = () => {
-    const timeDiff = new Date().getTime() - startDate.getTime();
-    return Math.floor(Math.abs(timeDiff/(1000*3600*24))) + 1;
-};
+  const timeDiff = new Date().getTime() - startDate.getTime();
+  return Math.floor(Math.abs(timeDiff / (1000 * 3600 * 24))) + 1;
+}
 
 //show message
 function popUpMsg() {
@@ -368,16 +439,16 @@ sharingButton.addEventListener('click', async() => {
 function midnightCountDown() {
   var today = new Date();
   var tmr = new Date();
-  tmr.setDate(tmr.getDate() +1);
-  tmr.setHours(0,0,0,0);
+  tmr.setDate(tmr.getDate() + 1);
+  tmr.setHours(0, 0, 0, 0);
   const sec = 1000;
   const minute = sec * 60;
   const hr = minute * 60;
-  
+
   remainingTime = tmr.getTime() - today.getTime();
-  hrsLeft = Math.trunc(remainingTime/hr);
-  minsLeft = Math.trunc((remainingTime%hr)/minute);
-  secsLeft = Math.trunc((remainingTime%minute)/sec);
+  hrsLeft = Math.trunc(remainingTime / hr);
+  minsLeft = Math.trunc((remainingTime % hr) / minute);
+  secsLeft = Math.trunc((remainingTime % minute) / sec);
 
   if (localStorage.getItem('alrplayed') == 'played') {
     $('#midnight').html(hrsLeft + ':' + minsLeft + ':' + secsLeft);
@@ -433,3 +504,4 @@ function init() {
 }
 
 init()
+getGlobStat()
