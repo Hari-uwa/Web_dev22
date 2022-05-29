@@ -58,7 +58,6 @@
       <i type="button" id="statsButton" class="material-icons" data-bs-toggle="modal" data-target="#statsModal"
         onclick="getGlobStat()">leaderboard</i>
     </div>
-
   </header>
 
   <div class="game">
@@ -124,7 +123,8 @@
           <img id="achieved-plant" src="">
           <p id="achieved-text"></p>
 
-          <button type="button" class="btn btn-primary" id="sharing">SHARE<i class="fa fa-share-alt"></i></button>
+          <button type="button" onclick="popUpMsg()" class="btn btn-primary sharing" id="sharing">SHARE<i
+              class="fa fa-share-alt"></i></button>
         </div>
       </div>
     </div>
@@ -179,7 +179,7 @@
 
   <!--Statistics Modal-->
   <div class="modal fade" id="statsModal" tabindex="-1" aria-labelledby="statsLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title" id="statsLabel">STATISTICS</h4>
@@ -187,6 +187,9 @@
         </div>
 
         <div class="modal-body" id="statsContent">
+          <div class="popupStats">
+            <span class="popuptext" id="myPopUpStats"></span>
+          </div>
           <div class="container-fluid">
             <div class="row">
               <p><strong>Daily Global Statisic</strong></p>
@@ -251,18 +254,24 @@
             </div>
             <br>
             <hr>
-            <br>
             <!--Share button-->
-            <div class="col-6">
-              <p id="nextLoo"></p>
-              <h1 id="midnight"></h1>
+            <p><strong>Share My Results</strong></p>
+            <br>
+            <div class="row">
+              <div class="col-6">
+                <p id="nextLoo"></p>
+                <h2 id="midnight"></h2>
+              </div>
+              <div class="col-6">
+                <button type="button" onclick="popUpMsgStats()" id="shareStats"
+                  class="sharebutton btn btn-primary">SHARE<i class="fa fa-share-alt"></i></button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
   <!--Settings Modal-->
   <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
