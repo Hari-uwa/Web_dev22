@@ -25,7 +25,7 @@ class UserController():
     def register():
         form= RegistrationForm()
         if form.validate_on_submit():
-            user = User(username=form.username.data)
+            user = User(username=form.username.data, played = 0, max_streak = 0, current_streak = 0, big_tree = 0, tree = 0, plant = 0,small_plant = 0, seed = 0)
             user.set_password(form.password.data)
             db.session.add(user)
             db.session.commit()
@@ -33,9 +33,50 @@ class UserController():
             return redirect(url_for('login'))
         return render_template('register.html', title='Register', form=form)
 
+    def updateUserStat():
+        userId = current_user.id
+        data = request.get_json()
+        print(data)
+        quizId = data['quizId']
+        duration = data['duration']
+        success = data['success']
+
+        # Get user
+        user = User.query.filter_by(id=userId).first()
+
+        # Update number of game played by user
+        user.played = user.played + 1
+
+        # Update user's plant colletion
+        if (success):
+            if duration < 30:
+                user.big_tree += 1
+            elif duration <60:
+                user.tree += 1
+            elif duration <90:
+                user.plant += 1
+            elif duration < 120:
+                user.small_plant += 1
+            else:
+                user.seed += 1
+        
+        # Update user's streak and max streak
+        lastQuizWon = Game.query.filter(Game.user_id==userId).filter(Game.success == True).order_by(Game.quiz_id.desc()).first()
+        if lastQuizWon is not None:
+            lastQuizId = lastQuizWon.quiz_id
+            if quizId == lastQuizId + 1:
+                user.streak += 1
+            else:
+                user.streak = 0
+        if user.max_streak < user.streak:
+            user.max_streak = user.streak
+        
+        db.session.commit()
+        return 'updated!'
+
 class GameController():
 
-    def updateStat():
+    def updateGameStat():
         userId = current_user.id
         data = request.get_json()
         print(data)

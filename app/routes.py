@@ -32,7 +32,8 @@ def logout():
 @app.route('/statistic', methods=['POST'])
 @login_required
 def updateStat():
-    return GameController.updateStat()
+    UserController.updateUserStat()
+    return GameController.updateGameStat()
 
 
 @app.route('/statistic', methods=['GET'])

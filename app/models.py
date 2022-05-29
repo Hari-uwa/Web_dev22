@@ -11,6 +11,14 @@ class User(UserMixin, db.Model):
   id = db.Column(db.Integer, primary_key=True)
   username = db.Column(db.String(32), unique = True)
   password_hash = db.Column(db.String(128))
+  played = db.Column(db.Integer)
+  max_streak = db.Column(db.Integer)
+  current_streak = db.Column(db.Integer)
+  big_tree = db.Column(db.Integer)
+  tree = db.Column(db.Integer)
+  plant = db.Column(db.Integer)
+  small_plant = db.Column(db.Integer)
+  seed = db.Column(db.Integer)
   games = db.relationship('Game', backref='player', lazy='dynamic')
 
   def __repr__(self):
