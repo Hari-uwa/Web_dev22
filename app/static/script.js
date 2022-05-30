@@ -1,4 +1,5 @@
-//Initialise and assign variables
+//Initialise and assign global variables
+
 var equationArr = []
 var target;
 var numbers;
@@ -16,6 +17,7 @@ timeTaken = 0;
 
 
 // Update view based on whether user has completed today's puzzle
+
 $(document).ready(checkPlayed());
 
 function checkPlayed() {
@@ -33,7 +35,9 @@ function checkPlayed() {
   });
 }
 
-//Game--------------------------------------------------------------------------
+// Game -----------------------------------------------------------------------
+
+// Trigger when start button is clicked
 
 function startGame() {
   $.ajax({
@@ -45,11 +49,11 @@ function startGame() {
     }
   });
   initializeEquation();
+  dragDrop();
   hideButton();
   startTimer();
   updateGameview();
 }
-
 
 function initializeEquation() {
   target = equationArr[8]
@@ -58,7 +62,6 @@ function initializeEquation() {
   slotnumbers = [0, 0, 0, 0, 0, 0]
   tileleft = 6;
   operatorsDict = { '+': '&plus;', "-": "&minus;", "*": "&times;", "/": "&divide;" };
-
 }
 
 function hideButton() {
@@ -105,13 +108,16 @@ function timesUp() {
   postResult(false)
 }
 
-//Update User View---------------------------------------------------------------
+// Show puzzle ----------------------------------------------------------------
 
 function updateGameview() {
-  //Shuffle numbers array
+
+  // Shuffle numbers array
+
   numbers.sort(() => Math.random() - 0.5)
 
-  //Update operator, target number and, tile numbers on user view. Add ids and datas to number-tiles and slots
+  // Update operator, target number and, tile numbers on user view. Add ids and datas to number-tiles and slots
+
   $("#operator1").html(operatorsDict[operators[0]])
   $("#operator2").html(operatorsDict[operators[1]])
 
@@ -126,30 +132,40 @@ function updateGameview() {
   })
 }
 
-//Implement Drag and Drop------------------------------------------------
+// Implement Drag and Drop ----------------------------------------------------
 
-//Make number-tiles draggable
-$(".number-tile").draggable({ stack: ".number-tile", revert: revertBack });
+function dragDrop() {
+  // Make number-tiles draggable
+
+  $(".number-tile").draggable({ stack: ".number-tile", revert: revertBack });
+
+  // Make slots droppable
+
+  $(".slot").droppable({ drop: handleCardDrop, out: handleOut });
+
+  // Map touch events to mouse events
+
+  activateTouch()
+}
 
 function revertBack(event, ui) {
   $(this).data("draggable").originalPosition = { top: 0, left: 0 };
   return !event;
 }
 
-//Make slots droppable
-$(".slot").droppable({ drop: handleCardDrop, out: handleOut });
-
 function handleCardDrop(event, ui) {
   let slotIndex = $(this).data('index');
   let numTileIndex = ui.draggable.data('index');
 
   // If blank tile is storing a number tile, revert the number tile back to original position
+
   let storedTileIndex = $(this).data('store')
   if (storedTileIndex != -1) {
     $("#number-tile" + storedTileIndex).css({ top: 0, left: 0 })
     tileleft++
   }
   // Put the dragged number tile onto the black tile and do calculation
+
   ui.draggable.position({ of: $(this), my: 'left top', at: 'left top' });
   $(this).data('store', numTileIndex)
 
@@ -158,6 +174,7 @@ function handleCardDrop(event, ui) {
   let total = calculate()
 
   // Check if puzzle is solved
+
   if (tileleft == 0 && total == target) puzzleSolved()
 }
 
@@ -173,7 +190,32 @@ function handleOut(event, ui) {
   }
 }
 
-// Calculate current total-----------------------------
+function touchHandler(event) {
+  var touch = event.changedTouches[0];
+
+  var simulatedEvent = document.createEvent("MouseEvent");
+  simulatedEvent.initMouseEvent({
+    touchstart: "mousedown",
+    touchmove: "mousemove",
+    touchend: "mouseup"
+  }[event.type], true, true, window, 1,
+    touch.screenX, touch.screenY,
+    touch.clientX, touch.clientY, false,
+    false, false, false, 0, null);
+
+  touch.target.dispatchEvent(simulatedEvent);
+}
+
+// Make drag and drop work on mobile
+
+function activateTouch() {
+  document.addEventListener("touchstart", touchHandler, true);
+  document.addEventListener("touchmove", touchHandler, true);
+  document.addEventListener("touchend", touchHandler, true);
+  document.addEventListener("touchcancel", touchHandler, true);
+}
+
+// Calculate current total 
 
 function calculate() {
   let equation = [...slotnumbers]
@@ -185,15 +227,12 @@ function calculate() {
 }
 
 
-// If puzzle is solved, update puzzleCompleted variable to true
-// and show congratz modal-----------------------------------------------
+// If puzzle is solved, update puzzleCompleted variable to true and show congratz modal
 
 function puzzleSolved() {
   timeTaken = time
   puzzleCompleted = true;
-  // localStorage.setItem('alrplayed', 'played');
-  let playedToday = new Date();
-  localStorage.setItem('timeStamp', playedToday);
+
   $("#time-taken").html(toMinSec(timeTaken))
   if (timeTaken < 30) {
     $("#achieved-plant").attr("src", "./static/images/big_tree.png");
@@ -221,6 +260,8 @@ function puzzleSolved() {
   postResult(true)
 };
 
+// Disable start button and display message
+
 function showSolvedView() {
   $("#target-number").html("-")
   $(".start-button").addClass("disabled")
@@ -230,7 +271,8 @@ function showSolvedView() {
   $(".game-board").css("display", "none");
 };
 
-//Send result to server
+// Send result to server
+
 function postResult(solved) {
   console.log(solved)
   let mydata = {}
@@ -247,8 +289,10 @@ function postResult(solved) {
   xhttp.send(JSON.stringify(mydata));
 }
 
+// Statistics -----------------------------------------------------------------
 
-// Get Statistic
+// Get Statistic from server
+
 function getStat() {
   let winnerPercent
   $.ajax({
@@ -283,6 +327,8 @@ function getStat() {
 
       $("#winnerPercentage").html(winnerPercent)
 
+      // Update statistic view
+
       treeDisplay(bigTree, tree, plant, small_plant, seed)
       statsDisplay(played, win, streak, maxStreak)
     }
@@ -290,7 +336,7 @@ function getStat() {
 }
 
 
-//Display of tree inventory-------------------------------------------------
+// Display of tree inventory
 
 function treeDisplay(bigtreeNum, treeNum, plantNum, smallplantNum, seedNum) {
   $('#bigtreeNum').html('&times' + bigtreeNum);
@@ -299,6 +345,8 @@ function treeDisplay(bigtreeNum, treeNum, plantNum, smallplantNum, seedNum) {
   $('#smallplantNum').html('&times' + smallplantNum);
   $('#seedNum').html('&times' + seedNum);
 };
+
+// Calculate winning percentage
 
 function winCalc(winTimes, playedTimes) {
   if (playedTimes == 0) {
@@ -310,7 +358,8 @@ function winCalc(winTimes, playedTimes) {
   return winPercent
 };
 
-//Display of user's statistics
+// Display of user's statistics
+
 function statsDisplay(playedTimes, winTimes, currentStreak, bestStreak) {
   let winPercent = winCalc(winTimes, playedTimes);
   $('#playedtimes').html(playedTimes);
@@ -320,16 +369,18 @@ function statsDisplay(playedTimes, winTimes, currentStreak, bestStreak) {
 };
 
 
-//Sharing message -----------------------------------------------------------------
+// Sharing message -----------------------------------------------------------------
+
 const startDate = new Date("27 May 2022");
 
-//get the game number
+// Get the game number
 const getGameNum = () => {
   const timeDiff = new Date().getTime() - startDate.getTime();
   return Math.floor(Math.abs(timeDiff / (1000 * 3600 * 24))) + 1;
 }
 
-//show message
+// Show message
+
 function popUpMsg() {
   var popup = document.getElementById('myPopUp');
   popup.classList.toggle('show');
@@ -343,7 +394,8 @@ function popUpMsgStats() {
 };
 
 
-//copy message to clipboard
+// Copy message to clipboard
+
 sharingButton = document.getElementById('sharing');
 shareStatsButton = document.getElementById('shareStats');
 
@@ -373,8 +425,35 @@ sharingButton.addEventListener('click', async () => {
   await navigator.clipboard.writeText(result);
 });
 
+// Copy Clipboard API
 
-//Countdown til next game-------------------------------------------
+shareStatsButton.addEventListener('click', async () => {
+  let bigtreeNum, treeNum, plantNum, smallplantNum, seedNum
+  $.ajax({
+    async: false,
+    url: "/statistic",
+    success: function (data) {
+      bigtreeNum = data.big_tree
+      treeNum = data.tree
+      plantNum = data.plant
+      smallplantNum = data.small_plant
+      seedNum = data.seed
+    }
+  });
+
+  var value = "Look at my Numberloo progress!";
+  bigTreeEmoji = '🌳';
+  treeEmoji = '🌴';
+  plantEmoji = '🪴';
+  smallPlantEmoji = '🍀';
+  seedEmoji = '🌱';
+  value += '\r\n' + bigTreeEmoji + 'x' + bigtreeNum + ' ' +
+    treeEmoji + 'x' + treeNum + ' ' + plantEmoji + 'x' + plantNum + ' ' +
+    smallPlantEmoji + 'x' + smallplantNum + ' ' + seedEmoji + 'x' + seedNum;
+  await navigator.clipboard.writeText(value);
+});
+
+// Countdown till next game -------------------------------------------
 
 function midnightCountDown() {
   var today = new Date();
@@ -401,60 +480,3 @@ function midnightCountDown() {
 };
 
 setInterval(midnightCountDown, 1000);
-
-//Copy Clipboard API
-shareStatsButton.addEventListener('click', async () => {
-  let bigtreeNum, treeNum, plantNum, smallplantNum, seedNum
-  $.ajax({
-    async: false,
-    url: "/statistic",
-    success: function (data) {
-      bigtreeNum = data.big_tree
-      treeNum = data.tree
-      plantNum = data.plant
-      smallplantNum = data.small_plant
-      seedNum = data.seed
-    }
-  });
-
-  var value = "Look at my Numberloo progress!";
-  bigTreeEmoji = '🌳';
-  treeEmoji = '🌴';
-  plantEmoji = '🪴';
-  smallPlantEmoji = '🍀';
-  seedEmoji = '🌱';
-  value += '\r\n' + bigTreeEmoji + 'x' + bigtreeNum + ' ' +
-    treeEmoji + 'x' + treeNum + ' ' + plantEmoji + 'x' + plantNum + ' ' +
-    smallPlantEmoji + 'x' + smallplantNum + ' ' + seedEmoji + 'x' + seedNum;
-  await navigator.clipboard.writeText(value);
-
-});
-
-
-// Make drag and drop work on mobile-----------------------------------------------
-
-function touchHandler(event) {
-  var touch = event.changedTouches[0];
-
-  var simulatedEvent = document.createEvent("MouseEvent");
-  simulatedEvent.initMouseEvent({
-    touchstart: "mousedown",
-    touchmove: "mousemove",
-    touchend: "mouseup"
-  }[event.type], true, true, window, 1,
-    touch.screenX, touch.screenY,
-    touch.clientX, touch.clientY, false,
-    false, false, false, 0, null);
-
-  touch.target.dispatchEvent(simulatedEvent);
-}
-
-function init() {
-  document.addEventListener("touchstart", touchHandler, true);
-  document.addEventListener("touchmove", touchHandler, true);
-  document.addEventListener("touchend", touchHandler, true);
-  document.addEventListener("touchcancel", touchHandler, true);
-}
-
-init()
-getStat()

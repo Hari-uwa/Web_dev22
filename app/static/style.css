@@ -570,7 +570,7 @@ body.night .modal-body .sharebutton:hover {
 body.night .popupStats .popuptext {
     background-color: #3d3d3d;
     color: #FFFFFF;
-};
+}
 
 body.night .popupStats .popuptext::after {
     border-color: #121212;
@@ -680,7 +680,7 @@ body.night #sharing:hover {
 body.night .popup .popuptext {
     background-color: #3d3d3d;
     color: #FFFFFF;
-};
+}
 
 body.night .popup .popuptext::after {
     border-color: #121212;
