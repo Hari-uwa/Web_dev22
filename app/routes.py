@@ -32,7 +32,7 @@ def logout():
 @app.route('/statistic', methods=['POST'])
 @login_required
 def updateStat():
-    return GameController.updateStat()
+    return (UserController.updateUserStat(), GameController.updateGameStat())
 
 
 @app.route('/statistic', methods=['GET'])
@@ -46,4 +46,9 @@ def sendStat():
 @login_required
 def equation():
     return QuizController.equation()
+
+@app.route('/played')
+@login_required
+def checkPlayed():
+    return UserController.checkPlayed()
 
