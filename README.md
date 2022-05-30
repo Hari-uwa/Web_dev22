@@ -19,7 +19,7 @@
 ## 2. Design of Numberloo
 
 ### Registration Page
-- First time Numberloo users have the option the register their account on our game
+- First time Numberloo users have the option to register their account on our game
 - There is no requirements on the length of password or username, as we want the process of logging in and registering to be as smooth and easy as possible
 - Once the user set up a unique username and a password, this data will be sent to our server database. The user will be redirected to the sign in page
 
