@@ -45,7 +45,6 @@ class TestBase(LiveServerTestCase):
         self.admin = User(username=test_admin_username,
                               password=test_admin_password,)
 
-        # create test employee user
         self.admin2 = User(username=test_admin_username2,
                             password=test_admin_password2)
 
