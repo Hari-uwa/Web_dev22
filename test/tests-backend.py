@@ -1,5 +1,6 @@
 import sys
-sys.path.append('/home/hariv22/coding/webdev_22/project/Web_dev22/') # allows for the previous directory to be searched too
+import os
+sys.path.append(os.path.abspath(os.path.join('..', 'app'))) # allows for the previous directory to be searched too
 
 
 from app import app,db
