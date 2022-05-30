@@ -25,7 +25,8 @@ function checkPlayed() {
     success: function (data) {
       played = data.played
       if (played) {
-        console.log(played)
+        puzzleCompleted = true;
+        console.log(played);
         showSolvedView();
       }
     }
@@ -389,7 +390,7 @@ function midnightCountDown() {
   minsLeft = Math.trunc((remainingTime % hr) / minute);
   secsLeft = Math.trunc((remainingTime % minute) / sec);
 
-  if (localStorage.getItem('alrplayed') == 'played') {
+  if (puzzleCompleted) {
     $('#midnight').html(hrsLeft + ':' + minsLeft + ':' + secsLeft);
     $('#nextLoo').html('Numberloo #' + (getGameNum() + 1) + ' begins in');
   }
