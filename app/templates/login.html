@@ -99,14 +99,14 @@ https://stackoverflow.com/questions/64739690/how-to-incorporate-a-flask-wtf-form
                     {{ form.hidden_tag() }}
                     <p>
                         {{ form.username.label }}<br>
-                        {{ form.username(size=32) }}<br>
+                        <span id="usernamesign">{{ form.username(size=32) }}</span><br>
                         {% for error in form.username.errors %}
                         <span style="color: red;">[{{ error }}]</span>
                         {% endfor %}
                     </p>
                     <p>
                         {{ form.password.label }}<br>
-                        {{ form.password(size=32) }}<br>
+                        <span id="passwordsign">{{ form.password(size=32) }}</span><br>
                         {% for error in form.password.errors %}
                         <span style="color: red;">[{{ error }}]</span>
                         {% endfor %}
@@ -120,8 +120,8 @@ https://stackoverflow.com/questions/64739690/how-to-incorporate-a-flask-wtf-form
                         {% endwith %}
                     </p>
                     <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-                    <p>{{ form.submit() }}</p>
-                    <p>New User? <a href="{{ url_for('register') }}">Click to Register!</a></p>
+                    <p id="submitsign">{{ form.submit() }}</p>
+                    <p>New User? <a id="registerlink" href="{{ url_for('register') }}">Click to Register!</a></p>
                 </form>
             </div>
         </div>

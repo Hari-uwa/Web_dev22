@@ -1,6 +1,8 @@
 import unittest
 import urllib2
+import time
 
+from flask import url_for
 from flask_testing import LiveServerTestCase
 from selenium import webdriver
 
@@ -60,6 +62,34 @@ class TestBase(LiveServerTestCase):
         response = urllib2.urlopen(self.get_server_url())
         self.assertEqual(response.code, 200)
 
+class TestRegistration(TestBase):
+    def test_registration(self):
+
+        #test to see the user can create an account if all fields are correct
+
+        self.driver.find_element_by_id("registerlink").click() #link to registration
+        time.sleep(1)
+
+        #fill in form
+        self.driver.find_element_by_id("usernamelog").send_keys(test_admin_username)
+        self.driver.find_element_by_id("passwordlog").send_keys(test_admin_password)
+        self.driver.find_element_by_id("pwagain").send_keys(test_admin_password)
+        self.driver.find_element_by_id("registerbutton").click()
+        time.sleep(2)
+
+        #assert browser redirects to log in
+        assert url_for('login') in self.driver.current_url
+
+        #assert that there is 1 user in db
+        self.assertEqual(User.query.count(), 1)
+
+        self.driver.find_element_by_id("usernamesign").send_keys(test_admin_username)
+        self.driver.find_element_by_id("passwordsign").send_keys(test_admin_password)
+        self.driver.find_element_by_id("submitsign").click()
+        time.sleep(2)
+
+        # Assert that browser redirects to game page
+        assert url_for('index') in self.driver.current_url
 
 if __name__ == '__main__':
     unittest.main()
