@@ -64,6 +64,10 @@ Numberloo Project
 ├── config.py
 ├── numberloo.py
 ├── requirements.txt
+├── addQuiz.py
+├── vetQuiz.py
+├── tests-backend.py
+├── tests-frontend.txt
 ├── app
 │   ├── __init__.py
 │   ├── controllers.py
@@ -83,16 +87,23 @@ Numberloo Project
 ├── notebooks
 │   ├── Quiz_view_insert.ipynb
 │   └── sql_queries_test.ipynb
-├── migrations
-│   ├── alembic.ini
-│   ├── env.py
-│   ├── script.py.mako
-└── test
-    ├── Untitled.ipynb
-    └── db_tests.ipynb
+└── migrations
+    ├── alembic.ini
+    ├── env.py
+    └── script.py.mako
+
 ```
 
-## 4. How to launch the application
+## 4. Prerequisite
+This application requires python3, venv, and sqlite
+
+1. **Install venv**
+    - Use pip or another package manager to install virtualenv package `pip install venv`
+2. **Install sqlite**
+    - For Windows: [Windows instructions](http://www.sqlitetutorial.net/download-install-sqlite/)
+    - For Linux: `sudo apt-get install sqlite`
+
+## 5. How to launch the application
 
 1. **Virtual environment**
     - Activate python virtual environment `$ python -m venv venv` followed by `$ source venv/bin/activate` 
@@ -120,18 +131,17 @@ Numberloo Project
     - If you want to turn on debug mode, you can install python-dotenv package
     `pip install python-dotenv` and put `$ export FLASK_ENV=development`
 
-## 5. About the database
-The Web Application comes with an existing database named 'app.db, it contains several user accounts.
+## 6. About the database
+
+The Web Application comes with an existing database named 'app.db, it contains several user accounts and around 200 quizes.
 
 However, if you want to delete the existing database, and create it on your own, please apply the following commands:
-1. `delete the file 'app.db'`
+1. delete the file 'app.db'
 2. `flask db init`
 3. `flask db migrate -m "users table"`
 4. `flask db upgrade`
-5. `flask db migrate -m "posts table"`
-6. `flask db upgrade`
 
-## 6. Testing
+## 7. Testing
 
 Application of both unit and selenium tests have been conducted to ensure our app is in bug free environment.
 Running method of two tests are desccribed as below:
@@ -170,10 +180,22 @@ OK
 
 =======
 
-## 7. Commit Log
+## 8. Adding & Vetting puzzles
+
+To add puzzles, run the following command , this will automatically add new quiz(es) to the quiz table in the databse. Replace <quizNum> with the number of quiz to add, if unspecified, default to 1.
+```
+python3 addQuiz.py <quizNum>
+```
+    
+To vet quizes, run the following command, it will print all the quizes stored in the database
+```
+pyhton3 vetQuiz.py
+```
+    
+## 9. Commit Log
 
 
-## 8. Acknowledgement
+## 10. Acknowledgement
 
 Following teaching references and instructions were used for Agiles project :
 
