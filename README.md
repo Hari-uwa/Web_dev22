@@ -83,6 +83,10 @@ Numberloo Project
 ├── notebooks
 │   ├── Quiz_view_insert.ipynb
 │   └── sql_queries_test.ipynb
+├── migrations
+│   ├── alembic.ini
+│   ├── env.py
+│   ├── script.py.mako
 └── test
     ├── Untitled.ipynb
     └── db_tests.ipynb
