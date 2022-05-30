@@ -175,7 +175,7 @@ OK
 ```
 
 
-###### Selenium test
+###### Selenium test - Front end
 Selenium test covers updates of user's account registration in the frontend.
 Running Selenium test is similar to method mentioned above.
 
