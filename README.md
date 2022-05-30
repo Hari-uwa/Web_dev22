@@ -55,6 +55,37 @@ We also try to keep the design *clean and minimal* for a seamless user experienc
 
 ## 3. Architecture of the Web Application
 
+The Architecture of this Web Application is represented below
+```zsh
+Numberloo Project
+├── README.md
+├── app.db
+├── config.py
+├── numberloo.py
+├── requirements.txt
+├── app
+│   ├── __init__.py
+│   ├── controllers.py
+│   ├── forms.py
+│   ├── models.py
+│   ├── routes.py
+│   ├── static
+│   │   ├── images
+│   │   │   ├── images ...
+│   │   ├── interactive.js
+│   │   ├── script.js
+│   │   └── style.css
+│   └── templates
+│       ├── login.html
+│       ├── register.html
+│       └── skeleton.html
+├── notebooks
+│   ├── Quiz_view_insert.ipynb
+│   └── sql_queries_test.ipynb
+└── test
+    ├── Untitled.ipynb
+    └── db_tests.ipynb
+```
 
 ## 4. How to launch the application
 
@@ -69,3 +100,18 @@ We also try to keep the design *clean and minimal* for a seamless user experienc
 - If the Web Application cannot run, check the environmental variable
 `FLASK_APP=start.py`
 and store it as environmental variable
+
+## 5. About the database
+The Web Application comes with an existing database named 'app.db, it contains several user accounts.
+
+However, if you want to delete the existing database, and create it on your own, please apply the following commands:
+1. `delete the file 'app.db'`
+2. `flask db init`
+3. `flask db migrate -m "users table"`
+4. `flask db upgrade`
+5. `flask db migrate -m "posts table"`
+6. `flask db upgrade`
+
+##6. Testing
+
+
