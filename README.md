@@ -50,7 +50,7 @@ We also try to keep the design *clean and minimal* for a seamless user experienc
 
 4. **Assessment Mechanism**
     - Users have to find the right combination of numbers for an equation that makes up to given target
-    - The time taken to play the puzzle will be recorded and users will be rewarded accordingly. Their win percentage, current streak and best streaks will also be calculated.
+    - The time taken to play the puzzle will be recorded and users will be rewarded accordingly. Their winning percentage, current streak and best streaks will also be calculated.
     - If users skip a day, their current streak will not be reset, since we believe this may deter users from coming back.
     - Once the game is played, the system will have users' record and prevent them from refreshing the page/playing again. They can only play again the next day.
 
@@ -159,7 +159,19 @@ Ran 2 tests in 0.737s
 
 OK
 ```
+
+
+###### Selenium test
+
+
 =======
 
 ## 7. Commit Log
 
+
+## 8. Acknowledgement
+
+Following teaching references and instructions were used for Agiles project :
+
+* Application of lecture slides and Workshop from Dr.Tim French and Thomas Smoker - https://teaching.csse.uwa.edu.au/units/CITS3403/
+* Flask Application Mega-Tutorial by Miguel Grinberg  -  https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
