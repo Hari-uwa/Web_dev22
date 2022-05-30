@@ -57,9 +57,8 @@ We also try to keep the design *clean and minimal* for a seamless user experienc
     - If users skip a day, their current streak will not be reset, since we believe this may deter users from coming back.
     - Once the game is played, the system will have users' record and prevent them from refreshing the page/playing again. They can only play again the next day.
 
-## 3. Architecture of the Web Application
 
-## 2. Architecture of the Web Application
+## 3. Architecture of the Web Application
 The Architecture of this Web Application is represented below
 ```zsh
 Numberloo Project
@@ -150,18 +149,18 @@ Running method of two tests are desccribed as below:
 Mainly testing user's personal statistical attirubute such as streak count and achviement collections from database in a daily basis.
 
 To run the test:
-1. Flask run in your terminal within desired local server
+1. **Flask run in your terminal within desired local server**
 
 ```
 flask run
 ```
-2. Open seperate terminal to run tests.py
+2. **Open seperate terminal to run tests.py**
 
 ```
 python3 tests.py  ## type suitable python version installed in your device
 
 ```
-3. Check the outcome of the test as shown below
+3. **Check the outcome of the test as shown below**
 
 ```
 test_hashig_pwd (__main__.UserModelCase) ... ok
