@@ -8,9 +8,10 @@ from datetime import date
 
 class UserController():
 
+    # Log user in
     def login():
         form = LoginForm()
-        if form.validate_on_submit(): #will return false for a get request
+        if form.validate_on_submit():
             user = User.query.filter_by(username=form.username.data).first()
             if user is None or not user.check_password(form.password.data):
                 flash('Invalid username or password')
@@ -19,10 +20,12 @@ class UserController():
             return redirect(url_for('index'))
         return render_template('login.html',title='Sign In', form = form)
 
+    # Log user out
     def logout():
         logout_user()
         return redirect(url_for('login'))
 
+    # Add user to User table
     def register():
         form= RegistrationForm()
         if form.validate_on_submit():
@@ -34,6 +37,7 @@ class UserController():
             return redirect(url_for('login'))
         return render_template('register.html', title='Register', form=form)
 
+    # Update user's statistic when user completed a game
     def updateUserStat():
         userId = current_user.id
         data = request.get_json()
@@ -82,6 +86,7 @@ class UserController():
         db.session.commit()
         return 'updatedUser!'
 
+    # Query Game table and check if user has played today's quiz, return true if yes
     def checkPlayed():
         userId = current_user.id
         ref = date(2022,5,26)
@@ -95,6 +100,7 @@ class UserController():
 
 class GameController():
 
+    # Add game to Game table
     def updateGameStat():
         userId = current_user.id
         data = request.get_json()
@@ -108,17 +114,16 @@ class GameController():
         db.session.commit()
         return 'updatedGame!'
 
+    # Send global and personal statistic to client
+    # Data format: {players:<totalPlayer>,winners:<totalWinner>,shortestTime:<shortestTime>,
+    # played:<>,current_streak:<>,max_streak:<>,big_tree:<>,tree:<>,plant:<>,small_plant:<>,seed:<>}
     def sendStat():
-        # Data format: {players:<totalPlayer>,winners:<totalWinner>,shortestTime:<shortestTime>,
-        # played:<>,current_streak:<>,max_streak:<>,big_tree:<>,tree:<>,plant:<>,small_plant:<>,seed:<>}
         userId = current_user.id
         u = User.query.get(userId)
         ref = date(2022,5,26)
         today = date.today()
         quiz_id = (today-ref).days
 
-        # Global stat
-        # quiz_id = request.args.get("quiz_id")
         totalPlayer = Game.query.filter(Game.quiz_id==quiz_id).count()
         totalWinner = Game.query.filter(Game.quiz_id==quiz_id).filter(Game.success == True).count()
         if (totalWinner != 0):
@@ -130,6 +135,8 @@ class GameController():
 
 class QuizController():
 
+    # Send today's quiz equation to client
+    # Data format: {"quiz_id":<quizId>, "equation":<equation>}
     def equation():
         ref = date(2022,5,26)
         today = date.today()
