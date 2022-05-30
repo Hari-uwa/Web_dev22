@@ -206,7 +206,7 @@ pyhton3 vetQuiz.py
     
 ## 9. Commit Log
     
-A
+As in the attached git.log.txt 
 
 
 ## 10. Acknowledgement
