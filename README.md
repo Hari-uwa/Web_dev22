@@ -176,9 +176,21 @@ OK
 
 
 ###### Selenium test
+Selenium test covers updates of user's account registration in the frontend.
+Running Selenium test is similar to method mentioned above.
 
+1. **Flask run in your terminal within desired local server**
 
-=======
+```
+flask run
+```
+2. **Open seperate terminal to run tests-frontend.py**
+
+```
+python3 tests-frontend.py  ## type suitable python version installed in your device
+
+```
+
 
 ## 8. Adding & Vetting puzzles
 
@@ -193,6 +205,8 @@ pyhton3 vetQuiz.py
 ```
     
 ## 9. Commit Log
+    
+A
 
 
 ## 10. Acknowledgement
