@@ -8,10 +8,7 @@
 - Dongwoo Noh 22999339
 - Hari Vignesh 22874425
 
-## 1. Purpose
-- The purpose of this project is to demonstrate fundamental skills of building a web page, from the front end, to back end
-- This web application provides users with a daily mini puzzle game where they can play and enjoy during their break time
-=======
+
 ## 1. Purpose of the Web Application
 - Numberloo is a daily puzzle game which aims to test users mathematic skills, as well as provide them with a source of entertainment 
 - The game is short enough to keep users entertained, but also fairly challenging to give users a sense of achievement after every game
@@ -91,15 +88,6 @@ Numberloo Project
     └── db_tests.ipynb
 ```
 
-## 3. Assessment and Context mechanism
-
-## 4. How to launch the application
-- Open your terminal and run the following commands:
-- Use pip or pip3 to install all the required packages
-`pip3 install -r requirements.txt`
-- Run the application
-`flask run`
-=======
 ## 4. How to launch the application
 
 1. **Virtual environment**
