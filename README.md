@@ -76,7 +76,7 @@ Running method of two tests are desccribed as below:
 
 ###### Unit test
 
-Unit test mainly focus on updating user's personal attirubute such as streak count and achviement collections in a daily basis.
+Mainly testing user's personal statistical attirubute such as streak count and achviement collections from database in a daily basis.
 
 To run the test:
 1. Flask run in your terminal within desired local server
