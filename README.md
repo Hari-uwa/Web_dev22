@@ -33,21 +33,21 @@
 ### Game Page
 The design, colour scheme and layout of this game follows [Google Material Design's design guideline](https://material.io/design/color/dark-theme.html) to ensure that our webpage is visually appealing to users, which is an important aspect of web development. 
 
-We also try to keep the design *clean and minimal* for a seamless user experience.
+We also try to keep the design *clean and minimal* for a seamless user experience. The chosen font is Arial and Helvetical, which has the highest compatibility on both Windows and Mac system.
 
-1. Left Hand Menu
+1. **Left Hand Menu**
     - How To Play Modal: This modal **provide instructions** on how to play the game, with visual demonstration in place
     - Log out Button: This option provides users the **flexibility of using different accounts**, e.g. when their friends want to log in and play on their phones. Compared to Wordle, this option means that users do not have to keep playing Numberloo in the same device, saving the hassle.
 
-2. Right Hand Menu
+2. **Right Hand Menu**
     - Settings Modal: This modal allows users to change their **preference of light settings**: light mode or dark mode. The game uses local storage to remember users preference. This lighting mode was added because dark mode has been so popular nowadays
     - Statistics Modal: This modal displays the **global statistics, as well as users personal statistics**, using data fetched from the server. This ensures the data cannot be tampered (compared with the option of using local storage). The modal also includes users' **personal plant collection** which they can show off to their friends via our sharing mechanism (clipboard API). There is also a countdown to inform users when the next game starts
 
-3. Main Game
+3. **Main Game**
     - There is a **START** button in the middle of the page to prompt users to start. Once they click start, the timer will start counting. The game uses drag and drop mechanism.
     - Once the game finishes, or the time limit exceeds, the statistics will be automatically sent to the server and updated on the front end.
 
-4. Assessment Mechanism
+4. **Assessment Mechanism**
     - Users have to find the right combination of numbers for an equation that makes up to given target
     - The time taken to play the puzzle will be recorded and users will be rewarded accordingly. Their win percentage, current streak and best streaks will also be calculated.
     - If users skip a day, their current streak will not be reset, since we believe this may deter users from coming back.
@@ -89,17 +89,31 @@ Numberloo Project
 
 ## 4. How to launch the application
 
-1. Virtual environment
+1. **Virtual environment**
+    - Activate python virtual environment `$ python -m venv venv` followed by `$ source venv/bin/activate` 
 
-- Open your terminal and run the following commands:
-- Use pip or pip3 to install all the required packages
-`pip3 install -r requirements.txt`
-- Run the application
-`flask run`
+2. **Run the app**
+    - Use pip or pip3 to install all the required packages
+    `pip install -r requirements.txt`
+    - Run the application
+    `flask run`
 
-- If the Web Application cannot run, check the environmental variable
-`FLASK_APP=start.py`
-and store it as environmental variable
+    You will see the following:
+    ```
+    * Serving Flask app 'numberloo.py' (lazy loading)
+    * Environment: production
+    WARNING: This is a development server. Do not use it in a production deployment.
+    Use a production WSGI server instead.
+    * Debug mode: off
+    * Running on http://127.0.0.1:5000 (Press CTRL+C to quit)
+    ```
+
+    **This starts the apps running on local host at port 5000 http://127.0.0.1:5000 or http://localhost:5000**
+
+    - If the web application cannot run, check the environment variable
+    `FLASK_APP=numberloo.py` and store it
+    - If you want to turn on debug mode, you can install python-dotenv package
+    `pip install python-dotenv` and put `$ export FLASK_ENV=development`
 
 ## 5. About the database
 The Web Application comes with an existing database named 'app.db, it contains several user accounts.
@@ -112,6 +126,6 @@ However, if you want to delete the existing database, and create it on your own,
 5. `flask db migrate -m "posts table"`
 6. `flask db upgrade`
 
-##6. Testing
+## 6. Testing
 
-
+## 7. Commit Log
