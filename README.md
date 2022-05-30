@@ -68,3 +68,7 @@ However, if you want to delete the existing database, and create it on your own,
 4. `flask db upgrade`
 5. `flask db migrate -m "posts table"`
 6. `flask db upgrade`
+
+##6. Testing
+
+
