@@ -8,6 +8,10 @@
 - Dongwoo Noh 22999339
 - Hari Vignesh 22874425
 
+## 1. Purpose
+- The purpose of this project is to demonstrate fundamental skills of building a web page, from the front end, to back end
+- This web application provides users with a daily mini puzzle game where they can play and enjoy during their break time
+=======
 ## 1. Purpose of the Web Application
 - Numberloo is a daily puzzle game which aims to test users mathematic skills, as well as provide them with a source of entertainment 
 - The game is short enough to keep users entertained, but also fairly challenging to give users a sense of achievement after every game
@@ -55,6 +59,7 @@ We also try to keep the design *clean and minimal* for a seamless user experienc
 
 ## 3. Architecture of the Web Application
 
+## 2. Architecture of the Web Application
 The Architecture of this Web Application is represented below
 ```zsh
 Numberloo Project
@@ -87,6 +92,15 @@ Numberloo Project
     └── db_tests.ipynb
 ```
 
+## 3. Assessment and Context mechanism
+
+## 4. How to launch the application
+- Open your terminal and run the following commands:
+- Use pip or pip3 to install all the required packages
+`pip3 install -r requirements.txt`
+- Run the application
+`flask run`
+=======
 ## 4. How to launch the application
 
 1. **Virtual environment**
@@ -128,4 +142,37 @@ However, if you want to delete the existing database, and create it on your own,
 
 ## 6. Testing
 
+Application of both unit and selenium tests have been conducted to ensure our app is in bug free environment.
+Running method of two tests are desccribed as below:
+
+###### Unit test
+
+Mainly testing user's personal statistical attirubute such as streak count and achviement collections from database in a daily basis.
+
+To run the test:
+1. Flask run in your terminal within desired local server
+
+```
+flask run
+```
+2. Open seperate terminal to run tests.py
+
+```
+python3 tests.py  ## type suitable python version installed in your device
+
+```
+3. Check the outcome of the test as shown below
+
+```
+test_hashig_pwd (__main__.UserModelCase) ... ok
+test_update_streak (__main__.UserModelCase) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.737s
+
+OK
+```
+=======
+
 ## 7. Commit Log
+
