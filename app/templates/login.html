@@ -1,4 +1,7 @@
-<!-- <h1>Sign In</h1>
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Sign In</h1>
 <form action="" method="post" novalidate>
     {{ form.hidden_tag() }}
     <p>
@@ -25,7 +28,7 @@
     </p>
     <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
     <p>{{ form.submit() }}</p>
-
+    <p>New User? <a href="{{ url_for('register') }}">Click to Register!</a></p>
 </form>
 <p>New User? <a href="{{ url_for('register') }}">Click to Register!</a></p> -->
 
@@ -127,3 +130,5 @@ https://stackoverflow.com/questions/64739690/how-to-incorporate-a-flask-wtf-form
         </div>
     </div>
 </section>
+
+{% endblock %}
