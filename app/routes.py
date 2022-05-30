@@ -18,7 +18,6 @@ def login():
         return redirect(url_for('index'))
     return UserController.login()
     
-
 @app.route('/register', methods=['GET','POST'])
 def register():
     if current_user.is_authenticated:
@@ -29,18 +28,18 @@ def register():
 def logout():
     return UserController.logout()
 
+
 @app.route('/statistic', methods=['POST'])
 @login_required
 def updateStat():
     return (UserController.updateUserStat(), GameController.updateGameStat())
 
-
 @app.route('/statistic', methods=['GET'])
 @login_required
 def sendStat():
     return GameController.sendStat()
-    #Send stat using sql
-    
+
+
 
 @app.route('/equation')
 @login_required

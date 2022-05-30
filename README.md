@@ -83,6 +83,10 @@ Numberloo Project
 ├── notebooks
 │   ├── Quiz_view_insert.ipynb
 │   └── sql_queries_test.ipynb
+├── migrations
+│   ├── alembic.ini
+│   ├── env.py
+│   ├── script.py.mako
 └── test
     ├── Untitled.ipynb
     └── db_tests.ipynb
@@ -132,7 +136,7 @@ However, if you want to delete the existing database, and create it on your own,
 Application of both unit and selenium tests have been conducted to ensure our app is in bug free environment.
 Running method of two tests are desccribed as below:
 
-###### Unit test
+###### Unit test - Back end
 
 Mainly testing updates of user's personal statistical attirubute such as streak count and achviement collections from database in a daily basis.
 
@@ -142,7 +146,7 @@ To run the test:
 ```
 flask run
 ```
-2. **Open seperate terminal to run tests.py**
+2. **Open seperate terminal to run tests-backend.py**
 
 ```
 python3 tests.py  ## type suitable python version installed in your device
