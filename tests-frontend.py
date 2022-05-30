@@ -23,7 +23,7 @@ test_admin_password2 = "123"
 class TestBase(LiveServerTestCase):
 
     def create_app(self):
-        config_name = 'testing'
+        config_name = 'development'
         app = create_app(config_name)
         app.config.update(
             # Specify the test database
