@@ -1,5 +1,4 @@
 import unittest
-import urllib2
 import time
 
 from flask import url_for
@@ -23,7 +22,7 @@ test_admin_password2 = "123"
 class TestBase(LiveServerTestCase):
 
     def create_app(self):
-        config_name = 'testing'
+        config_name = 'development'
         app = create_app(config_name)
         app.config.update(
             # Specify the test database
@@ -57,10 +56,6 @@ class TestBase(LiveServerTestCase):
 
     def tearDown(self):
         self.driver.quit()
-
-    def test_server_is_up_and_running(self):
-        response = urllib2.urlopen(self.get_server_url())
-        self.assertEqual(response.code, 200)
 
 class TestRegistration(TestBase):
     def test_registration(self):

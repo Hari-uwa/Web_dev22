@@ -59,40 +59,75 @@ We also try to keep the design *clean and minimal* for a seamless user experienc
 The Architecture of this Web Application is represented below
 ```zsh
 Numberloo Project
+.
 ├── README.md
-├── app.db
-├── config.py
-├── numberloo.py
-├── requirements.txt
+├── addQuiz.py
 ├── app
 │   ├── __init__.py
 │   ├── controllers.py
 │   ├── forms.py
 │   ├── models.py
 │   ├── routes.py
+│   ├── run.py
 │   ├── static
 │   │   ├── images
-│   │   │   ├── images ...
+│   │   │   ├── big_tree.png
+│   │   │   ├── favicon.jpg
+│   │   │   ├── hourglass.gif
+│   │   │   ├── howto.gif
+│   │   │   ├── howtodarkmode.gif
+│   │   │   ├── plant-unscreen.gif
+│   │   │   ├── plant.png
+│   │   │   ├── sad_face.png
+│   │   │   ├── seed.png
+│   │   │   ├── small_plant.png
+│   │   │   ├── statsheader.gif
+│   │   │   └── tree.png
 │   │   ├── interactive.js
 │   │   ├── script.js
 │   │   └── style.css
 │   └── templates
+│       ├── base.html
 │       ├── login.html
 │       ├── register.html
 │       └── skeleton.html
-├── notebooks
-│   ├── Quiz_view_insert.ipynb
-│   └── sql_queries_test.ipynb
+├── app.db
+├── config.py
+├── git.log.txt
 ├── migrations
+│   ├── README
 │   ├── alembic.ini
 │   ├── env.py
 │   ├── script.py.mako
-└── test
-    ├── Untitled.ipynb
-    └── db_tests.ipynb
+│   └── versions
+│       ├── 0717e0050e16_game_table.py
+│       ├── 191f8b2cf2c0_redesign_db.py
+│       ├── 3b3e3c3fce2c_refactor_user_table.py
+│       ├── 734027047b31_add_win_column_for_user.py
+│       ├── b34c7e8ed962_quiz_table.py
+│       ├── bd70a5ed9b1e_refactor_user_table.py
+│       └── e9072b3f992a_user_table.py
+├── notebooks
+│   ├── Quiz_view_insert.ipynb
+│   └── sql_queries_test.ipynb
+├── numberloo.py
+├── requirements.txt
+├── tests-backend.py
+├── tests-frontend.py
+└── vetQuiz.py
+
 ```
 
-## 4. How to launch the application
+## 4. Prerequisite
+This application requires python3, venv, and sqlite
+
+1. **Install venv**
+    - Use pip or another package manager to install virtualenv package `pip install venv`
+2. **Install sqlite**
+    - For Windows: [Windows instructions](http://www.sqlitetutorial.net/download-install-sqlite/)
+    - For Linux: `sudo apt-get install sqlite`
+
+## 5. How to launch the application
 
 1. **Virtual environment**
     - Activate python virtual environment `$ python -m venv venv` followed by `$ source venv/bin/activate` 
@@ -120,18 +155,17 @@ Numberloo Project
     - If you want to turn on debug mode, you can install python-dotenv package
     `pip install python-dotenv` and put `$ export FLASK_ENV=development`
 
-## 5. About the database
-The Web Application comes with an existing database named 'app.db, it contains several user accounts.
+## 6. About the database
+
+The Web Application comes with an existing database named 'app.db, it contains several user accounts and around 200 quizes.
 
 However, if you want to delete the existing database, and create it on your own, please apply the following commands:
-1. `delete the file 'app.db'`
+1. delete the file 'app.db'
 2. `flask db init`
 3. `flask db migrate -m "users table"`
 4. `flask db upgrade`
-5. `flask db migrate -m "posts table"`
-6. `flask db upgrade`
 
-## 6. Testing
+## 7. Testing
 
 Application of both unit and selenium tests have been conducted to ensure our app is in bug free environment.
 Running method of two tests are desccribed as below:
@@ -165,15 +199,41 @@ OK
 ```
 
 
-###### Selenium test
+###### Selenium test - Front end
+Selenium test covers updates of user's account registration in the frontend.
+Running Selenium test is similar to method mentioned above.
+
+1. **Flask run in your terminal within desired local server**
+
+```
+flask run
+```
+2. **Open seperate terminal to run tests-frontend.py**
+
+```
+python3 tests-frontend.py  ## type suitable python version installed in your device
+
+```
 
 
-=======
+## 8. Adding & Vetting puzzles
 
-## 7. Commit Log
+To add puzzles, run the following command , this will automatically add new quiz(es) to the quiz table in the databse. Replace <quizNum> with the number of quiz to add, if unspecified, default to 1.
+```
+python3 addQuiz.py <quizNum>
+```
+    
+To vet quizes, run the following command, it will print all the quizes stored in the database
+```
+pyhton3 vetQuiz.py
+```
+    
+## 9. Commit Log
+    
+As in the attached git.log.txt 
 
 
-## 8. Acknowledgement
+## 10. Acknowledgement
 
 Following teaching references and instructions were used for Agiles project :
 
