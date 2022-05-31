@@ -59,38 +59,62 @@ We also try to keep the design *clean and minimal* for a seamless user experienc
 The Architecture of this Web Application is represented below
 ```zsh
 Numberloo Project
+.
 ├── README.md
-├── app.db
-├── config.py
-├── numberloo.py
-├── requirements.txt
 ├── addQuiz.py
-├── vetQuiz.py
-├── tests-backend.py
-├── tests-frontend.txt
 ├── app
 │   ├── __init__.py
 │   ├── controllers.py
 │   ├── forms.py
 │   ├── models.py
 │   ├── routes.py
+│   ├── run.py
 │   ├── static
 │   │   ├── images
-│   │   │   ├── images ...
+│   │   │   ├── big_tree.png
+│   │   │   ├── favicon.jpg
+│   │   │   ├── hourglass.gif
+│   │   │   ├── howto.gif
+│   │   │   ├── howtodarkmode.gif
+│   │   │   ├── plant-unscreen.gif
+│   │   │   ├── plant.png
+│   │   │   ├── sad_face.png
+│   │   │   ├── seed.png
+│   │   │   ├── small_plant.png
+│   │   │   ├── statsheader.gif
+│   │   │   └── tree.png
 │   │   ├── interactive.js
 │   │   ├── script.js
 │   │   └── style.css
 │   └── templates
+│       ├── base.html
 │       ├── login.html
 │       ├── register.html
 │       └── skeleton.html
+├── app.db
+├── config.py
+├── git.log.txt
+├── migrations
+│   ├── README
+│   ├── alembic.ini
+│   ├── env.py
+│   ├── script.py.mako
+│   └── versions
+│       ├── 0717e0050e16_game_table.py
+│       ├── 191f8b2cf2c0_redesign_db.py
+│       ├── 3b3e3c3fce2c_refactor_user_table.py
+│       ├── 734027047b31_add_win_column_for_user.py
+│       ├── b34c7e8ed962_quiz_table.py
+│       ├── bd70a5ed9b1e_refactor_user_table.py
+│       └── e9072b3f992a_user_table.py
 ├── notebooks
 │   ├── Quiz_view_insert.ipynb
 │   └── sql_queries_test.ipynb
-└── migrations
-    ├── alembic.ini
-    ├── env.py
-    └── script.py.mako
+├── numberloo.py
+├── requirements.txt
+├── tests-backend.py
+├── tests-frontend.py
+└── vetQuiz.py
 
 ```
 
