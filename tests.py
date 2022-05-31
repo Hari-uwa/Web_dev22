@@ -25,7 +25,7 @@ class UserModelCase(unittest.TestCase):
         self.assertTrue(u.check_password('hari_me'))
 
     
-    def test_update_streak(self):
+    def test_update_streak_plant(self):
         
         u1 = User(id=22222,username='peter',played = 0, win = 0, max_streak = 0, current_streak = 0, big_tree = 0, tree = 0, plant = 0,small_plant = 0, seed = 0)
         #u2 = User(id=33333,username='toby')
@@ -81,10 +81,6 @@ class UserModelCase(unittest.TestCase):
             user.current_streak = 0
         if user.max_streak < user.current_streak:
             user.max_streak = user.current_streak
-        
-        
-        
-        
         
         self.assertTrue(user.current_streak,1)
         self.assertTrue(user.plant,1)
