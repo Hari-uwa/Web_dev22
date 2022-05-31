@@ -5,10 +5,6 @@
   <title>Numberloo</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="apple-touch-icon" sizes="180x180"
-    href="https://www.nytimes.com/games-assets/v2/metadata/nyt-apple-touch-icon.png?v=v2202021345">
-  <link rel="mask-icon" color="#000000"
-    href="https://www.nytimes.com/games-assets/v2/metadata/nyt-safari-pinned-tab.svg?v=v2202021345">
 
   <!--Game Favicon-->
   <link rel="icon" type="image/x-icon" href="./static/images/favicon.jpg">
@@ -21,8 +17,8 @@
     crossorigin="anonymous"></script>
 
   <!-- To use JQuery -->
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-  <script src="http://code.jquery.com/ui/1.8.24/jquery-ui.min.js" type="text/javascript"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.8.24/jquery-ui.min.js"></script>
   <link href="http://code.jquery.com/ui/1.8.24/themes/blitzer/jquery-ui.css" rel="stylesheet" type="text/css" />
 
   <!-- Google Icon -->
@@ -46,8 +42,7 @@
   <header>
     <div class="left-menu">
       <i type="button" id="howtoButton" class="material-icons" data-bs-toggle="modal" data-target="#howtoModal">help</i>
-      <a href="{{ url_for('logout') }}" style="color: black"><i type="button" id="howtoButton"
-          class="material-icons">logout</i></a>
+      <a href="{{ url_for('logout') }}" style="color: black"><i type="button" class="material-icons">logout</i></a>
     </div>
 
     <div class="title">Numberloo</div>
@@ -107,7 +102,7 @@
   </div>
 
   <!-- Congratulation Modal -->
-  <div class="modal fade" id="congrazModal" tabindex="-1" aria-labelledby="CongratulationModal" aria-hidden="true">
+  <div class="modal fade" id="congrazModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -120,7 +115,7 @@
           <h2 id="first-line"><strong> Congratulations! </strong></h2>
           <h2 id="second-line">You have solved Numberloo in</h2>
           <h4 id="time-taken"></h4>
-          <img id="achieved-plant" src="">
+          <img id="achieved-plant" src="" alt="plant achieved">
           <p id="achieved-text"></p>
 
           <button type="button" onclick="popUpMsg()" class="btn btn-primary sharing" id="sharing">SHARE<i
@@ -179,20 +174,16 @@
 
   <!--Statistics Modal-->
   <div class="modal fade" id="statsModal" tabindex="-1" aria-labelledby="statsLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title" id="statsLabel">STATISTICS</h4>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-
         <div class="modal-body" id="statsContent">
-          <div class="popupStats">
-            <span class="popuptext" id="myPopUpStats"></span>
-          </div>
           <div class="container-fluid">
             <div class="row">
-              <p><strong>Daily Global Statisic</strong></p>
+              <p><strong>Daily Global Statistics</strong></p>
               <div class="col-6">
                 <h1 id="winnerPercentage"></h1>
                 <p>Winner %</p>
@@ -204,7 +195,7 @@
             </div>
             <hr>
             <div class="row">
-              <p><strong>Your Statisic</strong></p>
+              <p><strong>Your Statistics</strong></p>
               <br>
               <div class="col-3">
                 <h1 id="playedtimes">0</h1>
@@ -230,32 +221,34 @@
 
               <div class="col-4">
                 <img src="./static/images/big_tree.png" alt="Big Tree">
-                <p id="bigtreeNum">&times 0</p>
+                <p id="bigtreeNum">&amp; times 0</p>
               </div>
               <div class="col-4">
                 <img src="./static/images/tree.png" alt="Smaller Tree">
-                <p id="treeNum">&times 0</p>
+                <p id="treeNum">&amp; times 0</p>
               </div>
               <div class="col-4">
                 <img src="./static/images/plant.png" alt="Plant">
-                <p id="plantNum">&times 0</p>
+                <p id="plantNum">&amp; times 0</p>
               </div>
             </div>
             <div class="row">
               <div class="col-4">
                 <img src="./static/images/small_plant.png" alt="Small Plant">
-                <p id="smallplantNum">&times 0</p>
+                <p id="smallplantNum">&amp; times 0</p>
               </div>
               <div class="col-4">
                 <img src="./static/images/seed.png" alt="Seed">
-                <p id="seedNum">&times 0</p>
-
+                <p id="seedNum">&amp; times 0</p>
               </div>
             </div>
             <br>
             <hr>
             <!--Share button-->
             <p><strong>Share My Results</strong></p>
+            <div class="popupStats" style="position: relative; top:10px">
+              <span class="popuptext" id="myPopUpStats"></span>
+            </div>
             <br>
             <div class="row">
               <div class="col-6">
@@ -272,6 +265,7 @@
       </div>
     </div>
   </div>
+
   <!--Settings Modal-->
   <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -302,7 +296,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>

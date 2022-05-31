@@ -1,0 +1,796 @@
+commit e59ff360bcb54c80fd054adb3482951e4e1f09d4 (HEAD -> main, origin/main, origin/HEAD)
+Merge: 761d9e7 1f268ac
+Author: Carmen <carmen020824@gmail.com>
+Date:   Mon May 30 05:43:29 2022 +0800
+
+    Merge branch 'main' of https://github.com/Hari-uwa/Web_dev22 into main
+
+commit 761d9e7db1aa89475ffaf7c367a354ad7bdac6c6
+Author: Carmen <carmen020824@gmail.com>
+Date:   Mon May 30 05:41:11 2022 +0800
+
+    edit User model, fetch statistics from server
+
+commit 1f268ac17221a1eb4846d28e9e95389345ac2a39
+Author: Your Name <you@example.com>
+Date:   Mon May 30 02:32:45 2022 +0800
+
+    tests
+
+commit b1338addea487361e47172485219ea98ef55c8df
+Merge: c4003ba a63f5b4
+Author: Carmen <carmen020824@gmail.com>
+Date:   Mon May 30 00:54:18 2022 +0800
+
+    commit
+
+commit c4003ba7ba7652d2a7934abb1d6e164037cfe874
+Author: Carmen <carmen020824@gmail.com>
+Date:   Mon May 30 00:50:10 2022 +0800
+
+    change user table
+
+commit a63f5b42f57ca3a9648dbec0a35d67b61c38f1a7
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Mon May 30 00:45:56 2022 +0800
+
+    Adjustment on code
+
+commit c8b215069fd37f5db5b666de3d56dd1e58d4ada6
+Merge: 4aead96 780fab7
+Author: Carmen <68544566+carrrmenleong@users.noreply.github.com>
+Date:   Sun May 29 20:36:37 2022 +0800
+
+    Merge pull request #25 from Hari-uwa/users
+    
+    Implement users registration/login, glob stat feature, refactor MVC design
+
+commit 780fab734c2276fd92d40d4668cae90e0438eaa7
+Merge: fe3477f 4aead96
+Author: Carmen <carmen020824@gmail.com>
+Date:   Sun May 29 20:33:28 2022 +0800
+
+    merge from main
+
+commit fe3477f0ff25a29f8e0affe9f847d5d065a5b2d5
+Merge: 3d96339 bdb799b
+Author: Carmen <carmen020824@gmail.com>
+Date:   Sun May 29 20:01:42 2022 +0800
+
+    Merge branch 'users' of https://github.com/Hari-uwa/Web_dev22 into users
+
+commit 3d9633979c3bf4b94a05b0d25baf56a1c6c26f22
+Author: Carmen <carmen020824@gmail.com>
+Date:   Sun May 29 20:01:32 2022 +0800
+
+    fix post and get request
+
+commit bdb799b469bdf837ef02c82c410fb6f6c59d45b9
+Author: Your Name <you@example.com>
+Date:   Sun May 29 18:18:46 2022 +0800
+
+    hi
+
+commit 4aead96832f009ca4cd8561a6c59d146faa8f386
+Author: Your Name <you@example.com>
+Date:   Sun May 29 18:07:32 2022 +0800
+
+    new quiz db data
+
+commit f9c2835b64137ddc83dbd4f0c1e205904fe9326f
+Author: Carmen <carmen020824@gmail.com>
+Date:   Sun May 29 17:49:40 2022 +0800
+
+    fix get request
+
+commit 1ee1344d8355389f062d838f49084ed2c2a5f4d8
+Author: Carmen <carmen020824@gmail.com>
+Date:   Sun May 29 07:03:15 2022 +0800
+
+    post, get request need fix
+
+commit be2c4fa663436fec2ad0d58cac83eb4bcd8181b1
+Merge: cf8a5d8 7c52d92
+Author: Jen <101207231+jen-nguyenx@users.noreply.github.com>
+Date:   Sun May 29 03:58:48 2022 +0800
+
+    Merge pull request #24 from Hari-uwa/frontpage
+    
+    No more hint
+
+commit 7c52d923ca5c51162ab31ef5df95a7aaa888906a
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Sun May 29 03:48:20 2022 +0800
+
+    No more hint
+
+commit cf8a5d8b48ca0d77c8e43cf6d273162d22f70d20
+Merge: 79c715c 1d62aaf
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Sun May 29 03:46:47 2022 +0800
+
+    Merge branch 'frontpage' into main
+
+commit 1d62aaf5c334178c85048b618d02172387618545
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Sun May 29 03:46:23 2022 +0800
+
+    Front page msg
+
+commit 79c715c078d3553b9116a101ac4c9414838d190d
+Merge: dfa0c88 1f435f6
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Sun May 29 03:34:16 2022 +0800
+
+    Merge branch 'frontpage' into main
+
+commit 1f435f6015522be4628a4400403f90aa6d60763b
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Sun May 29 03:31:55 2022 +0800
+
+    fix readme
+
+commit dfa0c88b123aefa1a777b3fb0252059c52dc0096
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Sun May 29 03:29:45 2022 +0800
+
+    README
+
+commit 29d96f5ae3074385ca65a2fe0ed371c15b1fbadc
+Author: Carmen <carmen020824@gmail.com>
+Date:   Sun May 29 03:23:40 2022 +0800
+
+    implement user login and registeration
+
+commit 24bee8985984e5a48bb848f4618c5ba00ac68274
+Merge: 0ff3060 0e7c221
+Author: Jen <101207231+jen-nguyenx@users.noreply.github.com>
+Date:   Sun May 29 03:23:30 2022 +0800
+
+    Merge pull request #23 from Hari-uwa/frontpage
+    
+    Fix bugs
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Sat May 28 20:38:37 2022 +0800
+
+    Tracking
+
+commit b65374dd999dac81b5b6028108b79c6e72fc6007
+Merge: fee8270 9bb700f
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Sat May 28 20:31:35 2022 +0800
+
+    Merge branch 'frontpage' of https://github.com/Hari-uwa/Web_dev22 into frontpage
+
+commit fee827009ed26f3d40b37b0c0577e8a7512f7a39
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Sat May 28 20:31:31 2022 +0800
+
+    Adjusted tracking
+
+commit 9bb700f1147492336248d2b1511e6292f94ba3b1
+Merge: 47e7eb8 1fc8f08
+Author: Jen <101207231+jen-nguyenx@users.noreply.github.com>
+Date:   Sat May 28 20:09:14 2022 +0800
+
+    Merge pull request #21 from Hari-uwa/main
+    
+    Merging
+
+commit 1fc8f08556d8300f33314e2f735789a583bf49bf
+Merge: ff10fe3 47e7eb8
+Author: Jen <101207231+jen-nguyenx@users.noreply.github.com>
+Date:   Sat May 28 20:08:44 2022 +0800
+
+    Merge pull request #20 from Hari-uwa/frontpage
+    
+    Track whether user played
+
+commit 47e7eb8aac8e52bb15b233636d78e68f1a83f81f
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Sat May 28 19:49:39 2022 +0800
+
+    Track whether user played
+
+commit ff10fe3bbd08392b8e34b822b9bbe453f2963c83
+Merge: f59242c 055f94e
+Author: Jen <101207231+jen-nguyenx@users.noreply.github.com>
+Date:   Sat May 28 18:46:24 2022 +0800
+
+    Merge pull request #19 from Hari-uwa/frontpage
+    
+    New sharing API
+
+commit 055f94e909c100e2d09f6a87608ad383c8180530
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Sat May 28 18:43:09 2022 +0800
+
+    New sharing API
+
+commit f59242c3502d6a19bc810b945ba9b50fd3b8d35b
+Merge: 7959ac2 9a041cd
+Author: Jen <101207231+jen-nguyenx@users.noreply.github.com>
+Date:   Sat May 28 05:30:28 2022 +0800
+
+    Merge pull request #18 from Hari-uwa/frontpage
+    
+    Frontpage
+
+commit 9a041cdd9864e75b167352daa69304e56389d922
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Sat May 28 05:29:35 2022 +0800
+
+    Equation correct
+
+commit e4e1ea1ceee13d62a9a69193faf542dbb3c1a078
+Merge: 8c27f93 7959ac2
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Sat May 28 05:27:13 2022 +0800
+
+    Merge branch 'main' of https://github.com/Hari-uwa/Web_dev22 into frontpage
+
+commit 8c27f93941737639724423299170c7dc5c64ba0d
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Sat May 28 05:25:05 2022 +0800
+
+    Share function
+
+commit 7959ac21c07603380e6f0d38675383e1b02ffc3d
+Author: Your Name <you@example.com>
+Date:   Sat May 28 01:37:13 2022 +0800
+
+    added new correct equations to Quiz table
+
+commit f1545edc6d501e3353f956973f15f0885baec024
+Merge: 631ef3b 066a4b0
+Author: Carmen <carmen020824@gmail.com>
+Date:   Fri May 27 14:03:14 2022 +0800
+
+    Merge branch 'main' of https://github.com/Hari-uwa/Web_dev22 into main
+
+commit 631ef3b1d4ce7ac2106a6d58c1d11932afd1fafb
+Author: Carmen Leong <carmen020824@gmail.com>
+Date:   Fri May 27 14:02:32 2022 +0800
+
+    add .gitignore file
+
+commit 066a4b0448058b8d594dc33736630910d1caf8c9
+Author: Carmen <68544566+carrrmenleong@users.noreply.github.com>
+Date:   Fri May 27 13:55:20 2022 +0800
+
+    Delete venv directory
+
+commit 878c351b13bebd3620d411304948699e559c3e62
+Merge: 3ebdfdf 2154fb8
+Author: Jen <101207231+jen-nguyenx@users.noreply.github.com>
+Date:   Fri May 27 01:36:12 2022 +0800
+
+    Merge pull request #17 from Hari-uwa/frontpage
+    
+    Styling
+
+commit 2154fb8ab4ff6d386389e8e07e8fdd40870fb4a5
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Fri May 27 01:35:24 2022 +0800
+
+    Style CSS
+
+commit 3ebdfdfe4ef948603bffbeb3593af64344fc9219
+Author: Your Name <you@example.com>
+Date:   Fri May 27 00:36:31 2022 +0800
+
+    just a small edit to the game function url
+
+commit 15a7cba2465fceb25f466cf465c87e5995f95617
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Fri May 27 00:01:05 2022 +0800
+
+    DB
+
+commit d474de72f5b5ca9aeec80331ac33083ec5ad3473
+Merge: a14fe05 3fa2e80
+Author: Jen <101207231+jen-nguyenx@users.noreply.github.com>
+Date:   Thu May 26 23:54:30 2022 +0800
+
+    Merge pull request #16 from Hari-uwa/frontpage
+    
+    Frontpage
+
+commit 3fa2e80d8d3b617d2a3cfa95c9efe6fde4cb726c
+Merge: 902edfe a14fe05
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Thu May 26 23:53:37 2022 +0800
+
+    Commit
+
+commit a14fe05eed7f0d736f3607fe1530d5a25a1cfb14
+Author: Your name <22999339@student.uwa.edu.au>
+Date:   Thu May 26 23:42:07 2022 +0800
+
+    With AJAX request updated
+
+commit 953066085434d2f40b7382108f234bebbc8fedd5
+Merge: 7ea2d1b 92bab47
+Author: Dongwoo Noh_22999339 <22999339@student.uwa.edu.au>
+Date:   Thu May 26 23:25:07 2022 +0800
+
+    Merge pull request #15 from Hari-uwa/fake_main
+    
+    Fake main
+
+commit 92bab47f91db5354a954a3de7116cde2b4429c8c (origin/fake_main, fake_main)
+Merge: 5088141 7ea2d1b
+Author: Dongwoo Noh_22999339 <22999339@student.uwa.edu.au>
+Date:   Thu May 26 23:24:39 2022 +0800
+
+    Merge branch 'main' into fake_main
+
+commit 5088141811b31b5edabccd9faf614f4aea0af4ef
+Author: Your name <22999339@student.uwa.edu.au>
+Date:   Thu May 26 23:08:16 2022 +0800
+
+    Trial_Done
+
+commit 0ca3e51c66f272479d7afdc2735e4682ec00af56
+Author: Your name <22999339@student.uwa.edu.au>
+Date:   Thu May 26 23:05:17 2022 +0800
+
+    asdasd
+
+commit 57f5ee1dd5555e5f3d48549f18fa15923bcd33d0
+Author: Your name <22999339@student.uwa.edu.au>
+Date:   Thu May 26 22:35:24 2022 +0800
+
+    trial final hopefully
+
+commit dd0440105a65577b54ce7883ce383f65963b1404
+Author: Your name <22999339@student.uwa.edu.au>
+Date:   Thu May 26 22:28:00 2022 +0800
+
+    trial3
+
+commit f2a11a2c9544eae4dd566a3676fea2a66dcf0022
+Author: Your name <22999339@student.uwa.edu.au>
+Date:   Thu May 26 21:51:20 2022 +0800
+
+    fake main trial
+
+commit ee4184845f8a3a624dae200d7db8e4cbeac33f8e
+Author: Your name <22999339@student.uwa.edu.au>
+Date:   Thu May 26 21:39:59 2022 +0800
+
+    jj
+
+commit 8aab214c50a6d3e814f7fe65ea0010dcd8e9f04d
+Author: Your name <22999339@student.uwa.edu.au>
+Date:   Thu May 26 21:39:51 2022 +0800
+
+    ii
+
+commit 4ca072fac04ffe5c6cf22f0214e0919cca39cdaa
+Author: Your name <22999339@student.uwa.edu.au>
+Date:   Thu May 26 21:35:47 2022 +0800
+
+    lll
+
+commit 97286d2724a35ab78056fd8d8c3824dd9e6dfe78
+Author: Your name <22999339@student.uwa.edu.au>
+Date:   Thu May 26 21:34:06 2022 +0800
+
+    lltria
+
+commit 44c7ebbc8bc47d859588c7aa3197ce28a34c00bf
+Author: Your name <22999339@student.uwa.edu.au>
+Date:   Thu May 26 21:17:04 2022 +0800
+
+    trial2
+
+commit 902edfe356219fe57c2043e767491cd02367ab87 (origin/frontpage)
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Thu May 26 20:32:07 2022 +0800
+
+    Testing for share]
+
+commit b8b80bdbceb54085e3eb66525f7f9cfbc6321caa
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Wed May 25 19:18:29 2022 +0800
+
+    Img
+
+commit 1d09af3c33f210d843977c2ea5f93121754300f1
+Author: Your name <22999339@student.uwa.edu.au>
+Date:   Wed May 25 19:08:55 2022 +0800
+
+    asd
+
+commit 194dc3a882f7098821ce47b463f8afc301f4fcdd
+Author: Carmen <carmen020824@gmail.com>
+Date:   Wed May 25 01:19:46 2022 +0800
+
+    fix image name
+
+commit 7ea2d1bdf7120537d6adfcc63a42c7b88fca3ec4
+Author: Carmen Leong <carmen020824@gmail.com>
+Date:   Tue May 24 23:51:16 2022 +0800
+
+    Fix some css
+
+commit c22a694dd5342faeccc2900772c2dea614bf47d2
+Merge: 1b95664 747e2b1
+Author: Jen <101207231+jen-nguyenx@users.noreply.github.com>
+Date:   Tue May 24 22:47:20 2022 +0800
+
+    Merge pull request #14 from Hari-uwa/frontpage
+    
+    Frontpage
+
+commit 747e2b160276d82815fe2ceee04ab580660f572c
+Merge: 70323b0 19e9295
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Tue May 24 22:43:18 2022 +0800
+
+    Merge branch 'frontpage' of https://github.com/Hari-uwa/Web_dev22 into frontpage
+
+commit 70323b01c87bdeadca3b802b0809e838de47407c
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Tue May 24 22:43:12 2022 +0800
+
+    Working Stats Modal
+
+commit 19e9295c62653546f45af81a9925f2148fc4dc04
+Merge: ccfa2bb 1b95664
+Author: Jen <101207231+jen-nguyenx@users.noreply.github.com>
+Date:   Tue May 24 20:47:21 2022 +0800
+
+    Merge pull request #13 from Hari-uwa/main
+    
+    test
+
+commit 1b956642cc75e85d6e85c0b5a1b69f1cc31408bd
+Merge: 864cca0 ccfa2bb
+Author: Jen <101207231+jen-nguyenx@users.noreply.github.com>
+Date:   Tue May 24 20:33:37 2022 +0800
+
+    Merge pull request #12 from Hari-uwa/frontpage
+    
+    Frontpage
+
+commit ccfa2bb97329c0bbc60c0e69d00bddfc6abc0f44
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Tue May 24 20:32:40 2022 +0800
+
+    requirement txt updated
+
+commit a60175b76bbc3fed83c5b6024f232b3c3d3a73fc
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Tue May 24 20:06:48 2022 +0800
+
+    Tree Inventory tracking feature
+
+commit 7edc56e776b4205cf2e1a22faf1ab45da7f950c8
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Tue May 24 16:01:34 2022 +0800
+
+    Stats Modal
+
+commit 864cca0bb0b59dfc1ea5769e61bba8cb31b77c99
+Merge: 02a3167 d0da3ad
+Author: Jen <101207231+jen-nguyenx@users.noreply.github.com>
+Date:   Tue May 24 01:41:04 2022 +0800
+
+    Merge pull request #11 from Hari-uwa/frontpage
+    
+    Frontpage
+
+commit d0da3ad4f33cba576dff21db55997a96a9850844
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Tue May 24 01:28:19 2022 +0800
+
+    HTML update
+
+commit dfc52165586fc0406d081c9b90f80f0f4650c9ce
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Tue May 24 01:28:03 2022 +0800
+
+    Style update
+
+commit 022a623a174bddeb2b123204f8769e414df08692
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Tue May 24 00:43:21 2022 +0800
+
+    Light Mode updated
+
+commit e94269bbdf6336d348f52009c7eddf0469d6a436
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Tue May 24 00:41:17 2022 +0800
+
+    Light Mode updated
+
+commit 9551372351ea452a577bd5b2bc969520b85937ef
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Tue May 24 00:37:36 2022 +0800
+
+    Light Mode
+
+commit 98dc649595ccd6bba1d4c7787aead5c0281d8a8e
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Mon May 23 22:44:58 2022 +0800
+
+    Adjust item sizes when changing windows size
+
+commit 8f118248386ed74a2c9b536aa3d8b850378450a1
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Mon May 23 20:46:42 2022 +0800
+
+    Dark Mode (styling, buttons, ...)
+
+commit 0f6667a6c1392952921c9e6546dc5828a22df451
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Mon May 23 01:49:33 2022 +0800
+
+    Dark theme testing
+
+commit 39300455667a706eb65d8d1bcc213309083e5d52
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Sun May 22 23:27:46 2022 +0800
+
+    Layouts problem
+
+commit 02a3167494fb277069a47cf9917dca94d3f3c1a2
+Merge: dd41ca5 91c5bc3
+Author: Jen <101207231+jen-nguyenx@users.noreply.github.com>
+Date:   Sun May 22 22:41:14 2022 +0800
+
+    Merge pull request #10 from Hari-uwa/frontpage
+    
+    Frontpage
+
+commit 91c5bc3f1ba062eb62d3a90ff0b12b3287148a62
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Sun May 22 22:39:06 2022 +0800
+
+    Working equations
+
+commit 2e900b8744bf9b4909bff4b7a5645422f627aa14
+Author: Your name <22999339@student.uwa.edu.au>
+Date:   Sun May 22 22:09:16 2022 +0800
+
+    fakemain testing
+
+commit d918384115e7a49e1e34e427690ceab8330ef3db
+Merge: ac04ef8 dd41ca5
+Author: Your name <22999339@student.uwa.edu.au>
+Date:   Sun May 22 21:43:56 2022 +0800
+
+    Merge branch 'fake_main' of https://github.com/Hari-uwa/Web_dev22 into fake_main
+
+commit ac04ef832504470c7d7aaed241ab4c942852c66a
+Author: Your name <22999339@student.uwa.edu.au>
+Date:   Sun May 22 21:43:45 2022 +0800
+
+    Revert "add .gitignore file"
+    
+    This reverts commit 79135e2610044bdaa3fc861fd3682cf5359cf300.
+
+commit 1911fef175bac611841a80f22c8cf700b915dd3b
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Sun May 22 21:38:44 2022 +0800
+
+    Instruction Modal
+
+commit dd41ca5153739c2fa4c4a04ec7adfb6618a92844
+Author: Your name <22999339@student.uwa.edu.au>
+Date:   Sun May 22 21:36:40 2022 +0800
+
+    draft main
+
+commit 87a65c88f060247758d44cb755d56ef293cb45ef
+Author: Your name <22999339@student.uwa.edu.au>
+Date:   Sun May 22 21:36:14 2022 +0800
+
+    Revert "add .gitignore file"
+    
+    This reverts commit 79135e2610044bdaa3fc861fd3682cf5359cf300.
+
+commit 384c705b2fb3155c597163a8a1f321bc8e418e91
+Merge: 8bddd10 61d316e
+Author: Jen <101207231+jen-nguyenx@users.noreply.github.com>
+Date:   Sun May 22 17:37:03 2022 +0800
+
+    Merge pull request #9 from Hari-uwa/frontpage
+    
+    Merge pull request #8 from Hari-uwa/main
+
+commit 61d316e4804e07fd0486be13e0d9e8bb9f8b2e14
+Merge: 3b8036b 8bddd10
+Author: Jen <101207231+jen-nguyenx@users.noreply.github.com>
+Date:   Sun May 22 17:35:49 2022 +0800
+
+    Merge pull request #8 from Hari-uwa/main
+    
+    Merge pull request #7 from Hari-uwa/frontpage
+
+commit 8bddd109fafb70b5d035e39fd821e589960f5bbd
+Merge: 0901445 3b8036b
+Author: Jen <101207231+jen-nguyenx@users.noreply.github.com>
+Date:   Sun May 22 16:36:43 2022 +0800
+
+    Merge pull request #7 from Hari-uwa/frontpage
+    
+    Frontpage
+
+commit 3b8036b9608a14d3d15edf4b1ef038cbb0401f35
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Sun May 22 16:35:48 2022 +0800
+
+    Stats Modal
+
+commit 6fe2574d638932bd055b3dbeb720faf7ac107191
+Author: Jennifer Nguyen <thitrangngannguyen@gmail.com>
+Date:   Sun May 22 16:16:36 2022 +0800
+
+    Settings Modal
+
+commit 09014457deddd010ecdfe647e44659a58c4b53b9
+Author: Your Name <you@example.com>
+Date:   Sun May 22 03:27:05 2022 +0800
+
+    populated Quiz table with equations and quiz_id, created jupyter notebook scripts to do this and added some python-sqlalchemy que
+ry codes
+
+commit 79135e2610044bdaa3fc861fd3682cf5359cf300
+Author: Carmen Leong <carmen020824@gmail.com>
+Date:   Sat May 21 23:09:27 2022 +0800
+
+    add .gitignore file
+
+commit 5a4ef12d54b4e0096b7e2ef132ea74d19ca8928e
+Author: Carmen <68544566+carrrmenleong@users.noreply.github.com>
+Date:   Sat May 21 22:13:31 2022 +0800
+
+    Delete venv directory
+
+commit 1da1568a1616226b3c95b370873e204fc6279122
+Author: Your Name <you@example.com>
+Date:   Fri May 20 22:37:19 2022 +0800
+
+    Added the 3 databases and filled them with dummy values
+
+commit 28b275c3f8f3dc00fa80fb376e6c79b2c0e6f5ab
+Merge: 7635f45 f775e7e
+Author: Your Name <you@example.com>
+Date:   Fri May 20 19:54:12 2022 +0800
+
+    edited some errors during the merge process for the db setup
+
+commit f775e7e7fa471ba671a99b9351169da55900ba4e
+Merge: dd69b51 2cf5483
+Author: Carmen <68544566+carrrmenleong@users.noreply.github.com>
+Date:   Fri May 20 17:50:57 2022 +0800
+
+    Merge pull request #6 from Hari-uwa/gameboard
+    
+    Gameboard
+
+commit 2cf5483f1dea81bd75f164a15c5e472ef7f814a7 (origin/gameboard)
+Merge: eaccf7f dd69b51
+Author: Carmen <68544566+carrrmenleong@users.noreply.github.com>
+Date:   Fri May 20 17:50:28 2022 +0800
+
+    Merge branch 'main' into gameboard
+
+commit eaccf7f23d6e2c1eceb5472cb2b9c55ab862fa37
+Author: Carmen Leong <carmen020824@gmail.com>
+Date:   Fri May 20 15:28:24 2022 +0800
+
+    edit homepage layout, complete game functionality
+
+commit 7635f4563c2d4498aa35e45c38fc4bc91967ebd5 (origin/Dongwoo-AJAX)
+Author: Your Name <you@example.com>
+Date:   Fri May 20 15:24:28 2022 +0800
+
+    db set up packages
+
+commit dd69b51591b97dd6dc31e995c1697979fa252765
+Author: Your name <22999339@student.uwa.edu.au>
+Date:   Thu May 19 13:38:30 2022 +0800
+
+    requirements text
+
+commit fa35a980374fb6523763cce0944ac6b4dc848399
+Author: Carmen Leong <carmen020824@gmail.com>
+Date:   Thu May 19 01:03:05 2022 +0800
+
+    Fix gameboard calculation
+
+commit 42b5bf40e19ae5d6d60bcdedf082d1dfdae3ffac
+Author: Carmen Leong <carmen020824@gmail.com>
+Date:   Tue May 17 22:10:33 2022 +0800
+
+    implement drag and drop and continuos calculation
+
+commit c901fa6c2e1b09b91033cfdf8c9034888e813167
+Author: Your Name <you@example.com>
+Date:   Tue May 17 21:54:25 2022 +0800
+
+    updated dummy.py with a scrip to generate random equation, by bryan and hari
+
+commit 85f4054dbf7b09e519bf2ca6887d5549750f062d (origin/AJAX)
+Author: Your Name <you@example.com>
+Date:   Mon May 16 18:32:32 2022 +0800
+
+    Created a dummy.py which linked with the Target value in the html file, the file will be modified to provide random equations lat
+er
+
+commit 75983c1ffd5840dc994064f57a92f80bfa9b80be
+Author: Your Name <you@example.com>
+Date:   Mon May 16 18:04:40 2022 +0800
+
+    added way to access the target no. vi jinja and
+    python script
+
+commit bb5c765129a3ad911333bc125a7d684e1d59f593
+Author: Your name <22999339@student.uwa.edu.au>
+Date:   Mon May 16 14:52:05 2022 +0800
+
+    AJAX testing
+
+commit b241a7f6c9a04222eb502059911122329e70ef35
+Author: Carmen Leong <carmen020824@gmail.com>
+Date:   Mon May 16 13:26:38 2022 +0800
+
+    create game board, remove unwanted files
+
+commit 3cf37f2d9fc4a6dae4a1185b6cdb3db27af0b51a
+Author: Carmen Leong <carmen020824@gmail.com>
+Date:   Mon May 16 13:24:51 2022 +0800
+
+    create game board, delete unwanted files
+
+commit 89545ef39b66596173fc49d773642eb1116d2630
+Author: Your Name <you@example.com>
+Date:   Wed May 11 21:19:23 2022 +0800
+
+    merged the h_b_server branch
+
+commit 84bf5222440c65b899e37cbf5fdf56df2092f74f (origin/h_b_server)
+Author: Your Name <you@example.com>
+Date:   Wed May 11 21:00:15 2022 +0800
+
+    Updated the flask server to run the skeleton.html file, edited skeleton.html to getscript.js from static folder
+
+commit 8a0aa1ffdb06892ca962d4fe88b9684d95e7a1bc
+Author: Your Name <you@example.com>
+Date:   Wed May 11 20:11:00 2022 +0800
+
+     the previously added flask server scripts didn't function well so corrected some errors in the scripts
+
+commit f34f7d63a1594e5f50ab4f7d94a2d1f658775548
+Author: Your Name <you@example.com>
+Date:   Wed May 11 19:59:29 2022 +0800
+
+    added app folder and some python files for setting up flask server
+
+commit 0b9a8ad7989db93267f45dcdf15fc039b6e043d5
+Author: Carmen <carmen020824@gmail.com>
+Date:   Tue May 10 16:13:17 2022 +0800
+
+    add timer and start button functionality
+
+commit f27d56aad53e109c437119cf2ab6c952a19a6148
+Author: Your Name <you@example.com>
+Date:   Fri May 6 01:54:22 2022 +0800
+
+    Initial website framework by Bryan and Hari
+
+commit 34f8156d1743f5f760ee3d77c7995a92d3bc5080
+Author: Hari <104722642+Hari-uwa@users.noreply.github.com>
+Date:   Sun May 1 21:44:14 2022 +0800
+
+    Update README.md
+
+commit 080d613c953461b3daa5db188f525cc41650b323
+Author: Hari <104722642+Hari-uwa@users.noreply.github.com>
+Date:   Sun May 1 21:42:54 2022 +0800
+
+    Initial commit

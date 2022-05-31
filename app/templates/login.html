@@ -1,4 +1,7 @@
-<!-- <h1>Sign In</h1>
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Sign In</h1>
 <form action="" method="post" novalidate>
     {{ form.hidden_tag() }}
     <p>
@@ -25,7 +28,7 @@
     </p>
     <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
     <p>{{ form.submit() }}</p>
-
+    <p>New User? <a href="{{ url_for('register') }}">Click to Register!</a></p>
 </form>
 <p>New User? <a href="{{ url_for('register') }}">Click to Register!</a></p> -->
 
@@ -44,8 +47,6 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="http://code.jquery.com/ui/1.8.24/jquery-ui.min.js" type="text/javascript"></script>
 
-    <!--For CSS-->
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
 </head>
 
 
@@ -101,14 +102,14 @@ https://stackoverflow.com/questions/64739690/how-to-incorporate-a-flask-wtf-form
                     {{ form.hidden_tag() }}
                     <p>
                         {{ form.username.label }}<br>
-                        {{ form.username(size=32) }}<br>
+                        <span id="usernamesign">{{ form.username(size=32) }}</span><br>
                         {% for error in form.username.errors %}
                         <span style="color: red;">[{{ error }}]</span>
                         {% endfor %}
                     </p>
                     <p>
                         {{ form.password.label }}<br>
-                        {{ form.password(size=32) }}<br>
+                        <span id="passwordsign">{{ form.password(size=32) }}</span><br>
                         {% for error in form.password.errors %}
                         <span style="color: red;">[{{ error }}]</span>
                         {% endfor %}
@@ -122,10 +123,12 @@ https://stackoverflow.com/questions/64739690/how-to-incorporate-a-flask-wtf-form
                         {% endwith %}
                     </p>
                     <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-                    <p>{{ form.submit() }}</p>
-                    <p>New User? <a href="{{ url_for('register') }}">Click to Register!</a></p>
+                    <p id="submitsign">{{ form.submit() }}</p>
+                    <p>New User? <a id="registerlink" href="{{ url_for('register') }}">Click to Register!</a></p>
                 </form>
             </div>
         </div>
     </div>
 </section>
+
+{% endblock %}

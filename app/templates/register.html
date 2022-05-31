@@ -12,8 +12,6 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.24/jquery-ui.min.js" type="text/javascript"></script>
 
-<!--For CSS-->
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
 
 <style>
     .divider:after,
@@ -69,26 +67,26 @@ https://stackoverflow.com/questions/64739690/how-to-incorporate-a-flask-wtf-form
                     {{ form.hidden_tag() }}
                     <p>
                         {{ form.username.label }}<br>
-                        {{ form.username(size=32) }}<br>
+                        <span id="usernamelog">{ form.username(size=32) }}</span><br>
                         {% for error in form.username.errors %}
                         <span style="color: red;">[{{ error }}]</span>
                         {% endfor %}
                     </p>
                     <p>
                         {{ form.password.label }}<br>
-                        {{ form.password(size=32) }}<br>
+                        <span id="passwordlog">{{ form.password(size=32) }}</span><br>
                         {% for error in form.password.errors %}
                         <span style="color: red;">[{{ error }}]</span>
                         {% endfor %}
                     </p>
                     <p>
                         {{ form.password2.label }}<br>
-                        {{ form.password2(size=32) }}<br>
+                        <span id="pwagain">{{ form.password2(size=32) }}</span><br>
                         {% for error in form.password2.errors %}
                         <span style="color: red;">[{{ error }}]</span>
                         {% endfor %}
                     </p>
-                    <p>{{ form.submit() }}</p>
+                    <p id="registerbutton">{{ form.submit() }}</p>
                 </form>
                 <p>Have an account? <a href="{{ url_for('login') }}">Click to Login!</a></p>
                 </form>
@@ -96,3 +94,36 @@ https://stackoverflow.com/questions/64739690/how-to-incorporate-a-flask-wtf-form
         </div>
     </div>
 </section>
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Register</h1>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.username.label }}<br>
+        {{ form.username(size=32) }}<br>
+        {% for error in form.username.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.password.label }}<br>
+        {{ form.password(size=32) }}<br>
+        {% for error in form.password.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.password2.label }}<br>
+        {{ form.password2(size=32) }}<br>
+        {% for error in form.password2.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>{{ form.submit() }}</p>
+</form>
+<p>Have an account? <a href="{{ url_for('login') }}">Click to Login!</a></p>
+</form>
+
+{% endblock %}
